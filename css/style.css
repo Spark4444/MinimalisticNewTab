@@ -1,0 +1,86 @@
+html{
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    font-family: Helvetica;
+}
+body{
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url(../img/Wallpaper.png);
+    background-repeat: no-repeat;
+    background-size:cover;
+}
+.Input_form {
+    border: 1.5px groove black;
+    border-radius: 40px;
+    width: 40%;
+    height: 6%;
+    padding: 10px;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    background-color: #ffffff9c;
+}
+.Bing_ai, .Search {
+    cursor: pointer;
+    width: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+input#Input {
+    user-select:all;
+    background: none;
+    border: none;
+    width: 80%;
+    padding: 0 0 0 10px;
+    font-size: 137%;
+    color: black;
+}
+input#Input:focus{
+    outline: none;
+}
+input#Input::placeholder{
+    color: black;
+}
+img{
+    width: 75%;
+    -webkit-user-drag: none;
+}
+div#clock {
+    position: absolute;
+    top: 35%;
+    font-size: 350%;
+    color: black;
+}
+img.Calculator {
+    position: absolute;
+    top: 2%;
+    left: 1%;
+    width: 2%;
+    cursor: pointer;
+}
+.options {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 5%;
+    height: 15%;
+    margin: 1%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+img.icon {
+    cursor: pointer;
+    width: 60%;
+}
