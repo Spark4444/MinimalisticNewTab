@@ -2,12 +2,13 @@ let input = document.querySelector("#Input");
 let bing_icon = document.querySelector("#Bing_ai_icon");
 let bing_ai = document.querySelector(".Bing_ai");
 let choice;
-if(getFromLocalStorage(20) == 0 || getFromLocalStorage(20) == 1){
-    choice = getFromLocalStorage(20);
+
+if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    document.querySelector("#clock").style.color = "black";
+} else {
+    document.querySelector("#clock").style.color = "white";
 }
-else{
-    choice = 1;
-}
+
 let calculatorWindow;
 
 //Chooses search engine
