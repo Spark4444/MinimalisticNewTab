@@ -19,7 +19,7 @@ function choiceFunc(num){
 //Opens the calculator
 function open_calculator() {
     calculatorWindow = window.open(
-        "file:///C:/HomePage/calculator/calculator.html",
+        "calculator/calculator.html",
         "_blank",
         "popup=yes, width=300,height=515"
     )
