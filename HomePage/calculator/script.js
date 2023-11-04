@@ -1,4 +1,4 @@
-let answer = document.querySelector(".answer");
+let answer = document.querySelector(".text");
 let button1 = document.querySelector(".button1");
 let minus = "-";
 let id = -1;

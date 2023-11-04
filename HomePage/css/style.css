@@ -1,3 +1,4 @@
+/*add transition*/
 html{
     padding: 0;
     margin: 0;
@@ -16,7 +17,8 @@ body{
     justify-content: center;
     background-image: url(../img/Wallpaper.png);
     background-repeat: no-repeat;
-    background-size:cover;
+    background-size: cover;
+    flex-direction: column;
 }
 .Input_form {
     border: 0.2vw groove black;
@@ -56,8 +58,6 @@ img{
     -webkit-user-drag: none;
 }
 div#clock {
-    position: absolute;
-    top: 35%;
     font-size: 4vw;
     color: black;
 }
