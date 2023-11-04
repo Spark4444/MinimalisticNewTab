@@ -1,7 +1,6 @@
 let input = document.querySelector("#Input");
 let bing_icon = document.querySelector("#Bing_ai_icon");
 let bing_ai = document.querySelector(".Bing_ai");
-let choice;
 
 if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
     document.querySelector("#clock").style.color = "black";
@@ -11,15 +10,10 @@ if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').match
 
 let calculatorWindow;
 
-//Chooses search engine
-function choiceFunc(num){
-    choice = num;
-    saveToLocalStorage(20,choice);
-}
 //Opens the calculator
 function open_calculator() {
     calculatorWindow = window.open(
-        "file:///C:/HomePage/calculator/calculator.html",
+        "calculator/calculator.html",
         "_blank",
         "popup=yes, width=300,height=515"
     )
@@ -44,13 +38,8 @@ function Clear_input() {
 
 //Searches in google or bing with the inputs value
 function Search(){
-    if(/^\s*$/.test(input.value)){}
-    else if(choice == 0){
-        window.location.href = `https://www.google.com/search?q=${input.value}`;
-    }
-    else if(choice == 1){
-        window.location.href = `https://www.bing.com/search?q=${input.value}`;
-    }
+    if(/\S/.test(input.value)){}
+        window.location.href = `https://www.bing.com/search?pglt=161&q=${input.value}`;
 }
 
 //Waits for the user to press Enter and search 
