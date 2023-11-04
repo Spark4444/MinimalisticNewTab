@@ -38,6 +38,7 @@ function delete_w() {
     answer.innerHTML = "0";
     worked = false;
     num1 = false;
+    id = -1;
     sign_arr.forEach(sign => {
         sign.style.backgroundColor = ""
         sign.style.color = ""
@@ -127,11 +128,10 @@ function sign(sign){
 
 //Solves the equation in the input
 function equal(){
+    if(id !== -1){
     if(sign_changed == true){
     num2 = answer.innerHTML;
     }
-    console.log(num1)
-    console.log(num2)
     sign_arr.forEach(sign => {
         sign.style.backgroundColor = "";
         sign.style.color = "";
@@ -165,6 +165,7 @@ function equal(){
         num1 = answer.innerHTML;
     }
     sign_changed = false;
+    }
 }
 
 //Checks amount of words in the input and changes the font-size accordingly and also changes the AC and C every 10ms
