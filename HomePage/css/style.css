@@ -19,11 +19,11 @@ body{
     background-size:cover;
 }
 .Input_form {
-    border: 1.5px groove black;
-    border-radius: 40px;
+    border: 0.2vw groove black;
+    border-radius: 4vw;
     width: 40%;
     height: 6%;
-    padding: 10px;
+    padding: 0.5vw;
     display: flex;
     flex-wrap: nowrap;
     flex-direction: row;
@@ -41,8 +41,8 @@ input#Input {
     background: none;
     border: none;
     width: 80%;
-    padding: 0 0 0 10px;
-    font-size: 137%;
+    padding: 0 0 0 1vw;
+    font-size: 1.4vw;
     color: black;
 }
 input#Input:focus{
@@ -58,7 +58,7 @@ img{
 div#clock {
     position: absolute;
     top: 35%;
-    font-size: 350%;
+    font-size: 4vw;
     color: black;
 }
 img.Calculator {
