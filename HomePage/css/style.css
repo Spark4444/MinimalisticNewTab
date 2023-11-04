@@ -1,86 +1,108 @@
-/*add transition*/
 html{
-    padding: 0;
-    margin: 0;
-    width: 100%;
-    height: 100%;
     font-family: Helvetica;
-}
-body{
-    padding: 0;
-    margin: 0;
-    width: 100%;
     height: 100%;
-    user-select: none;
-    display: flex;
+    margin: 0;
+    padding: 0;
+    transition: 0.5s;
+    width: 100%;
+}
+
+body{
     align-items: center;
-    justify-content: center;
     background-image: url(../img/Wallpaper.png);
     background-repeat: no-repeat;
     background-size: cover;
+    display: flex;
     flex-direction: column;
+    height: 100%;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    width: 100%;
+    transition: 0.5s;
 }
+
 .Input_form {
+    background-color: #ffffff9c;
     border: 0.2vw groove black;
     border-radius: 4vw;
-    width: 40%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
     height: 6%;
     padding: 0.5vw;
-    display: flex;
-    flex-wrap: nowrap;
-    flex-direction: row;
-    background-color: #ffffff9c;
+    width: 40%;
+    transition: 0.5s;
 }
+
 .Bing_ai, .Search {
-    cursor: pointer;
-    width: 10%;
-    display: flex;
     align-items: center;
+    cursor: pointer;
+    display: flex;
     justify-content: center;
+    width: 10%;
+    transition: 0.5s;
 }
+
 input#Input {
-    user-select:all;
     background: none;
     border: none;
-    width: 80%;
-    padding: 0 0 0 1vw;
-    font-size: 1.4vw;
     color: black;
+    font-size: 1.4vw;
+    padding: 0 0 0 1vw;
+    user-select:all;
+    width: 80%;
+    transition: 0.5s;
 }
+
 input#Input:focus{
     outline: none;
+    transition: 0.5s;
 }
+
 input#Input::placeholder{
     color: black;
+    transition: 0.5s;
 }
+
 img{
-    width: 75%;
     -webkit-user-drag: none;
+    width: 75%;
+    transition: 0.5s;
 }
+
 div#clock {
-    font-size: 4vw;
     color: black;
+    font-size: 4vw;
+    transition: 0.5s;
 }
+
 img.Calculator {
+    cursor: pointer;
+    left: 1%;
     position: absolute;
     top: 2%;
-    left: 1%;
     width: 2%;
-    cursor: pointer;
+    transition: 0.5s;
 }
+
 .options {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 15%;
+    justify-content: space-evenly;
+    margin: 1%;
     position: absolute;
     right: 0;
     top: 0;
     width: 5%;
-    height: 15%;
-    margin: 1%;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: space-evenly;
+    transition: 0.5s;
 }
+
 img.icon {
     cursor: pointer;
     width: 60%;
+    transition: 0.5s;
 }
