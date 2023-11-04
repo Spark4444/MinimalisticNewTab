@@ -1,3 +1,4 @@
+// Initialize variables
 let input = document.querySelector("#Input");
 let bing_icon = document.querySelector("#Bing_ai_icon");
 let bing_ai = document.querySelector(".Bing_ai");
