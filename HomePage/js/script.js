@@ -37,7 +37,7 @@ function Clear_input() {
     input.value = ""
 }
 
-//Searches in google or bing with the inputs value
+//Searches in bing with the inputs value
 function Search(){
     if(/\S/.test(input.value)){}
         window.location.href = `https://www.bing.com/search?pglt=161&q=${input.value}`;
