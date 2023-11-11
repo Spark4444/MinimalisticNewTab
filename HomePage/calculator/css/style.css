@@ -36,6 +36,7 @@ button.copyTheAnswer {
     cursor: pointer;
     height: 12vw;
     margin: 2%;
+    outline: none;
     position: absolute;
     right: 0;
     top: 0;
