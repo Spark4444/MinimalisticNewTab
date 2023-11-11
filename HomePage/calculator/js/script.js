@@ -8,6 +8,7 @@ let num2;
 let num_check = false;
 let worked = false;
 let sign_changed = false;
+let canCopy = true;
 let sign_arr = [
     document.querySelector(".button4"),
     document.querySelector(".button8"),
@@ -23,6 +24,22 @@ document.addEventListener("keydown", function(e){
             break;
     }
 });
+
+// Function to copy the answer
+function copyAnswer() {
+    if(canCopy){
+    canCopy = false;
+    let copyButton = document.querySelector(".copyTheAnswerImg");
+
+    copyButton.src = "img/copied.png";
+    setTimeout(() => {
+        copyButton.src = "img/copy.png";
+        canCopy = true;
+    }, 1000);
+    // Copy the answer to the clipboard
+    navigator.clipboard.writeText(answer.innerHTML)
+    }
+}
 
 //Converts a number into a scientific notation
 function convertToScientificNotation(num) {
@@ -181,13 +198,13 @@ setInterval(() => {
         answer.style.fontSize = "";
     }
     else if(answer.innerHTML.length > 8 && answer.innerHTML.length < 11){
-        answer.style.fontSize = "50px";
+        answer.style.fontSize = "15vw";
     }
     else if(answer.innerHTML.length > 10 && answer.innerHTML.length < 12){
-        answer.style.fontSize = "45px";
+        answer.style.fontSize = "13vw";
     }
     else if(answer.innerHTML.length > 11 && answer.innerHTML.length < 13){
-        answer.style.fontSize = "40px";
+        answer.style.fontSize = "11vw";
     }
 }, 10);
 

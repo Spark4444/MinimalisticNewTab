@@ -30,6 +30,23 @@ link[rel="icon"] {
     transition: 0.25s;
     width: 100%;
 }
+button.copyTheAnswer {
+    background: none;
+    border: none;
+    cursor: pointer;
+    height: 12vw;
+    margin: 2%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: 0.25s;
+    width: 14vw;
+}
+img.copyTheAnswerImg{
+    height: 100%;
+    transition: 0.25s;
+    width: 100%;
+}
 .answer {
     align-items: flex-end;
     color: white;
@@ -42,8 +59,10 @@ link[rel="icon"] {
     width: 100%;
 }
 .text {
+    caret-color: transparent;
     margin: 0 6.5% 0 0;
     transition: 0.25s;
+    user-select: text;
 }
 .grid-area{
     align-items: center;
