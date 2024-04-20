@@ -1,0 +1,210 @@
+html{
+    height: 100%;
+    transition: 0.25s;
+    width: 100%;
+}
+body{
+    font-family: Helvetica;
+    font-weight:bold;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    transition: 0.25s;
+    user-select: none;
+    width: 100%;
+}
+link[rel="icon"] {
+    filter: invert(1);
+    transition: 0.25s;
+}
+.calculator {
+    align-items: center;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+    left: 0;
+    position: absolute;
+    top: 0;
+    transition: 0.25s;
+    width: 100%;
+}
+.copyTheAnswer {
+    background: none;
+    border: none;
+    cursor: pointer;
+    height: 12vw;
+    margin: 2%;
+    outline: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transition: 0.25s;
+    width: 14vw;
+}
+.copyTheAnswerImg{
+    height: 100%;
+    transition: 0.25s;
+    width: 100%;
+}
+.answer {
+    align-items: flex-end;
+    color: white;
+    display: flex;
+    font-size: 20vw;
+    font-weight: 500;
+    height: 30%;
+    justify-content: flex-end;
+    transition: 0.25s;
+    width: 100%;
+}
+.text {
+    caret-color: transparent;
+    margin: 0 6.5% 0 0;
+    transition: 0.25s;
+    user-select: text;
+}
+.grid-area{
+    align-items: center;
+    display: grid;
+    grid-template-areas: 
+        "button1 button2 button3 button4" 
+        "button5 button6 button7 button8" 
+        "button9 button10 button11 button12" 
+        "button13 button14 button15 button16" 
+        "button17 button17 button18 button19";
+    height: 70%;
+    justify-items: center;
+    transition: 0.25s;
+    width: 100%;
+}
+.button {
+    align-items: center;
+    background-color: rgb(59 59 59);
+    border-radius: 100%;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    font-size: 10vw;
+    height: 20vw;
+    justify-content: center;
+    transition: 0.25s;
+    width: 20vw;
+}
+.button1{
+    font-size: 10vw;
+    font-weight: 600 !important;
+    grid-area: button1;
+    transition: 0.25s;
+}
+.button2{
+    font-size: 12vw;
+    font-weight: 500 !important;
+    grid-area: button2;
+    transition: 0.25s;
+}
+.button3{
+    font-weight: 550 !important;
+    grid-area: button3;
+    transition: 0.25s;
+}
+.button4{
+    grid-area: button4;
+    transition: 0.25s;
+}
+.button5{
+    grid-area: button5;
+    transition: 0.25s;
+}
+.button6{
+    grid-area: button6;
+    transition: 0.25s;
+}
+.button7{
+    grid-area: button7;
+    transition: 0.25s;
+}
+.button8{
+    grid-area: button8;
+    transition: 0.25s;
+}
+.button9{
+    grid-area: button9;
+    transition: 0.25s;
+}
+.button10{
+    grid-area: button10;
+    transition: 0.25s;
+}
+.button11{
+    grid-area: button11;
+    transition: 0.25s;
+}
+.button12{
+    grid-area: button12;
+    transition: 0.25s;
+}
+.button13{
+    grid-area: button13;
+    transition: 0.25s;
+}
+.button14{
+    grid-area: button14;
+    transition: 0.25s;
+}
+.button15{
+    grid-area: button15;
+    transition: 0.25s;
+}
+.button16{
+    grid-area: button16;
+    transition: 0.25s;
+}
+.button17{
+    grid-area: button17;
+    transition: 0.25s;
+}
+.button18{
+    grid-area: button18;
+    transition: 0.25s;
+}
+.button19{
+    grid-area: button19;
+    transition: 0.25s;
+}
+.button1, .button2, .button3{
+    background-color: #C0C0C0;
+    color: black;
+    transition: 0.35s;
+}
+.button1:active, .button2:active, .button3:active{
+    background-color: #ECECEC;
+    transition: 0.35s;
+}
+.button4, .button8, .button12, .button16, .button19{
+    background-color: #FF9E20;
+    transition: 0.25s;
+}
+.button4:active, .button8:active, .button12:active, .button16:active, .button19:active{
+    background-color: #F4C995;
+    transition: 0.35s;
+}
+.button:active, .longButton:active{
+    background-color: #767676;
+    transition: 0.35s;
+}
+.button17.longButton {
+    align-items: center;
+    background-color: #3B3B3B;
+    border-radius: 10vw;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    font-size: 10vw;
+    height: 20vw;
+    justify-content: flex-start;
+    padding: 0 0 0 16%;
+    transition: 0.25s;
+    width: 38vw;
+}

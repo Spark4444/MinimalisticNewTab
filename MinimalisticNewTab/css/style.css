@@ -1,0 +1,108 @@
+html{
+    font-family: Helvetica;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    transition: 0.5s;
+    width: 100%;
+}
+
+body{
+    align-items: center;
+    background-image: url(../img/Wallpaper.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    width: 100%;
+    transition: 0.5s;
+}
+
+.inputForm {
+    background-color: #ffffff9c;
+    border: 0.2vw groove black;
+    border-radius: 4vw;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    height: 6%;
+    padding: 0.5vw;
+    width: 40%;
+    transition: 0.5s;
+}
+
+.clearInput, .search {
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    width: 10%;
+    transition: 0.5s;
+}
+
+.input {
+    background: none;
+    border: none;
+    color: black;
+    font-size: 1.4vw;
+    padding: 0 0 0 1vw;
+    user-select:all;
+    width: 80%;
+    transition: 0.5s;
+}
+
+.input:focus{
+    outline: none;
+    transition: 0.5s;
+}
+
+.input::placeholder{
+    color: black;
+    transition: 0.5s;
+}
+
+img{
+    -webkit-user-drag: none;
+    width: 75%;
+    transition: 0.5s;
+}
+
+.clock {
+    color: black;
+    font-size: 4vw;
+    transition: 0.5s;
+}
+
+.calculator {
+    cursor: pointer;
+    left: 1%;
+    position: absolute;
+    top: 2%;
+    width: 2%;
+    transition: 0.5s;
+}
+
+.options {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 15%;
+    justify-content: space-evenly;
+    margin: 1%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 5%;
+    transition: 0.5s;
+}
+
+.icon {
+    cursor: pointer;
+    width: 60%;
+    transition: 0.5s;
+}

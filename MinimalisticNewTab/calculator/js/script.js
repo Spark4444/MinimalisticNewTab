@@ -5,11 +5,11 @@ let minus = "-";
 let id = -1;
 let num1 = false;
 let num2;
-let num_check = false;
+let checkNum = false;
 let worked = false;
-let sign_changed = false;
+let signChanged = false;
 let canCopy = true;
-let sign_arr = [
+let signArr = [
     document.querySelector(".button4"),
     document.querySelector(".button8"),
     document.querySelector(".button12"),
@@ -52,12 +52,12 @@ function convertToScientificNotation(num) {
 }
 
 //Deletes everything from the input
-function delete_w() {
+function deleteW() {
     answer.innerHTML = "0";
     worked = false;
     num1 = false;
     id = -1;
-    sign_arr.forEach(sign => {
+    signArr.forEach(sign => {
         sign.style.backgroundColor = ""
         sign.style.color = ""
     });
@@ -68,12 +68,12 @@ function number(number) {
     if(answer.innerHTML == "0" && number !== "."){
         answer.innerHTML = number;
     }
-    else if(worked == false && num_check == true){
-        sign_arr.forEach(sign => {
+    else if(worked == false && checkNum == true){
+        signArr.forEach(sign => {
             sign.style.backgroundColor = ""
             sign.style.color = ""
         });
-        num_check = false;
+        checkNum = false;
         answer.innerHTML = number;
         worked = true;
     }
@@ -86,7 +86,7 @@ function number(number) {
 }
 
 //Change the sign from + to - or vice versa
-function change_sign(sign) {
+function changeSign(sign) {
     if(sign == "±" && answer.innerHTML.indexOf("-") == -1){
         answer.innerHTML = minus.concat("", answer.innerHTML);
     }
@@ -103,54 +103,54 @@ function persantage(){
 //Chooses the sign with wich the input will be changed
 function sign(sign){
     if(sign == "/"){
-        sign_arr.forEach(sign => {
+        signArr.forEach(sign => {
                 sign.style.backgroundColor = "";
                 sign.style.color = "";
         });
-        sign_arr[0].style.backgroundColor = "white";
-        sign_arr[0].style.color = "rgb(255 158 32)";
+        signArr[0].style.backgroundColor = "white";
+        signArr[0].style.color = "rgb(255 158 32)";
         id = 0;
     }
     if(sign == "*"){
-        sign_arr.forEach(sign => {
+        signArr.forEach(sign => {
             sign.style.backgroundColor = "";
             sign.style.color = "";
         });
-        sign_arr[1].style.backgroundColor = "white";
-        sign_arr[1].style.color = "rgb(255 158 32)";
+        signArr[1].style.backgroundColor = "white";
+        signArr[1].style.color = "rgb(255 158 32)";
         id = 1;
     }
     if(sign == "-"){
-        sign_arr.forEach(sign => {
+        signArr.forEach(sign => {
             sign.style.backgroundColor = "";
             sign.style.color = "";
         });
-        sign_arr[2].style.backgroundColor = "white";
-        sign_arr[2].style.color = "rgb(255 158 32)";
+        signArr[2].style.backgroundColor = "white";
+        signArr[2].style.color = "rgb(255 158 32)";
         id = 2;
     }
     if(sign == "+"){
-        sign_arr.forEach(sign => {
+        signArr.forEach(sign => {
             sign.style.backgroundColor = "";
             sign.style.color = "";
         });
-        sign_arr[3].style.backgroundColor = "white";
-        sign_arr[3].style.color = "rgb(255 158 32)";
+        signArr[3].style.backgroundColor = "white";
+        signArr[3].style.color = "rgb(255 158 32)";
         id = 3;
     }
     num1 = answer.innerHTML;
-    num_check = true;
-    sign_changed = true;
+    checkNum = true;
+    signChanged = true;
     worked = false;
 }
 
 //Solves the equation in the input
 function equal(){
     if(id !== -1){
-    if(sign_changed == true){
+    if(signChanged == true){
     num2 = answer.innerHTML;
     }
-    sign_arr.forEach(sign => {
+    signArr.forEach(sign => {
         sign.style.backgroundColor = "";
         sign.style.color = "";
     });
@@ -182,7 +182,7 @@ function equal(){
         answer.innerHTML = convertToScientificNotation(parseFloat(parseFloat(answer.innerHTML).toFixed(8)));
         num1 = answer.innerHTML;
     }
-    sign_changed = false;
+    signChanged = false;
     }
 }
 
@@ -229,13 +229,13 @@ document.addEventListener("keydown", function(e) {
             break;
         case 8: // 'Backspace'
         case 46: // 'Delete'
-            delete_w();
+            deleteW();
             break;
         case 110: // '.'
             number(".");
             break;
         case 120: // 'F9'
-            change_sign("±");
+            changeSign("±");
             break;
         case 121: // 'F10'
             persantage();
@@ -271,4 +271,67 @@ document.addEventListener("keydown", function(e) {
             number("9");
             break;
     }
+});
+
+
+//Event listeners for buttons
+document.querySelector(".copyTheAnswerImg").addEventListener("click", function() {
+    copyAnswer();
+});
+document.querySelector(".button1").addEventListener("click", function() {
+    deleteW();
+});
+document.querySelector(".button2").addEventListener("click", function() {
+    changeSign('±');
+});
+document.querySelector(".button3").addEventListener("click", function() {
+    persantage();
+});
+document.querySelector(".button4").addEventListener("click", function() {
+    sign('/');
+});
+document.querySelector(".button5").addEventListener("click", function() {
+    number('7');
+});
+document.querySelector(".button6").addEventListener("click", function() {
+    number('8');
+});
+document.querySelector(".button7").addEventListener("click", function() {
+    number('9');
+});
+document.querySelector(".button8").addEventListener("click", function() {
+    sign('*');
+});
+document.querySelector(".button9").addEventListener("click", function() {
+    number('4');
+});
+document.querySelector(".button10").addEventListener("click", function() {
+    number('5');
+});
+document.querySelector(".button11").addEventListener("click", function() {
+    number('6');
+});
+document.querySelector(".button12").addEventListener("click", function() {
+    sign('-');
+});
+document.querySelector(".button13").addEventListener("click", function() {
+    number('1');
+});
+document.querySelector(".button14").addEventListener("click", function() {
+    number('2');
+});
+document.querySelector(".button15").addEventListener("click", function() {
+    number('3');
+});
+document.querySelector(".button16").addEventListener("click", function() {
+    sign('+');
+});
+document.querySelector(".button17").addEventListener("click", function() {
+    number('0');
+});
+document.querySelector(".button18").addEventListener("click", function() {
+    number('.');
+});
+document.querySelector(".button19").addEventListener("click", function() {
+    equal();
 });
