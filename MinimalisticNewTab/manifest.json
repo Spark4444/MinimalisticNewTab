@@ -1,10 +1,13 @@
 {
     "name": "Minimalistic new tab",
     "version": "1.0.0",
-    "description": "Minimalistic new tab page",
+    "description": "",
     "icons": {
+        "16": "img/newtab16.png",
+        "32": "img/newtab32.png",
         "48": "img/newtab48.png",
-        "98": "img/newtab98.png"
+        "98": "img/newtab98.png",
+        "128": "img/newtab128.png"
     },
     "chrome_url_overrides": {
         "newtab": "index.html"

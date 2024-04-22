@@ -10,6 +10,7 @@ html{
 body{
     align-items: center;
     background-image: url(../img/Wallpaper.png);
+    background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
     display: flex;
@@ -30,7 +31,7 @@ body{
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    height: 6%;
+    height: 3vw;
     padding: 0.5vw;
     width: 40%;
     transition: 0.5s;
@@ -38,11 +39,14 @@ body{
 
 .clearInput, .search {
     align-items: center;
-    cursor: pointer;
     display: flex;
     justify-content: center;
     width: 10%;
     transition: 0.5s;
+}
+
+.clearInputImg{
+    width: 50%;
 }
 
 .input {

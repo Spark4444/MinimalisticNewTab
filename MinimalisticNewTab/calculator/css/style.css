@@ -34,7 +34,6 @@ link[rel="icon"] {
     background: none;
     border: none;
     cursor: pointer;
-    height: 12vw;
     margin: 2%;
     outline: none;
     position: absolute;
@@ -44,7 +43,6 @@ link[rel="icon"] {
     width: 14vw;
 }
 .copyTheAnswerImg{
-    height: 100%;
     transition: 0.25s;
     width: 100%;
 }

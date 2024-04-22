@@ -52,23 +52,26 @@ input.addEventListener('keyup', function(event){
 //Changes between the blank and X button
 setInterval(() => {
     if(/^\s*$/.test(input.value)){
+        document.querySelector(".clearInput").style.cursor = "default";
         clearInputIcon.src = "img/blank.png";
-        clearInputIcon.style.width = "75%";
         inputClearable = false;
+        clearInputIcon.style.width = "75%";
     }
     else{
+        document.querySelector(".clearInput").style.cursor = "pointer";
         clearInputIcon.src = "img/x.png";
-        clearInputIcon.style.width = "50%";
         inputClearable = true;
+        clearInputIcon.style.width = "50%";
     }
 }, 200);
 
 //Displays the time
 function displayTime() {
     let date = new Date();
-    let time = date.toLocaleTimeString();
-    time = time.replace(/:/g, ' : ');
-    clock.innerHTML = time;
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+    const seconds = date.getSeconds();
+    clock.innerHTML = `${hours.toString().padStart(2, '0')} : ${minutes.toString().padStart(2, '0')} : ${seconds.toString().padStart(2, '0')}`;
     setTimeout(displayTime, 1000 - (date.getTime() % 1000));
 }
 
