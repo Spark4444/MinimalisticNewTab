@@ -9,7 +9,7 @@ html{
 
 body{
     align-items: center;
-    background-image: url(../img/Wallpaper.png);
+    background-image: url(../img/wallpaper.png);
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -88,6 +88,15 @@ img{
     position: absolute;
     top: 2%;
     width: 2%;
+    transition: 0.5s;
+}
+
+.settings {
+    cursor: pointer;
+    right: 1%;
+    position: absolute;
+    top: 1%;
+    width: 2.5%;
     transition: 0.5s;
 }
 

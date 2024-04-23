@@ -40,11 +40,12 @@ link[rel="icon"] {
     left: 0;
     top: 0;
     transition: 0.25s;
-    width: 14vw;
+    width: 18vw;
 }
 .copyTheAnswerImg{
     transition: 0.25s;
     width: 100%;
+    filter: invert(1);
 }
 .answer {
     align-items: flex-end;

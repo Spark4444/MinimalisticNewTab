@@ -4,7 +4,24 @@ let clearInputIcon = document.querySelector(".clearInputImg");
 let search = document.querySelector(".search");
 let clock = document.querySelector(".clock");
 let calculator = document.querySelector(".calculator");
+let settings = document.querySelector(".settings");
 let inputClearable = false;
+let calculatorOpened = false;
+let settingsOpened = false;
+let calculatorWindow;
+let settingsWindow;
+document.querySelector("body").style.transition = "0s";
+document.querySelector(".inputForm").style.transition = "0s";
+clock.style.transition = "0s";
+document.querySelector("body").style.backgroundImage = `url(${getFromLocalStorage(0)})`;
+document.querySelector(".inputForm").style.background = getFromLocalStorage(1) + "9c";
+document.querySelector(".inputForm").style.border = "0.2vw groove " + getFromLocalStorage(2);
+clock.style.color = getFromLocalStorage(3);
+setTimeout(() => {
+    document.querySelector("body").style.transition = "";
+    document.querySelector(".inputForm").style.transition = "";
+    clock.style.transition = "";
+}, 210);
 
 if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
     clock.style.color = "black";
@@ -12,21 +29,37 @@ if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').match
     clock.style.color = "white";
 }
 
-let calculatorWindow;
-
-//Opens the calculator
+//Opens the calculator and closes it
 function openCalculator() {
-    calculatorWindow = window.open(
-        "calculator/calculator.html",
-        "_blank",
-        "popup=yes, width=300,height=515"
-    )
+    if(!calculatorOpened || calculatorWindow.closed){
+        calculatorWindow = window.open(
+            "calculator/calculator.html",
+            "_blank",
+            "popup=yes, width=300,height=515"
+        );
+        calculatorOpened = true;
+    }
+    else if(calculatorOpened) {
+        calculatorWindow.close();
+        calculatorOpened = false;
+    }
 }
 
-//Closes the calculator
-function closeCalculator() {
-    if (calculatorWindow) {
-        calculatorWindow.close();
+function openSettings(){
+    if(!settingsOpened || settingsWindow.closed){
+        settingsWindow = window.open(
+            "settings/index.html",
+            "_blank",
+            "popup=yes, width=750,height=500"
+        );
+        settings.style.rotate = "90deg";
+        settingsOpened = true;
+    }
+    else if(settingsOpened){
+        settingsWindow.close();
+        calculatorOpened = false;
+        settings.style.rotate = "";
+        settingsOpened = false;
     }
 }
 
@@ -55,14 +88,23 @@ setInterval(() => {
         document.querySelector(".clearInput").style.cursor = "default";
         clearInputIcon.src = "img/blank.png";
         inputClearable = false;
-        clearInputIcon.style.width = "75%";
+        clearInputIcon.style.width = "100%";
     }
     else{
         document.querySelector(".clearInput").style.cursor = "pointer";
-        clearInputIcon.src = "img/x.png";
+        clearInputIcon.src = "img/x.svg";
         inputClearable = true;
-        clearInputIcon.style.width = "50%";
+        clearInputIcon.style.width = "80%";
     }
+    if(settingsOpened){
+        if(settingsWindow.closed){
+            settings.style.rotate = "";
+        }
+    }
+    document.querySelector("body").style.backgroundImage = `url(${getFromLocalStorage(0)})`;
+    document.querySelector(".inputForm").style.background = getFromLocalStorage(1) + "9c";
+    document.querySelector(".inputForm").style.border = "0.2vw groove " + getFromLocalStorage(2);
+    clock.style.color = getFromLocalStorage(3);
 }, 200);
 
 //Displays the time
@@ -78,18 +120,6 @@ function displayTime() {
 //Starts displaying time
 displayTime();
 
-//You can open the calculator with f10 and close with f7
-document.addEventListener("keydown", function(e){
-    switch(e.keyCode){
-        case 118:
-            closeCalculator();
-            break;
-        case 121:
-            openCalculator();
-            break;
-    }
-});
-
 //Event listeners for buttons
 search.addEventListener("click", function() {
     searchValue();
@@ -102,3 +132,7 @@ clearInputIcon.addEventListener("click", function() {
 calculator.addEventListener("click", function() {
     openCalculator();
 });
+
+settings.addEventListener("click",function() {
+    openSettings();
+})

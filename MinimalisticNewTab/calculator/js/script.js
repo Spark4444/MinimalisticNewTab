@@ -16,24 +16,15 @@ let signArr = [
     document.querySelector(".button16"),
 ];
 
-//You can close the window with f7
-document.addEventListener("keydown", function(e){
-    switch(e.keyCode){
-        case 118:
-            window.close();
-            break;
-    }
-});
-
 // Function to copy the answer
 function copyAnswer() {
     if(canCopy){
     canCopy = false;
     let copyButton = document.querySelector(".copyTheAnswerImg");
 
-    copyButton.src = "img/copied.png";
+    copyButton.src = "img/copied.svg";
     setTimeout(() => {
-        copyButton.src = "img/copy.png";
+        copyButton.src = "img/copy.svg";
         canCopy = true;
     }, 1000);
     // Copy the answer to the clipboard
