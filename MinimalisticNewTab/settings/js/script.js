@@ -1,16 +1,14 @@
-let fileSelect = document.querySelector("#fileSelect");
-let colorSelect = document.querySelector("#colorSelect");
-let colorSelect2 = document.querySelector("#colorSelect2");
-let colorSelect3 = document.querySelector("#colorSelect3");
+let fileSelect = document.querySelector(".fileSelect");
+let colorSelect = document.querySelectorAll(".colorSelect");
 
-colorSelect.value = getFromLocalStorage(1);
-colorSelect2.value = getFromLocalStorage(2);
-colorSelect3.value = getFromLocalStorage(3);
+colorSelect.forEach((element,index) => {
+  element.value = getFromLocalStorage(index + 1);
+});
 
 setInterval(() => {
-    saveToLocalStorage(1,colorSelect.value);
-    saveToLocalStorage(2,colorSelect2.value);
-    saveToLocalStorage(3,colorSelect3.value);
+  colorSelect.forEach((element,index) => {
+    saveToLocalStorage(index + 1,element.value);
+  });
 }, 200);
 
 
@@ -30,20 +28,31 @@ document.querySelectorAll(".reset").forEach(function(element,index) {
   element.addEventListener("click", function(){
     switch(index){
       case 0:
-        saveToLocalStorage(0, "../img/wallpaper.png");
+        saveToLocalStorage(index, "../img/wallpaper.png");
         break;
       case 1:
-        colorSelect.value = "#ffffff";
+        colorSelect[index-1].value = "#ffffff";
         break;
       case 2:
-        colorSelect2.value = "#00000";
+      case 4:
+      case 5:
+      case 6:
+      case 7:
+      case 8:
+      case 9:
+        colorSelect[index-1].value = "#000000";
+        break;
+        break;
+        break;
+        break;
+        break;
         break;
       case 3:
         if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-          colorSelect3.value = "#00000";
+          colorSelect[index-1].value = "#000000";
         } 
         else {
-          colorSelect3.value = "#ffffff";
+          colorSelect[index-1].value = "#ffffff";
         }
         break;
     }

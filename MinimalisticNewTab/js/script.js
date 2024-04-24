@@ -1,7 +1,9 @@
 // Initialize variables
+let body = document.querySelector("body");
+let inputForm = document.querySelector(".inputForm");
 let input = document.querySelector(".input");
 let clearInputIcon = document.querySelector(".clearInputImg");
-let search = document.querySelector(".search");
+let search = document.querySelector(".searchIcon");
 let clock = document.querySelector(".clock");
 let calculator = document.querySelector(".calculator");
 let settings = document.querySelector(".settings");
@@ -10,23 +12,43 @@ let calculatorOpened = false;
 let settingsOpened = false;
 let calculatorWindow;
 let settingsWindow;
-document.querySelector("body").style.transition = "0s";
-document.querySelector(".inputForm").style.transition = "0s";
+
+body.style.transition = "0s";
+inputForm.style.transition = "0s";
 clock.style.transition = "0s";
-document.querySelector("body").style.backgroundImage = `url(${getFromLocalStorage(0)})`;
-document.querySelector(".inputForm").style.background = getFromLocalStorage(1) + "9c";
-document.querySelector(".inputForm").style.border = "0.2vw groove " + getFromLocalStorage(2);
+settings.style.transition = "0s";
+calculator.style.transition = "0s";
+search.style.transition = "0s";
+clearInputIcon.style.transition = "0s";
+input.style.transition = "0s";
+
+body.style.backgroundImage = `url(${getFromLocalStorage(0)})`;
+inputForm.style.background = getFromLocalStorage(1) + "9c";
+inputForm.style.border = "0.2vw groove " + getFromLocalStorage(2);
 clock.style.color = getFromLocalStorage(3);
+settings.style.fill = getFromLocalStorage(4);
+calculator.style.fill = getFromLocalStorage(5);
+search.style.fill = getFromLocalStorage(6);
+clearInputIcon.style.fill = getFromLocalStorage(7);
+input.style.color = getFromLocalStorage(8);
+input.style.setProperty('--placeholder-color', getFromLocalStorage(9));
+
 setTimeout(() => {
-    document.querySelector("body").style.transition = "";
-    document.querySelector(".inputForm").style.transition = "";
+    body.style.transition = "";
+    inputForm.style.transition = "";
     clock.style.transition = "";
+    settings.style.transition = "";
+    calculator.style.transition = "";
+    search.style.transition = "";
+    clearInputIcon.style.transition = "";
 }, 210);
 
+if(getFromLocalStorage(3) == undefined){
 if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
     clock.style.color = "black";
 } else {
     clock.style.color = "white";
+}
 }
 
 //Opens the calculator and closes it
@@ -85,26 +107,30 @@ input.addEventListener('keyup', function(event){
 //Changes between the blank and X button
 setInterval(() => {
     if(/^\s*$/.test(input.value)){
-        document.querySelector(".clearInput").style.cursor = "default";
-        clearInputIcon.src = "img/blank.png";
+        clearInputIcon.style.cursor = "default";
+        clearInputIcon.style.opacity = "0";
         inputClearable = false;
-        clearInputIcon.style.width = "100%";
     }
     else{
-        document.querySelector(".clearInput").style.cursor = "pointer";
-        clearInputIcon.src = "img/x.svg";
+        clearInputIcon.style.cursor = "pointer";
+        clearInputIcon.style.opacity = "1";
         inputClearable = true;
-        clearInputIcon.style.width = "80%";
     }
     if(settingsOpened){
         if(settingsWindow.closed){
             settings.style.rotate = "";
         }
     }
-    document.querySelector("body").style.backgroundImage = `url(${getFromLocalStorage(0)})`;
-    document.querySelector(".inputForm").style.background = getFromLocalStorage(1) + "9c";
-    document.querySelector(".inputForm").style.border = "0.2vw groove " + getFromLocalStorage(2);
+    body.style.backgroundImage = `url(${getFromLocalStorage(0)})`;
+    inputForm.style.background = getFromLocalStorage(1) + "9c";
+    inputForm.style.border = "0.2vw groove " + getFromLocalStorage(2);
     clock.style.color = getFromLocalStorage(3);
+    settings.style.fill = getFromLocalStorage(4);
+    calculator.style.fill = getFromLocalStorage(5);
+    search.style.fill = getFromLocalStorage(6);
+    clearInputIcon.style.fill = getFromLocalStorage(7);
+    input.style.color = getFromLocalStorage(8);
+    input.style.setProperty('--placeholder-color', getFromLocalStorage(9));
 }, 200);
 
 //Displays the time

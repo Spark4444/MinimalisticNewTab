@@ -1,38 +1,68 @@
 html{
-    height: 100%;
     transition: 0.25s;
     width: 100%;
 }
 body{
     font-family: Helvetica;
-    font-weight:bold;
-    height: 100%;
+    font-weight: bold;
     margin: 0;
     padding: 0;
     transition: 0.25s;
     user-select: none;
     width: 100%;
+    background: #dce0f8;
+    font-size: 1.5vw;
 }
 form {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-    height: 100%;
     width: 100%;
+    align-items: center;
 }
-input[type="file"]::-webkit-file-upload-button {
-    visibility: hidden;
-}
-input, label, .button{
-    cursor: pointer;
-}
-
-.button {
+.button{
     text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    height: 13%;
+    height: 95px;
+    width: 22%;
+    background: #ffffff;
+    border: 0.3vw solid black;
+    transition: 0.5s;
+    margin-bottom: 30px;
+}
+
+.button:hover{
+    border-radius: 10px;
+}
+
+input[type="file"]::-webkit-file-upload-button {
+    display: none;
+}
+
+input{
+    background: none;
+    border: none;
+    width: 30%;
+    padding: 0;
+    margin: 0;
+    transition: 0.5s;
+}
+
+.name{
+    font-size: 1.7vw;
+}
+
+input[type="file"]{
+    width: 54%;
+}
+
+input, .reset{
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.reset:hover{
+    color: blue;
 }

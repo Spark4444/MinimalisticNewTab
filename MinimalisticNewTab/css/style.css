@@ -27,26 +27,22 @@ body{
 .inputForm {
     background-color: #ffffff9c;
     border: 0.2vw groove black;
-    border-radius: 4vw;
+    border-radius: 2vw;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
+    justify-content: space-between;
     height: 3vw;
     padding: 0.5vw;
     width: 40%;
     transition: 0.5s;
 }
 
-.clearInput, .search {
-    align-items: center;
-    display: flex;
-    justify-content: center;
+.clearInputImg, .searchIcon{
+    cursor: pointer;
     width: 10%;
+    height: 100%;
     transition: 0.5s;
-}
-
-.clearInputImg{
-    width: 50%;
 }
 
 .input {
@@ -60,13 +56,16 @@ body{
     transition: 0.5s;
 }
 
+::placeholder {
+    color: var(--placeholder-color, red);
+}
+
 .input:focus{
     outline: none;
     transition: 0.5s;
 }
 
 .input::placeholder{
-    color: black;
     transition: 0.5s;
 }
 
