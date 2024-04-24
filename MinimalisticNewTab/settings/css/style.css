@@ -1,64 +1,60 @@
-html{
-    transition: 0.25s;
-    width: 100%;
-}
-body{
+body {
+    background: #dce0f8;
     font-family: Helvetica;
+    font-size: 1.5vw;
     font-weight: bold;
     margin: 0;
     padding: 0;
     transition: 0.25s;
     user-select: none;
     width: 100%;
-    background: #dce0f8;
-    font-size: 1.5vw;
-}
-form {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    align-items: center;
-}
-.button{
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    height: 95px;
-    width: 22%;
-    background: #ffffff;
-    border: 0.3vw solid black;
-    transition: 0.5s;
-    margin-bottom: 30px;
 }
 
-.button:hover{
-    border-radius: 10px;
+.button {
+    align-items: center;
+    background: #ffffff;
+    border: 0.3vw solid black;
+    display: flex;
+    flex-direction: column;
+    height: 14vw;
+    justify-content: space-around;
+    margin-bottom: 5vw;
+    text-align: center;
+    transition: 0.5s;
+    width: 24%;
+}
+
+.button:hover {
+    border-radius: 2vw;
 }
 
 input[type="file"]::-webkit-file-upload-button {
     display: none;
 }
 
-input{
+form {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+input {
     background: none;
     border: none;
-    width: 30%;
-    padding: 0;
+    cursor: pointer;
+    height: 4vw;
     margin: 0;
+    padding: 0;
     transition: 0.5s;
+    width: 30%;
 }
 
-.name{
-    font-size: 1.7vw;
-}
-
-input[type="file"]{
+input[type="file"] {
     width: 54%;
 }
 
-input, .reset{
+.reset {
     cursor: pointer;
     transition: 0.5s;
 }
