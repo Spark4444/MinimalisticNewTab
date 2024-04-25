@@ -8,6 +8,10 @@ let clock = document.querySelector(".clock");
 let calculator = document.querySelector(".calculator");
 let settings = document.querySelector(".settings");
 
+if(getFromLocalStorage(0) == undefined){
+    saveToLocalStorage(0, "../img/wallpaper.png");
+}
+
 // Initialize state variables
 let inputClearable = false;
 let calculatorOpened = false;
