@@ -31,6 +31,7 @@ document.querySelectorAll(".reset").forEach((element, index) => {
   element.addEventListener("click", () => {
     switch (index) {
       case 0:
+        fileSelect.value = null;
         saveToLocalStorage(index, "../img/wallpaper.png");
         break;
       case 1:

@@ -201,6 +201,7 @@ setInterval(() => {
 
 //Numpad eventlistener, with this calculator can be used with numpad
 document.addEventListener("keydown", function(e) {
+    console.log(e.keyCode);
     switch (e.keyCode) {
         case 109: // '-'
             sign("-");
@@ -222,7 +223,8 @@ document.addEventListener("keydown", function(e) {
         case 46: // 'Delete'
             deleteW();
             break;
-        case 110: // '.'
+        case 110: // '.' on numpad
+        case 190: // '.'
             number(".");
             break;
         case 120: // 'F9'
@@ -231,34 +233,54 @@ document.addEventListener("keydown", function(e) {
         case 121: // 'F10'
             persantage();
             break;
+        case 45: // '0' on numpad
         case 96: // '0' on numpad
+        case 48: // '0'
             number("0");
             break;
+        case 35: // '1' on numpad
         case 97: // '1' on numpad
+        case 49: // '1'
             number("1");
             break;
+        case 40: // '2' on numpad
         case 98: // '2' on numpad
+        case 50: // '2'
             number("2");
             break;
+        case 34: // '3' on numpad
         case 99: // '3' on numpad
+        case 51: // '3'
             number("3");
             break;
+        case 37: // '4' on numpad
         case 100: // '4' on numpad
+        case 52: // '4'
             number("4");
             break;
+        case 12: // '5' on numpad
         case 101: // '5' on numpad
+        case 53: // '5'
             number("5");
             break;
+        case 39: // '6' on numpad
         case 102: // '6' on numpad
+        case 54: // '6'
             number("6");
             break;
+        case 36: // '7' on numpad
         case 103: // '7' on numpad
+        case 55: // '7'
             number("7");
             break;
+        case 38: // '8' on numpad
         case 104: // '8' on numpad
+        case 56: // '8'
             number("8");
             break;
+        case 33: // '9' on numpad
         case 105: // '9' on numpad
+        case 57: // '9'
             number("9");
             break;
     }
