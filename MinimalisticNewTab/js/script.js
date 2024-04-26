@@ -8,7 +8,7 @@ let clock = document.querySelector(".clock");
 let calculator = document.querySelector(".calculator");
 let settings = document.querySelector(".settings");
 
-if(getFromLocalStorage(0) == undefined){
+if(getFromLocalStorage(0) == null){
     saveToLocalStorage(0, "../img/wallpaper.png");
 }
 
@@ -53,7 +53,7 @@ setTimeout(() => {
 }, 210);
 
 // Apply default clock style if no custom style is set in local storage
-if(getFromLocalStorage(3) == undefined){
+if(getFromLocalStorage(3) == null){
     // Check for user's preferred color scheme and set clock color accordingly
     if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
         clock.style.color = "black"; // Dark mode: set clock color to black
