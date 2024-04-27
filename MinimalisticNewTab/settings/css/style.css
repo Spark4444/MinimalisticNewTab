@@ -10,6 +10,13 @@ body {
     width: 100%;
 }
 
+.resetAll {
+    cursor: pointer;
+    left: 1%;
+    position: fixed;
+    top: 1%;
+}
+
 .button {
     align-items: center;
     background: #ffffff;

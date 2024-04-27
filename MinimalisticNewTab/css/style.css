@@ -50,7 +50,7 @@ body {
 }
 
 .input::placeholder {
-    color: var(--placeholder-color, red);
+    color: var(--placeholder-color, black);
     transition: 0.5s;
 }
 

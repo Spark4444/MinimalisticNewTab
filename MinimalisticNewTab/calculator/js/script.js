@@ -1,4 +1,4 @@
-// Initialize variables
+// Initialize DOM elements variables
 let answer = document.querySelector(".text");
 let button1 = document.querySelector(".button1");
 let minus = "-";

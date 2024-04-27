@@ -1,4 +1,4 @@
-// Initialize DOM element variables
+// Initialize DOM elements variables
 let body = document.querySelector("body");
 let inputForm = document.querySelector(".inputForm");
 let input = document.querySelector(".input");

@@ -173,29 +173,17 @@ link[rel="icon"] {
     transition: 0.25s;
 }
 .button1, .button2, .button3{
-    background-color: #C0C0C0;
+    background: #C0C0C0;
     color: black;
     transition: 0.35s;
 }
-.button1:active, .button2:active, .button3:active{
-    background-color: #ECECEC;
-    transition: 0.35s;
-}
 .button4, .button8, .button12, .button16, .button19{
-    background-color: #FF9E20;
+    background: #FF9E20;
     transition: 0.25s;
-}
-.button4:active, .button8:active, .button12:active, .button16:active, .button19:active{
-    background-color: #F4C995;
-    transition: 0.35s;
-}
-.button:active, .longButton:active{
-    background-color: #767676;
-    transition: 0.35s;
 }
 .button17.longButton {
     align-items: center;
-    background-color: #3B3B3B;
+    background: #3B3B3B;
     border-radius: 10vw;
     color: white;
     cursor: pointer;
@@ -206,4 +194,8 @@ link[rel="icon"] {
     padding: 0 0 0 16%;
     transition: 0.25s;
     width: 38vw;
+}
+.button:active, .longButton:active{
+    filter: brightness(1.5);
+    transition: 0.35s;
 }
