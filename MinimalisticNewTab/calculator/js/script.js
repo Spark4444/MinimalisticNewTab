@@ -56,11 +56,12 @@ function deleteW() {
 
 //Inserets a number into the input
 function number(number) {
-    if(answer.innerHTML == "0" && number !== "."){
-        answer.innerHTML = number;
+    console.log(answer.innerHTML);
+    if(answer.innerHTML == "-0" && number !== "."){
+        answer.innerHTML = `-${number}`;
     }
-    else if(answer.innerHTML.indexOf(".") == -1 && answer.innerHTML.length !== 9 || number !== "." && answer.innerHTML.length !== 9){
-        answer.innerHTML = answer.innerHTML += number;  
+    else if(answer.innerHTML == "0" && number !== "."){
+        answer.innerHTML = number;
     }
     else if(worked == false && checkNum == true){
         signArr.forEach(sign => {
@@ -68,11 +69,16 @@ function number(number) {
             sign.style.color = ""
         });
         checkNum = false;
-        answer.innerHTML = number;
+        if(number !== "."){
+            answer.innerHTML = number;
+        }
+        else{
+            answer.innerHTML = "0" + number;
+        }
         worked = true;
-    }
-    else if(answer.innerHTML == "-0" && number !== "."){
-        answer.innerHTML = `-${number}`;
+    } 
+    else if(answer.innerHTML.indexOf(".") == -1 && answer.innerHTML.length !== 9 || number !== "." && answer.innerHTML.length !== 9){
+        answer.innerHTML += number;  
     }
 }
 
