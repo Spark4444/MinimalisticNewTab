@@ -59,6 +59,9 @@ function number(number) {
     if(answer.innerHTML == "0" && number !== "."){
         answer.innerHTML = number;
     }
+    else if(answer.innerHTML.indexOf(".") == -1 && answer.innerHTML.length !== 9 || number !== "." && answer.innerHTML.length !== 9){
+        answer.innerHTML = answer.innerHTML += number;  
+    }
     else if(worked == false && checkNum == true){
         signArr.forEach(sign => {
             sign.style.backgroundColor = ""
@@ -70,9 +73,6 @@ function number(number) {
     }
     else if(answer.innerHTML == "-0" && number !== "."){
         answer.innerHTML = `-${number}`;
-    }
-    else if(answer.innerHTML.indexOf(".") == -1 && answer.innerHTML.length !== 9 || number !== "." && answer.innerHTML.length !== 9){
-        answer.innerHTML = answer.innerHTML += number;  
     }
 }
 
@@ -201,7 +201,6 @@ setInterval(() => {
 
 //Numpad eventlistener, with this calculator can be used with numpad
 document.addEventListener("keydown", function(e) {
-    console.log(e.keyCode);
     switch (e.keyCode) {
         case 109: // '-'
             sign("-");

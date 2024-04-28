@@ -8,10 +8,6 @@ let clock = document.querySelector(".clock");
 let calculator = document.querySelector(".calculator");
 let settings = document.querySelector(".settings");
 
-if(getFromLocalStorage(0) == null){
-    saveToLocalStorage(0, "../img/wallpaper.png");
-}
-
 // Initialize state variables
 let inputClearable = false;
 let calculatorOpened = false;
@@ -19,37 +15,48 @@ let settingsOpened = false;
 let calculatorWindow;
 let settingsWindow;
 
+//If wallpaper is not set it will switch back to default one
+if(getFromLocalStorage(0) == null){
+    saveToLocalStorage(0, "../img/wallpaper.png");
+}
+
 // Temporarily disable transitions for all customizable elements
 body.style.transition = "0s";
-inputForm.style.transition = "0s";
-clock.style.transition = "0s";
-settings.style.transition = "0s";
 calculator.style.transition = "0s";
+settings.style.transition = "0s";
 search.style.transition = "0s";
 clearInputIcon.style.transition = "0s";
+clock.style.transition = "0s";
 input.style.transition = "0s";
+inputForm.style.transition = "0s";
 
 // Apply styles from local storage to all customizable elements, if available
 body.style.backgroundImage = `url(${getFromLocalStorage(0)})`;
-inputForm.style.background = getFromLocalStorage(1) + "9c"; // Add opacity to the background color
-inputForm.style.border = "0.2vw groove " + getFromLocalStorage(2);
-clock.style.color = getFromLocalStorage(3);
-settings.style.fill = getFromLocalStorage(4);
-calculator.style.fill = getFromLocalStorage(5);
-search.style.fill = getFromLocalStorage(6);
-clearInputIcon.style.fill = getFromLocalStorage(7);
-input.style.color = getFromLocalStorage(8);
-input.style.setProperty('--placeholder-color', getFromLocalStorage(9));
+calculator.style.fill = getFromLocalStorage(1);
+settings.style.fill = getFromLocalStorage(2);
+search.style.fill = getFromLocalStorage(3);
+clearInputIcon.style.fill = getFromLocalStorage(4);
+clock.style.color = getFromLocalStorage(5);
+input.style.setProperty('--placeholder-color', getFromLocalStorage(6));
+input.style.color = getFromLocalStorage(7);
+inputForm.style.background = getFromLocalStorage(8) + "9c"; // Add opacity to the background color
+inputForm.style.border = "0.2vw groove " + getFromLocalStorage(9);
+clock.style.fontSize = getFromLocalStorage(10) + "vw";
+input.style.fontSize = getFromLocalStorage(11) + "vw";
+inputForm.style.width = getFromLocalStorage(12) + "%";
+inputForm.style.height = getFromLocalStorage(13) + "vw";
+
 
 // Re-enable transitions after a brief pause to allow for style application
 setTimeout(() => {
     body.style.transition = "";
-    inputForm.style.transition = "";
-    clock.style.transition = "";
-    settings.style.transition = "";
     calculator.style.transition = "";
+    settings.style.transition = "";
     search.style.transition = "";
     clearInputIcon.style.transition = "";
+    clock.style.transition = "";
+    input.style.transition = "";
+    inputForm.style.transition = "";
 }, 210);
 
 // Apply default clock style if no custom style is set in local storage
@@ -136,15 +143,19 @@ setInterval(() => {
         }
     }
     body.style.backgroundImage = `url(${getFromLocalStorage(0)})`;
-    inputForm.style.background = getFromLocalStorage(1) + "9c";
-    inputForm.style.border = "0.2vw groove " + getFromLocalStorage(2);
-    clock.style.color = getFromLocalStorage(3);
-    settings.style.fill = getFromLocalStorage(4);
-    calculator.style.fill = getFromLocalStorage(5);
-    search.style.fill = getFromLocalStorage(6);
-    clearInputIcon.style.fill = getFromLocalStorage(7);
-    input.style.color = getFromLocalStorage(8);
-    input.style.setProperty('--placeholder-color', getFromLocalStorage(9));
+    calculator.style.fill = getFromLocalStorage(1);
+    settings.style.fill = getFromLocalStorage(2);
+    search.style.fill = getFromLocalStorage(3);
+    clearInputIcon.style.fill = getFromLocalStorage(4);
+    clock.style.color = getFromLocalStorage(5);
+    input.style.setProperty('--placeholder-color', getFromLocalStorage(6));
+    input.style.color = getFromLocalStorage(7);
+    inputForm.style.background = getFromLocalStorage(8) + "9c";
+    inputForm.style.border = "0.2vw groove " + getFromLocalStorage(9);
+    clock.style.fontSize = getFromLocalStorage(10) + "vw";
+    input.style.fontSize = getFromLocalStorage(11) + "vw";
+    inputForm.style.width = getFromLocalStorage(12) + "%";
+    inputForm.style.height = getFromLocalStorage(13) + "vw";
 }, 200);
 
 // Function to display the current time in HH : MM : SS format

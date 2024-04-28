@@ -11,10 +11,16 @@ body {
 }
 
 .resetAll {
+    color: black;
     cursor: pointer;
     left: 1%;
     position: fixed;
     top: 1%;
+    transition: 0.5s;
+}
+
+.resetAll:hover {
+    color: blue;
 }
 
 .button {
@@ -35,8 +41,19 @@ body {
     border-radius: 2vw;
 }
 
-input[type="file"]::-webkit-file-upload-button {
-    display: none;
+.form {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.index {
+    height: 0;
+    left: -46%;
+    position: relative;
+    top: -2%;
+    width: 0;
 }
 
 form {
@@ -47,18 +64,69 @@ form {
 }
 
 input {
+    cursor: pointer;
+}
+
+input[type="color"] {
     background: none;
     border: none;
-    cursor: pointer;
-    height: 4vw;
+    border: 0.2vw solid black;
+    height: 3vw;
     margin: 0;
     padding: 0;
     transition: 0.5s;
     width: 30%;
 }
 
+input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+
+input[type="color"]::-webkit-color-swatch {
+    border: none;
+}
+
 input[type="file"] {
+    font-size: 1.8vw;
     width: 54%;
+}
+
+input[type="file"]::-webkit-file-upload-button {
+    display: none;
+}
+
+input[type="range"] {
+    appearance: none;
+    height: 1vw;
+    width: 80%;
+}
+
+input[type="range"]:focus {
+    outline: none;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+    background: #FFFFFF;
+    border: 0.15vw solid #000000;
+    border-radius: 0vw;
+    height: 1vw;
+    transition: 0.5s;
+    width: 100%;
+}
+
+input[type="range"]:hover::-webkit-slider-runnable-track {
+    border-radius: 1vw;
+    transition: 0.5s;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    background: #000000;
+    border-radius: 1vw;
+    height: 2vw;
+    margin-top: -3%;
+    transition: 0.5s;
+    -webkit-appearance: none;
+    width: 2vw;
 }
 
 .reset {
@@ -66,6 +134,6 @@ input[type="file"] {
     transition: 0.5s;
 }
 
-.reset:hover{
+.reset:hover {
     color: blue;
 }
