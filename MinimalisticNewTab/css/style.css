@@ -57,7 +57,7 @@ body {
 .inputForm {
     background-color: #ffffff9c;
     border: 0.2vw groove black;
-    border-radius: 2vw;
+    border-radius: 12vw;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
