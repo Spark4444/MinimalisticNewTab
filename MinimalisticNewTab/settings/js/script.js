@@ -10,10 +10,15 @@ inputs.forEach((element,index) => {
   indexElements[index].innerHTML = index + 1;  
 });
 
-// Load color values from local storage
+// Load input values from local storage
 inputs.forEach((element, index) => {
   if(index !== 0){
-    element.value = getFromLocalStorage(index);
+    if(getFromLocalStorage(index) !== null){
+      element.value = getFromLocalStorage(index);
+    }
+    else{
+      resetInput(index);
+    }
   }
 });
 
@@ -35,14 +40,6 @@ values.forEach((element, index) => {
       break;
   }
 });
-
-// Set default styles for inputs if not present
-if(getFromLocalStorage(5) == null){
-  resetInput(5);
-}
-if(getFromLocalStorage(8) == null){
-  resetInput(8);
-}
 
 // Save values of inputs on change event and reset buttons functionality
 inputs.forEach((element, index) => {
