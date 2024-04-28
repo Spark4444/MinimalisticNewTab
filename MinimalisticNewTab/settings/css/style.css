@@ -18,14 +18,24 @@ body {
     width: 20%;
 }
 
-.download{
+.download {
     cursor: pointer;
+    transition: 0.5s;
     width: 20%;
 }
 
-.upload{
+.download:hover {
+    fill: blue;
+}
+
+.upload {
     cursor: pointer;
+    transition: 0.5s;
     width: 20%;
+}
+
+.upload:hover{
+    fill: blue;
 }
 
 .resetAll {
