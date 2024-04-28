@@ -1,9 +1,15 @@
 // Initialize DOM elements variables
 let indexElements = document.querySelectorAll(".index");
-let inputs = document.querySelectorAll("input");
+let inputsNode = document.querySelectorAll("input");
+let inputs = Array.from(inputsNode);
+let downloadButton = document.querySelector(".download");
+let uploadButton = inputsNode[0];
 let values = document.querySelectorAll(".value");
 let resetButtons = document.querySelectorAll(".reset");
 let resetAllButton = document.querySelector(".resetAll");
+
+//Remove the first input so it doesn't intervene
+inputs.shift();
 
 //Add index numbers
 inputs.forEach((element,index) => {
@@ -22,44 +28,15 @@ inputs.forEach((element, index) => {
   }
 });
 
-//Adds the values of the inputs elements
 values.forEach((element, index) => {
-  switch(index+1){
-    case 12:
-      element.innerHTML = inputs[index+1].value + "%";
-      break;
-    case 10:
-    case 11:
-    case 13:
-      element.innerHTML = inputs[index+1].value + "vw";
-      break;
-      break;
-      break;
-    default:
-      element.innerHTML = inputs[index+1].value;
-      break;
-  }
+ setValue(index);
 });
 
 // Save values of inputs on change event and reset buttons functionality
 inputs.forEach((element, index) => {
     if(index !== 0){
       element.addEventListener("input", (event) => {
-        switch(index){
-          case 12:
-            values[index-1].innerHTML = inputs[index].value + "%";
-            break;
-          case 10:
-          case 11:
-          case 13:
-            values[index-1].innerHTML = inputs[index].value + "vw";
-            break;
-            break;
-            break;
-          default:
-            values[index-1].innerHTML = inputs[index].value;
-            break;
-        }
+        setValue(index-1);
         saveToLocalStorage(index, element.value);
       });
     }
@@ -81,6 +58,29 @@ inputs[0].addEventListener("input", (event) => {
   }
 });
 
+// Handle config selection
+uploadButton.addEventListener("input", function () {
+  const file = this.files[0];
+  const reader = new FileReader();
+
+  reader.onload = function () {
+      const fileContents = reader.result;
+      fileContents.split("\n").forEach((value,index) => {
+        saveToLocalStorage(index, value);
+        if(index !== 0){
+          inputs[index].value = value;
+          if(value !== ""){
+            setValue(index-1);
+          } 
+        }
+      });
+  };
+
+  reader.readAsText(file);
+  uploadButton.value = null;
+});
+
+
 // Handle reset all button click
 resetAllButton.addEventListener("click", () =>{
   localStorage.clear();
@@ -88,6 +88,11 @@ resetAllButton.addEventListener("click", () =>{
     resetInput(index);
   });
 });
+
+// Handle download button click
+downloadButton.addEventListener("click", () =>{
+  download("config", `${generateConfigFileText()}`);
+})
 
 // Resets input of a specified index to default value
 function resetInput(index){
@@ -114,6 +119,33 @@ function resetInput(index){
     break;
   }
   }
-  console.log(inputs[index]);
   inputs[index].dispatchEvent(new Event('input'));
+}
+
+//Generates a config file text for a .txt file that will be downloaded
+function generateConfigFileText(){
+  let array = [];
+  inputs.forEach((element, index) => {
+     array.push(getFromLocalStorage(index));
+  });
+  return array.join("\n");
+}
+
+//Adds the values of the inputs elements
+function setValue(index){
+    switch(index){
+      case 11:
+        values[index].innerHTML = inputs[index+1].value + "%";
+        break;
+      case 9:
+      case 10:
+      case 12:
+        values[index].innerHTML = inputs[index+1].value + "vw";
+        break;
+        break;
+        break;
+      default:
+        values[index].innerHTML = inputs[index+1].value;
+        break;
+    }
 }

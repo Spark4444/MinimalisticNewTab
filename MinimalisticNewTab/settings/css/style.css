@@ -10,6 +10,24 @@ body {
     width: 100%;
 }
 
+.buttons {
+    position: fixed;
+    right: 1%;
+    top: 1%;
+    text-align: center;
+    width: 20%;
+}
+
+.download{
+    cursor: pointer;
+    width: 20%;
+}
+
+.upload{
+    cursor: pointer;
+    width: 20%;
+}
+
 .resetAll {
     color: black;
     cursor: pointer;
@@ -127,6 +145,11 @@ input[type="range"]::-webkit-slider-thumb {
     transition: 0.5s;
     -webkit-appearance: none;
     width: 2vw;
+}
+
+.value{
+    cursor: text;
+    user-select: text;
 }
 
 .reset {
