@@ -8,6 +8,7 @@ body{
     font-weight:bold;
     height: 100%;
     margin: 0;
+    overflow: hidden;
     padding: 0;
     transition: 0.25s;
     user-select: none;

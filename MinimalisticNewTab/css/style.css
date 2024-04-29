@@ -9,6 +9,7 @@ body {
     height: 100%;
     justify-content: center;
     margin: 0;
+    overflow: hidden;
     padding: 0;
     transition: 0.5s;
     user-select: none;

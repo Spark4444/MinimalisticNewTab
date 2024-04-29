@@ -4,6 +4,7 @@ body {
     font-size: 1.5vw;
     font-weight: bold;
     margin: 0;
+    overflow: hidden;
     padding: 0;
     transition: 0.25s;
     user-select: none;
