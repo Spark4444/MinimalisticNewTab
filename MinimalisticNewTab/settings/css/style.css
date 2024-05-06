@@ -192,6 +192,7 @@ input[type="color"]::-webkit-color-swatch {
 .wallpaperSelect {
     border: 0.2vw solid black;
     cursor: text;
+    font-size: 1.8vw;
     height: 22%;
     outline: none;
     transition: 0.5s;
