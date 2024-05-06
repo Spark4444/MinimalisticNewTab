@@ -17,7 +17,7 @@ let settingsWindow;
 
 //If wallpaper is not set it will switch back to default one
 if(getFromLocalStorage(0) == null){
-    saveToLocalStorage(0, "../img/wallpaper.png");
+    saveToLocalStorage(0, "img/wallpaper.png");
 }
 
 // Temporarily disable transitions for all customizable elements

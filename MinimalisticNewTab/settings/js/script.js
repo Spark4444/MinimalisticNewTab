@@ -29,11 +29,12 @@ inputs.forEach((element,index) => {
 });
 
 //Set the browser select value
-if(browserSelect !== null){
+if(getFromLocalStorage("searchEngine") !== null){
   browserSelect.value = getFromLocalStorage("searchEngine");
   engineLogo.src = `img/${browserSelect.value}.svg`;
 }
 else{
+  browserSelect.value = "g";
   engineLogo.src = "img/g.svg";
 }
 
@@ -168,7 +169,7 @@ function resetInput(index){
   switch (index) {
     case 0:
       inputs[index].value = null;
-      saveToLocalStorage(index, "../img/wallpaper.png");
+      saveToLocalStorage(index, "img/wallpaper.png");
     break;
     case 5:
       let preferredColor = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches

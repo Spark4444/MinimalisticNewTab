@@ -1,3 +1,26 @@
+::-webkit-scrollbar{
+    width: auto;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+
+::-webkit-scrollbar-thumb {
+    cursor: grab;
+    background: #d6d6d6; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #b3b3b3; 
+}
+
+::-webkit-scrollbar-thumb:active {
+    background: #8d8d8d; 
+    cursor: grabbing;
+}
+
+
 body {
     background: #dce0f8;
     font-family: Helvetica;
@@ -253,6 +276,25 @@ input[type="range"]::-webkit-slider-thumb {
 }
 
 @media (prefers-color-scheme: dark) {
+    ::-webkit-scrollbar{
+        width: auto;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #424242; 
+    }
+    
+    ::-webkit-scrollbar-thumb {
+        background: #686868; 
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+        background: #787878; 
+    }
+
+    ::-webkit-scrollbar-thumb:active {
+        background: #878787; 
+    }
 
     body {
         background: #2d3143;
@@ -274,6 +316,11 @@ input[type="range"]::-webkit-slider-thumb {
     .browserSelect{
         border: #575757 solid 0.2vw;
         filter: invert(1);
+    }
+    
+    option {
+        background: black;
+        color: white;
     }
 
     .download{
