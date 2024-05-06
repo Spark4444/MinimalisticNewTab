@@ -169,6 +169,7 @@ function resetInput(index){
   switch (index) {
     case 0:
       inputs[index].value = null;
+      inputsNode[2].value = "";
       saveToLocalStorage(index, "img/wallpaper.png");
     break;
     case 5:
