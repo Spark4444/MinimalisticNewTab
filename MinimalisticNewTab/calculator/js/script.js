@@ -3,7 +3,7 @@ let answer = document.querySelector(".text");
 let button1 = document.querySelector(".button1");
 let minus = "-";
 let id = -1;
-let openTime = window.openTime
+let calculatorTimeStamp = getFromLocalStorage("calculatorTimestamp");
 let num1 = false;
 let num2;
 let checkNum = false;
@@ -209,7 +209,7 @@ setInterval(() => {
     else if(answer.innerHTML.length > 11 && answer.innerHTML.length < 13){
         answer.style.fontSize = "11vw";
     }
-    if (getFromLocalStorage("calculatorTimestamp") !== openTime.toString()) {
+    if (getFromLocalStorage("calculatorTimestamp") !== calculatorTimeStamp.toString()) {
         window.close();
     }
 }, 10);

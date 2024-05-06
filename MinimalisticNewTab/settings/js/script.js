@@ -1,5 +1,5 @@
 // Initialize DOM elements variables
-let settingsTimeStamp = window.settingsTimeStamp;
+let settingsTimeStamp = getFromLocalStorage("settingsTimestamp");
 let indexElements = document.querySelectorAll(".index");
 let engineLogo = document.querySelector(".engineLogo")
 let browserSelect = document.querySelector(".browserSelect");
@@ -11,8 +11,17 @@ let values = document.querySelectorAll(".value");
 let resetButtons = document.querySelectorAll(".reset");
 let resetAllButton = document.querySelector(".resetAll");
 
-//Remove the first input so it doesn't intervene
+//Function that prevents form from reloading the page
+window.onload = function() {
+  let form = document.querySelector("form");
+  form.onsubmit = function(event) {
+    event.preventDefault();
+  }
+}
+
+//Remove the first input so it doesn't intervene and the second one
 inputs.shift();
+inputs.splice(1, 1);
 
 //Add index numbers
 inputs.forEach((element,index) => {
@@ -49,6 +58,7 @@ values.forEach((element, index) => {
 browserSelect.addEventListener("input", (event) =>{
   engineLogo.src = `img/${browserSelect.value}.svg`;
   saveToLocalStorage("searchEngine", browserSelect.value);
+  browserSelect.blur();
 });
 
 // Save values of inputs on change event and reset buttons functionality
@@ -77,6 +87,33 @@ inputs[0].addEventListener("input", (event) => {
   }
 });
 
+//Handle wallpaper selection through a link
+inputsNode[2].addEventListener("keyup", function(event) {
+  if (event.keyCode === 13) { //"Enter" key
+    let url = inputsNode[2].value;
+    let regex = /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|jpeg|png|svg|gif|webp|apng|avif)$/;
+    if (regex.test(url)) {
+      inputsNode[2].style.border = "0.2vw solid green";
+        saveToLocalStorage(0, url);
+    }
+    else{
+      inputsNode[2].style.border = "0.2vw solid red";
+    }
+  }
+});
+
+//Change border back to normal if text input loses focus
+inputsNode[2].addEventListener("blur", function() {
+  inputsNode[2].style.border = "";
+});
+
+//Change border back to normal if input value is equal to nothing
+inputsNode[2].addEventListener("input", function() {
+  if(inputsNode[2].value == ""){
+    inputsNode[2].style.border = "";
+  }
+});
+
 // Handle config selection
 uploadButton.addEventListener("input", function () {
   let file = this.files[0];
@@ -88,7 +125,7 @@ uploadButton.addEventListener("input", function () {
         if(fileContents.length - 1 == index){
           saveToLocalStorage("searchEngine", value);
           browserSelect.value = value;
-          browserSelect.dispatchEvent(new Event('input'));
+          browserSelect.dispatchEvent(new Event("input"));
         }
         else if(fileContents.length - 1 !== index){
           saveToLocalStorage(index, value);
@@ -109,9 +146,9 @@ uploadButton.addEventListener("input", function () {
 
 // Handle reset all button click
 resetAllButton.addEventListener("click", () =>{
-  localStorage.clear();
+  clearLocalStorageExcept("settingsTimestamp");
   browserSelect.value = "g";
-  browserSelect.dispatchEvent(new Event('input'));
+  browserSelect.dispatchEvent(new Event("input"));
   inputs.forEach((element,index) => {
     resetInput(index);
   });
@@ -147,7 +184,7 @@ function resetInput(index){
     break;
   }
   }
-  inputs[index].dispatchEvent(new Event('input'));
+  inputs[index].dispatchEvent(new Event("input"));
 }
 
 //Generates a config file text for a .txt file that will be downloaded
@@ -180,7 +217,7 @@ function setValue(index){
 }
 
 setInterval(() => {
-  if (getFromLocalStorage("settingsTimestamp") !== openTime.toString()) {
+  if (getFromLocalStorage("settingsTimestamp") !== settingsTimeStamp.toString()) {
     window.close();
   }
 }, 10);

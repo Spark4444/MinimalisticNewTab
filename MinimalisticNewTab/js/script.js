@@ -73,13 +73,12 @@ if(getFromLocalStorage(3) == null){
 function openCalculator() {
     if(!calculatorOpened || calculatorWindow.closed){
         let calculatorTimeStamp = Date.now();
-        localStorage.setItem("calculatorTimestamp", calculatorTimeStamp);
+        saveToLocalStorage("calculatorTimestamp", calculatorTimeStamp);
         calculatorWindow = window.open(
             "calculator/calculator.html",
             "_blank",
-            "popup=yes, width=300,height=515"
+            "popup=yes, width=312,height=533"
         );
-        calculatorWindow.openTime = calculatorTimeStamp.toString();
         calculatorOpened = true;
     }
     else if(calculatorOpened) {
@@ -92,13 +91,12 @@ function openCalculator() {
 function openSettings(){
     if(!settingsOpened || settingsWindow.closed){
         let settingsTimeStamp = Date.now();
-        localStorage.setItem("settingsTimestamp", settingsTimeStamp.toString());
+        saveToLocalStorage("settingsTimestamp", settingsTimeStamp.toString());
         settingsWindow = window.open(
             "settings/index.html",
             "_blank",
             "popup=yes, width=750,height=500"
         );
-        settingsWindow.openTime = settingsTimeStamp.toString();
         settings.style.rotate = "90deg";
         settingsOpened = true;
     }

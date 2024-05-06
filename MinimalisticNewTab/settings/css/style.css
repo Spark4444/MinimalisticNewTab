@@ -166,7 +166,36 @@ input[type="color"]::-webkit-color-swatch {
     border: none;
 }
 
+.wallpaperSelect {
+    border: 0.2vw solid black;
+    cursor: text;
+    height: 22%;
+    outline: none;
+    transition: 0.5s;
+    width: 90%;
+}
+
+.wallpaperSelect::placeholder{
+    color: black;
+    text-align: center;
+}
+
+.wallpaperSelect:hover{
+    border-radius: 10vw;
+}
+
+.selectFileLabel{
+    cursor: pointer;
+    font-size: 2vw;
+    transition: 0.5s;
+}
+
+.selectFileLabel:hover{
+    color: blue;
+}
+
 input[type="file"] {
+    display: none;
     font-size: 1.8vw;
     width: 54%;
 }
@@ -266,6 +295,21 @@ input[type="range"]::-webkit-slider-thumb {
     .button{
         background: black;
         border: 0.3vw solid #575757;
+    }
+
+    .wallpaperSelect {
+        background: #121212;
+        border: 0.2vw solid #575757;
+        color: white;
+    }
+
+    .wallpaperSelect::placeholder{
+        color: white;
+        text-align: center;
+    }
+
+    .selectFileLabel:hover{
+        color: #d590eb;
     }
 
     input[type="color"]{
