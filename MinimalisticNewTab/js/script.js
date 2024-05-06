@@ -72,11 +72,14 @@ if(getFromLocalStorage(3) == null){
 // Function to toggle the calculator window open/close
 function openCalculator() {
     if(!calculatorOpened || calculatorWindow.closed){
+        let calculatorTimeStamp = Date.now();
+        localStorage.setItem("calculatorTimestamp", calculatorTimeStamp);
         calculatorWindow = window.open(
             "calculator/calculator.html",
             "_blank",
             "popup=yes, width=300,height=515"
         );
+        calculatorWindow.openTime = calculatorTimeStamp.toString();
         calculatorOpened = true;
     }
     else if(calculatorOpened) {
@@ -88,11 +91,14 @@ function openCalculator() {
 // Function to toggle the settings window open/close
 function openSettings(){
     if(!settingsOpened || settingsWindow.closed){
+        let settingsTimeStamp = Date.now();
+        localStorage.setItem("settingsTimestamp", settingsTimeStamp.toString());
         settingsWindow = window.open(
             "settings/index.html",
             "_blank",
             "popup=yes, width=750,height=500"
         );
+        settingsWindow.openTime = settingsTimeStamp.toString();
         settings.style.rotate = "90deg";
         settingsOpened = true;
     }
@@ -112,8 +118,21 @@ function clearInput() {
 // Function to perform a Google search with the value entered in the input field
 function searchValue(){
     if(!/^\s*$/.test(input.value)){
-        // Redirect to Google search results if input is not empty or whitespace only
-        window.location.href = `https://www.google.com/search?q=${input.value}`;
+        // Redirect to Search engines search results if input is not empty or whitespace only
+        switch(getFromLocalStorage("searchEngine")){
+            case "g":
+                window.location.href = `https://www.google.com/search?q=${input.value}`;
+                break;
+            case "b":
+                window.location.href = `https://www.bing.com/search?q=${input.value}`;
+                break;
+            case "y":
+                window.location.href = `https://search.yahoo.com/search?p=${input.value}`;
+                break;
+            case "d":
+                window.location.href = `https://duckduckgo.com/?q=${input.value}`;
+                break;
+        }
     }
 }
 
@@ -184,3 +203,7 @@ calculator.addEventListener("click", function() {
 settings.addEventListener("click",function() {
     openSettings();
 })
+
+window.onunload = function() {
+    settingsWindow.close();
+}

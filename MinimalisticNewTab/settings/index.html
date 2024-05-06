@@ -8,15 +8,24 @@
     <link rel="icon" href="img/settings.svg" type="image/png">
 </head>
 <body>
-    <div class="buttons">
-    <svg xmlns="http://www.w3.org/2000/svg" class="download" viewBox="0 -960 960 960"><path d="M480-330.77 321.62-489.15l31.23-30.47 104.77 104V-776h43.76v360.38l104.77-104 32.23 30.47L480-330.77ZM252.38-184q-27.78 0-48.08-20.3-20.3-20.3-20.3-48.08V-360h43.77v107.62q0 9.23 7.69 16.92 7.69 7.69 16.92 7.69h455.24q9.23 0 16.92-7.69 7.69-7.69 7.69-16.92V-360H776v107.62q0 28.05-20.3 48.22Q735.4-184 707.62-184H252.38Z"/></svg>
-    <input id="fileInput" type="file" accept=".txt" style="display: none;">
-    <label for="fileInput">
-    <svg xmlns="http://www.w3.org/2000/svg" class="upload" viewBox="0 -960 960 960"><path d="M458.85-235.46h42.77v-205.31l90 90.77 29-29L479-517.92 339.62-377.77l27.23 28.23 92-91.23v205.31ZM253.38-104q-28.23 0-48.3-20.08Q185-144.15 185-172.38v-615.24q0-28.23 20.08-48.3Q225.15-856 253.38-856h330.08L775-665.46v493.08q0 28.23-20.08 48.3Q734.85-104 706.62-104H253.38Zm308.7-540.54h169.15L562.08-812.23v167.69Z"/></svg>
-    </label>
-    <div class="ButtonName">Save/Upload config</div>
-    </div>
     <div class="resetAll">Reset all</div>
+    <div class="select">
+        <div class="selectName">Search engine<img class="engineLogo" src=""></div>
+        <select class="browserSelect">
+            <option value="g">Google</option>
+            <option value="b">Bing</option>
+            <option value="y">Yahoo</option>
+            <option value="d">DuckDuckGo</option>
+        </select>
+    </div>
+    <div class="buttons">
+        <svg xmlns="http://www.w3.org/2000/svg" class="download" viewBox="0 -960 960 960"><path d="M480-330.77 321.62-489.15l31.23-30.47 104.77 104V-776h43.76v360.38l104.77-104 32.23 30.47L480-330.77ZM252.38-184q-27.78 0-48.08-20.3-20.3-20.3-20.3-48.08V-360h43.77v107.62q0 9.23 7.69 16.92 7.69 7.69 16.92 7.69h455.24q9.23 0 16.92-7.69 7.69-7.69 7.69-16.92V-360H776v107.62q0 28.05-20.3 48.22Q735.4-184 707.62-184H252.38Z"/></svg>
+        <input id="fileInput" type="file" accept=".txt" style="display: none;">
+        <label for="fileInput">
+        <svg xmlns="http://www.w3.org/2000/svg" class="upload" viewBox="0 -960 960 960"><path d="M458.85-235.46h42.77v-205.31l90 90.77 29-29L479-517.92 339.62-377.77l27.23 28.23 92-91.23v205.31ZM253.38-104q-28.23 0-48.3-20.08Q185-144.15 185-172.38v-615.24q0-28.23 20.08-48.3Q225.15-856 253.38-856h330.08L775-665.46v493.08q0 28.23-20.08 48.3Q734.85-104 706.62-104H253.38Zm308.7-540.54h169.15L562.08-812.23v167.69Z"/></svg>
+        </label>
+        <div class="ButtonName">Save/Upload config</div>
+        </div>
     <form action="">
         <div class="button" style="margin-top: 5vw;">
             <div class="index"></div>

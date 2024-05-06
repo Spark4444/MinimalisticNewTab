@@ -11,34 +11,6 @@ body {
     width: 100%;
 }
 
-.buttons {
-    position: fixed;
-    right: 1%;
-    top: 1%;
-    text-align: center;
-    width: 20%;
-}
-
-.download {
-    cursor: pointer;
-    transition: 0.5s;
-    width: 20%;
-}
-
-.download:hover {
-    fill: blue;
-}
-
-.upload {
-    cursor: pointer;
-    transition: 0.5s;
-    width: 20%;
-}
-
-.upload:hover{
-    fill: blue;
-}
-
 .resetAll {
     color: black;
     cursor: pointer;
@@ -52,9 +24,88 @@ body {
     color: blue;
 }
 
+.select {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 7.5vw;
+    justify-content: space-between;
+    position: fixed;
+    right: 1%;
+    top: 1%;
+    width: 18%;
+}
+
+.selectName {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    height: 55%;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.engineLogo {
+    height: 90%;
+}
+
+.browserSelect {
+    appearance: none;
+    background: white;
+    background-image: url("../img/rightArrow.svg");
+    background-position: right;
+    background-repeat: no-repeat;
+    background-size: 20% 57%;
+    border: black solid 0.2vw;
+    cursor: pointer;
+    font-family: helvetica;
+    font-size: 2vw;
+    height: 40%;
+    outline: none;
+    text-align: center;
+    transition: 0.5s;
+    width: 100%;
+}   
+
+.browserSelect:focus{
+    background-image: url("../img/downArrow.svg");
+}
+
+.browserSelect:hover{
+    border-radius: 2vw;
+}
+
+.buttons {
+    bottom: 1%;
+    position: fixed;
+    right: 0%;
+    text-align: center;
+    width: 17%;
+}
+
+.download {
+    cursor: pointer;
+    transition: 0.5s;
+    width: 25%;
+}
+
+.download:hover {
+    fill: blue;
+}
+
+.upload {
+    cursor: pointer;
+    transition: 0.5s;
+    width: 25%;
+}
+
+.upload:hover{
+    fill: blue;
+}
+
 .button {
     align-items: center;
-    background: #ffffff;
+    background: white;
     border: 0.3vw solid black;
     display: flex;
     flex-direction: column;
@@ -135,8 +186,8 @@ input[type="range"]:focus {
 }
 
 input[type="range"]::-webkit-slider-runnable-track {
-    background: #FFFFFF;
-    border: 0.15vw solid #000000;
+    background: white;
+    border: 0.15vw solid black;
     border-radius: 0vw;
     height: 1vw;
     transition: 0.5s;
@@ -149,7 +200,7 @@ input[type="range"]:hover::-webkit-slider-runnable-track {
 }
 
 input[type="range"]::-webkit-slider-thumb {
-    background: #000000;
+    background: black;
     border-radius: 1vw;
     height: 2vw;
     margin-top: -3%;
@@ -171,3 +222,71 @@ input[type="range"]::-webkit-slider-thumb {
 .reset:hover {
     color: blue;
 }
+
+@media (prefers-color-scheme: dark) {
+
+    body {
+        background: #2d3143;
+        color: white;
+    }
+
+    .resetAll{
+        color: white;
+    }
+
+    .resetAll:hover{
+        color: #d590eb;
+    }
+
+    .selectName{
+        color: white;
+    }
+
+    .browserSelect{
+        border: #575757 solid 0.2vw;
+        filter: invert(1);
+    }
+
+    .download{
+        fill: white;
+    }
+
+    .download:hover{
+        fill: #d590eb;
+    }
+
+    .upload{
+        fill: white;
+    }
+
+    .upload:hover{
+        fill: #d590eb;
+    }
+
+    .button{
+        background: black;
+        border: 0.3vw solid #575757;
+    }
+
+    input[type="color"]{
+        border: 0.2vw solid #575757;
+    }
+
+    input[type="range"]{
+        background: black;
+    }
+
+    input[type="range"]::-webkit-slider-runnable-track {
+        background: black;
+        border: 0.15vw solid #575757;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+        background: white;
+    }
+
+    .reset:hover{
+        color: #d590eb;
+    }
+
+  }

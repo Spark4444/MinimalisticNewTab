@@ -1,5 +1,8 @@
 // Initialize DOM elements variables
+let settingsTimeStamp = window.settingsTimeStamp;
 let indexElements = document.querySelectorAll(".index");
+let engineLogo = document.querySelector(".engineLogo")
+let browserSelect = document.querySelector(".browserSelect");
 let inputsNode = document.querySelectorAll("input");
 let inputs = Array.from(inputsNode);
 let downloadButton = document.querySelector(".download");
@@ -16,6 +19,15 @@ inputs.forEach((element,index) => {
   indexElements[index].innerHTML = index + 1;  
 });
 
+//Set the browser select value
+if(browserSelect !== null){
+  browserSelect.value = getFromLocalStorage("searchEngine");
+  engineLogo.src = `img/${browserSelect.value}.svg`;
+}
+else{
+  engineLogo.src = "img/g.svg";
+}
+
 // Load input values from local storage
 inputs.forEach((element, index) => {
   if(index !== 0){
@@ -28,8 +40,15 @@ inputs.forEach((element, index) => {
   }
 });
 
+//Sets values for each value element
 values.forEach((element, index) => {
  setValue(index);
+});
+
+// Handle browser selection
+browserSelect.addEventListener("input", (event) =>{
+  engineLogo.src = `img/${browserSelect.value}.svg`;
+  saveToLocalStorage("searchEngine", browserSelect.value);
 });
 
 // Save values of inputs on change event and reset buttons functionality
@@ -60,18 +79,25 @@ inputs[0].addEventListener("input", (event) => {
 
 // Handle config selection
 uploadButton.addEventListener("input", function () {
-  const file = this.files[0];
-  const reader = new FileReader();
+  let file = this.files[0];
+  let reader = new FileReader();
 
   reader.onload = function () {
-      const fileContents = reader.result;
-      fileContents.split("\n").forEach((value,index) => {
-        saveToLocalStorage(index, value);
-        if(index !== 0){
-          inputs[index].value = value;
-          if(value !== ""){
-            setValue(index-1);
-          } 
+      let fileContents = reader.result.split("\n");
+      fileContents.forEach((value,index) => {
+        if(fileContents.length - 1 == index){
+          saveToLocalStorage("searchEngine", value);
+          browserSelect.value = value;
+          browserSelect.dispatchEvent(new Event('input'));
+        }
+        else if(fileContents.length - 1 !== index){
+          saveToLocalStorage(index, value);
+          if(index !== 0){
+            inputs[index].value = value;
+            if(value !== ""){
+              setValue(index-1);
+            }
+          }
         }
       });
   };
@@ -84,6 +110,8 @@ uploadButton.addEventListener("input", function () {
 // Handle reset all button click
 resetAllButton.addEventListener("click", () =>{
   localStorage.clear();
+  browserSelect.value = "g";
+  browserSelect.dispatchEvent(new Event('input'));
   inputs.forEach((element,index) => {
     resetInput(index);
   });
@@ -128,6 +156,7 @@ function generateConfigFileText(){
   inputs.forEach((element, index) => {
      array.push(getFromLocalStorage(index));
   });
+  array.push(getFromLocalStorage("searchEngine"));
   return array.join("\n");
 }
 
@@ -149,3 +178,9 @@ function setValue(index){
         break;
     }
 }
+
+setInterval(() => {
+  if (getFromLocalStorage("settingsTimestamp") !== openTime.toString()) {
+    window.close();
+  }
+}, 10);
