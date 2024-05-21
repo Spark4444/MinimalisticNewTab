@@ -16,8 +16,8 @@ let calculatorWindow;
 let settingsWindow;
 
 //If wallpaper is not set it will switch back to default one
-if(getFromLocalStorage(0) == null){
-    saveToLocalStorage(0, "img/wallpaper.png");
+if(getFromLocalStorage("Wallpaper") == null){
+    saveToLocalStorage("Wallpaper", "img/wallpaper.png");
 }
 
 // Temporarily disable transitions for all customizable elements
@@ -31,20 +31,28 @@ input.style.transition = "0s";
 inputForm.style.transition = "0s";
 
 // Apply styles from local storage to all customizable elements, if available
-body.style.backgroundImage = `url(${getFromLocalStorage(0)})`;
-calculator.style.fill = getFromLocalStorage(1);
-settings.style.fill = getFromLocalStorage(2);
-search.style.fill = getFromLocalStorage(3);
-clearInputIcon.style.fill = getFromLocalStorage(4);
-clock.style.color = getFromLocalStorage(5);
-input.style.setProperty('--placeholder-color', getFromLocalStorage(6));
-input.style.color = getFromLocalStorage(7);
-inputForm.style.background = getFromLocalStorage(8) + "9c"; // Add opacity to the background color
-inputForm.style.border = "0.2vw groove " + getFromLocalStorage(9);
-clock.style.fontSize = getFromLocalStorage(10) + "vw";
-input.style.fontSize = getFromLocalStorage(11) + "vw";
-inputForm.style.width = getFromLocalStorage(12) + "%";
-inputForm.style.height = getFromLocalStorage(13) + "vw";
+body.style.backgroundImage = `url(${getFromLocalStorage("Wallpaper")})`;
+body.style.backgroundColor = `${getFromLocalStorage("Background color")}`;
+if(getFromLocalStorage("Background x size") == "cover"){
+    body.style.backgroundSize = `${getFromLocalStorage("Background x size")}`;
+}
+else if(getFromLocalStorage("Background x size") !== null){
+    body.style.backgroundSize = `${getFromLocalStorage("Background x size")}vw ${getFromLocalStorage("Background y size")}vh`;
+}
+body.style.backgroundPosition = `${getFromLocalStorage("Background x position")}vw ${getFromLocalStorage("Background y position")}vh`;
+calculator.style.fill = getFromLocalStorage("Calculator icon color");
+settings.style.fill = getFromLocalStorage("Settings icon color");
+search.style.fill = getFromLocalStorage("Search icon color");
+clearInputIcon.style.fill = getFromLocalStorage("X icon color");
+clock.style.color = getFromLocalStorage("Clock font color");
+input.style.setProperty('--placeholder-color', getFromLocalStorage("Search bar placeholder color"));
+input.style.color = getFromLocalStorage("Font inside search bar color");
+inputForm.style.background = getFromLocalStorage("Search bar background") + "9c"; // Add opacity to the background color
+inputForm.style.border = "0.2vw groove " + getFromLocalStorage("Search bar border");
+clock.style.fontSize = getFromLocalStorage("Clock font size") + "vw";
+input.style.fontSize = getFromLocalStorage("Search bar font size") + "vw";
+inputForm.style.width = getFromLocalStorage("Search bar width") + "%";
+inputForm.style.height = getFromLocalStorage("Search bar height") + "vw";
 
 
 // Re-enable transitions after a brief pause to allow for style application
@@ -117,7 +125,7 @@ function clearInput() {
 function searchValue(){
     if(!/^\s*$/.test(input.value)){
         // Redirect to Search engines search results if input is not empty or whitespace only
-        switch(getFromLocalStorage("searchEngine")){
+        switch(getFromLocalStorage("search Engine")){
             case "g":
                 window.location.href = `https://www.google.com/search?q=${input.value}`;
                 break;
@@ -159,20 +167,28 @@ setInterval(() => {
             settings.style.rotate = "";
         }
     }
-    body.style.backgroundImage = `url(${getFromLocalStorage(0)})`;
-    calculator.style.fill = getFromLocalStorage(1);
-    settings.style.fill = getFromLocalStorage(2);
-    search.style.fill = getFromLocalStorage(3);
-    clearInputIcon.style.fill = getFromLocalStorage(4);
-    clock.style.color = getFromLocalStorage(5);
-    input.style.setProperty('--placeholder-color', getFromLocalStorage(6));
-    input.style.color = getFromLocalStorage(7);
-    inputForm.style.background = getFromLocalStorage(8) + "9c";
-    inputForm.style.border = "0.2vw groove " + getFromLocalStorage(9);
-    clock.style.fontSize = getFromLocalStorage(10) + "vw";
-    input.style.fontSize = getFromLocalStorage(11) + "vw";
-    inputForm.style.width = getFromLocalStorage(12) + "%";
-    inputForm.style.height = getFromLocalStorage(13) + "vw";
+    body.style.backgroundImage = `url(${getFromLocalStorage("Wallpaper")})`;
+    body.style.backgroundColor = `${getFromLocalStorage("Background color")}`;
+    if(getFromLocalStorage("Background x size") == "cover"){
+        body.style.backgroundSize = `${getFromLocalStorage("Background x size")}`;
+    }
+    else if(getFromLocalStorage("Background x size") !== null){
+        body.style.backgroundSize = `${getFromLocalStorage("Background x size")}vw ${getFromLocalStorage("Background y size")}vh`;
+    }
+    body.style.backgroundPosition = `${getFromLocalStorage("Background x position")}vw ${getFromLocalStorage("Background y position")}vh`;
+    calculator.style.fill = getFromLocalStorage("Calculator icon color");
+    settings.style.fill = getFromLocalStorage("Settings icon color");
+    search.style.fill = getFromLocalStorage("Search icon color");
+    clearInputIcon.style.fill = getFromLocalStorage("X icon color");
+    clock.style.color = getFromLocalStorage("Clock font color");
+    input.style.setProperty('--placeholder-color', getFromLocalStorage("Search bar placeholder color"));
+    input.style.color = getFromLocalStorage("Font inside search bar color");
+    inputForm.style.background = getFromLocalStorage("Search bar background") + "9c"; // Add opacity to the background color
+    inputForm.style.border = "0.2vw groove " + getFromLocalStorage("Search bar border");
+    clock.style.fontSize = getFromLocalStorage("Clock font size") + "vw";
+    input.style.fontSize = getFromLocalStorage("Search bar font size") + "vw";
+    inputForm.style.width = getFromLocalStorage("Search bar width") + "%";
+    inputForm.style.height = getFromLocalStorage("Search bar height") + "vw";
 }, 200);
 
 // Function to display the current time in HH : MM : SS format

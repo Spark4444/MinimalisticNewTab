@@ -1,6 +1,7 @@
 // Initialize DOM elements variables
 let settingsTimeStamp = getFromLocalStorage("settingsTimestamp");
 let indexElements = document.querySelectorAll(".index");
+let buttonName = document.querySelectorAll(".name");
 let engineLogo = document.querySelector(".engineLogo")
 let browserSelect = document.querySelector(".browserSelect");
 let inputsNode = document.querySelectorAll("input");
@@ -29,8 +30,8 @@ inputs.forEach((element,index) => {
 });
 
 //Set the browser select value
-if(getFromLocalStorage("searchEngine") !== null){
-  browserSelect.value = getFromLocalStorage("searchEngine");
+if(getFromLocalStorage("search Engine") !== null){
+  browserSelect.value = getFromLocalStorage("search Engine");
   engineLogo.src = `img/${browserSelect.value}.svg`;
 }
 else{
@@ -41,8 +42,13 @@ else{
 // Load input values from local storage
 inputs.forEach((element, index) => {
   if(index !== 0){
-    if(getFromLocalStorage(index) !== null){
-      element.value = getFromLocalStorage(index);
+    if(getFromLocalStorage(buttonName[index].innerHTML) !== null){
+      if(getFromLocalStorage(buttonName[index].innerHTML) == "cover"){
+        element.value = element.defaultValue;
+      }
+      else{
+        element.value = getFromLocalStorage(buttonName[index].innerHTML);
+      }
     }
     else{
       resetInput(index);
@@ -51,14 +57,14 @@ inputs.forEach((element, index) => {
 });
 
 //Sets values for each value element
-values.forEach((element, index) => {
+inputs.forEach((element, index) => {
  setValue(index);
 });
 
 // Handle browser selection
 browserSelect.addEventListener("input", (event) =>{
   engineLogo.src = `img/${browserSelect.value}.svg`;
-  saveToLocalStorage("searchEngine", browserSelect.value);
+  saveToLocalStorage("search Engine", browserSelect.value);
   browserSelect.blur();
 });
 
@@ -66,8 +72,8 @@ browserSelect.addEventListener("input", (event) =>{
 inputs.forEach((element, index) => {
     if(index !== 0){
       element.addEventListener("input", (event) => {
-        setValue(index-1);
-        saveToLocalStorage(index, element.value);
+        setValue(index);
+        saveToLocalStorage(buttonName[index].innerHTML, element.value);
       });
     }
     resetButtons[index].addEventListener("click", () => {
@@ -82,7 +88,13 @@ inputs[0].addEventListener("input", (event) => {
     let reader = new FileReader();
     reader.onload = (e) => {
       let base64Image = e.target.result;
-      saveToLocalStorage(0, base64Image);
+      try {
+        saveToLocalStorage(buttonName[0].innerHTML, base64Image);
+      } catch (e) {
+        if (e.code === 22) {
+            alert("This file is larger then 5mb");
+        }
+      }
     };
     reader.readAsDataURL(file);
   }
@@ -95,7 +107,13 @@ inputsNode[2].addEventListener("keyup", function(event) {
     let regex = /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|jpeg|png|svg|gif|webp|apng|avif)$/;
     if (regex.test(url)) {
       inputsNode[2].style.border = "0.2vw solid green";
-        saveToLocalStorage(0, url);
+      try {
+        saveToLocalStorage(buttonName[0].innerHTML, url);
+      } catch (e) {
+        if (e.code === 22) {
+            alert("This URL is larger then 5mb");
+        }
+      }
     }
     else{
       inputsNode[2].style.border = "0.2vw solid red";
@@ -121,23 +139,15 @@ uploadButton.addEventListener("input", function () {
   let reader = new FileReader();
 
   reader.onload = function () {
-      let fileContents = reader.result.split("\n");
-      fileContents.forEach((value,index) => {
-        if(fileContents.length - 1 == index){
-          saveToLocalStorage("searchEngine", value);
-          browserSelect.value = value;
-          browserSelect.dispatchEvent(new Event("input"));
-        }
-        else if(fileContents.length - 1 !== index){
-          saveToLocalStorage(index, value);
-          if(index !== 0){
-            inputs[index].value = value;
-            if(value !== ""){
-              setValue(index-1);
-            }
-          }
-        }
-      });
+    let fileContents = reader.result.split("\n");
+    fileContents.forEach((value,index) => {
+      if(value !== ""){
+        let splitIndex = value.indexOf(':');
+        let elementKey = value.substring(0, splitIndex).trim();
+        let elementValue = value.substring(splitIndex + 1).trim();
+        saveToLocalStorage(elementKey, elementValue);
+      }
+    });
   };
 
   reader.readAsText(file);
@@ -163,58 +173,79 @@ downloadButton.addEventListener("click", () =>{
 // Resets input of a specified index to default value
 function resetInput(index){
   if(inputs[index].type == "range"){
-    inputs[index].value = inputs[index].defaultValue;
+    switch(buttonName[index].innerHTML){
+      case "Background x size":
+        inputs[index].value = inputs[index].defaultValue;
+        saveToLocalStorage(buttonName[index].innerHTML, "cover");
+        setValue(index);
+        break;
+      default:
+        inputs[index].value = inputs[index].defaultValue;
+        inputs[index].dispatchEvent(new Event("input"));
+        break;
+    }
   }
   else{
-  switch (index) {
-    case 0:
+  switch (buttonName[index].innerHTML) {
+    case "Wallpaper":
       inputs[index].value = null;
       inputsNode[2].value = "";
-      saveToLocalStorage(index, "img/wallpaper.png");
+      saveToLocalStorage(buttonName[index].innerHTML, "img/wallpaper.png");
     break;
-    case 5:
+    case "Clock font color":
+    case "Background color":
       let preferredColor = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches
         ? "#000000"
         : "#ffffff";
         inputs[index].value = preferredColor;
       break;
-    case 8:
+    case "Search bar background":
       inputs[index].value = "#ffffff";
     break;
     default:
       inputs[index].value = "#000000";
     break;
   }
-  }
   inputs[index].dispatchEvent(new Event("input"));
+  }
 }
 
 //Generates a config file text for a .txt file that will be downloaded
 function generateConfigFileText(){
   let array = [];
-  inputs.forEach((element, index) => {
-     array.push(getFromLocalStorage(index));
+  Object.keys(localStorage).sort().forEach((key) => {
+    if(key !== "settingsTimestamp"){
+      array.push(`${key}: ${localStorage.getItem(key)}`);
+    }
   });
-  array.push(getFromLocalStorage("searchEngine"));
   return array.join("\n");
 }
 
 //Adds the values of the inputs elements
 function setValue(index){
-    switch(index){
-      case 11:
-        values[index].innerHTML = inputs[index+1].value + "%";
+    switch(buttonName[index].innerHTML){
+      case "Wallpaper":
         break;
-      case 9:
-      case 10:
-      case 12:
-        values[index].innerHTML = inputs[index+1].value + "vw";
+      case "Search bar width":
+        values[index-1].innerHTML = inputs[index].value + "%";
         break;
+      case "Background x size":
+      case "Background x position":
+      case "Search bar font size":
+      case "Clock font size":
+        values[index-1].innerHTML = inputs[index].value + "vw";
         break;
+      case "Search bar height":
+      case "Background y size":  
+      case "Background y position":
+        values[index-1].innerHTML = inputs[index].value + "vh";
         break;
       default:
-        values[index].innerHTML = inputs[index+1].value;
+        values[index-1].innerHTML = inputs[index].value;
         break;
+    }
+    if(buttonName[index].innerHTML == "Background x size" && getFromLocalStorage("Background x size") == "cover"){
+      values[index-1].innerHTML = "cover";
     }
 }
 
