@@ -37,14 +37,23 @@ function copyAnswer() {
 //Converts a number into a scientific notation
 function convertToScientificNotation(num) {
     let str = num.toString();
+    let parts = str.split(".");
+    let beforeDot = parts[0];
+    let afterDot = parts[1];
     if (str.length > 9) {
-        return num.toExponential(5);
-    } else {
+        if(beforeDot.length > 9 || str.includes("e")){
+            return num.toExponential(5);
+        }
+        else{
+            return str;
+        }
+    } 
+    else {
         return str;
     }
 }
 
-//Deletes everything from the input
+//Deletes everything from the input 
 function deleteW() {
     answer.innerHTML = "0";
     worked = false;
@@ -201,13 +210,13 @@ setInterval(() => {
         answer.style.fontSize = "";
     }
     else if(answer.innerHTML.length > 8 && answer.innerHTML.length < 11){
-        answer.style.fontSize = "15vw";
+        answer.style.fontSize = "10vh";
     }
     else if(answer.innerHTML.length > 10 && answer.innerHTML.length < 12){
-        answer.style.fontSize = "13vw";
+        answer.style.fontSize = "8vh";
     }
     else if(answer.innerHTML.length > 11 && answer.innerHTML.length < 13){
-        answer.style.fontSize = "11vw";
+        answer.style.fontSize = "6vh";
     }
     if (getFromLocalStorage("calculatorTimestamp") !== calculatorTimeStamp.toString()) {
         window.close();
