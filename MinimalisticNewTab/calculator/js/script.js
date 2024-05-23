@@ -1,13 +1,11 @@
 // Initialize DOM elements variables
+let calculatorTimeStamp = getFromLocalStorage("calculatorTimestamp");
 let answer = document.querySelector(".text");
 let button1 = document.querySelector(".button1");
-let minus = "-";
-let id = -1;
-let calculatorTimeStamp = getFromLocalStorage("calculatorTimestamp");
-let num1 = false;
-let num2;
-let checkNum = false;
-let worked = false;
+let id = false;
+let number1 = false;
+let number2 = false;
+let signSelected = false;
 let signChanged = false;
 let nextNumberSelected = false;
 let canCopy = true;
@@ -39,7 +37,6 @@ function convertToScientificNotation(num) {
     let str = num.toString();
     let parts = str.split(".");
     let beforeDot = parts[0];
-    let afterDot = parts[1];
     if (str.length > 9) {
         if(beforeDot.length > 9 || str.includes("e")){
             return num.toExponential(5);
@@ -53,159 +50,130 @@ function convertToScientificNotation(num) {
     }
 }
 
-//Deletes everything from the input 
-function deleteW() {
-    answer.innerHTML = "0";
-    worked = false;
-    num1 = false;
-    id = -1;
+//Sets the color for the sign
+function setSign(id){
     signArr.forEach(sign => {
-        sign.style.backgroundColor = ""
-        sign.style.color = ""
+        sign.style.backgroundColor = "";
+        sign.style.color = "";
     });
+    if(id !== undefined){
+        signArr[id].style.backgroundColor = "white";
+        signArr[id].style.color = "rgb(255 158 32)";
+        return id;
+    }
 }
 
-//Inserets a number into the input
-function number(number) {
-    if(answer.innerHTML == "-0" && number !== "."){
-        answer.innerHTML = `-${number}`;
+//Deletes everything from the input 
+function deleteEverything() {
+    answer.innerHTML = "0";
+    number1 = false;
+    id = false;
+    if(button1.innerHTML == "AC"){
+        setSign();
     }
-    else if(answer.innerHTML == "0" && number !== "."){
-        answer.innerHTML = number;
-    }
-    else if(worked == false && checkNum == true){
-        signArr.forEach(sign => {
-            sign.style.backgroundColor = ""
-            sign.style.color = ""
-        });
-        checkNum = false;
-        if(number !== "."){
-            answer.innerHTML = number;
-        }
-        else{
-            answer.innerHTML = "0" + number;
-        }
-        worked = true;
-    } 
-    else if(answer.innerHTML.indexOf(".") == -1 && answer.innerHTML.length !== 9 || number !== "." && answer.innerHTML.length !== 9){
-        answer.innerHTML += number;
-    }
-    nextNumberSelected = true;
+    button1.innerHTML = "AC";
+    checkFontSize();
 }
 
 //Change the sign from + to - or vice versa
-function changeSign(sign) {
-    if(sign == "±" && answer.innerHTML.indexOf("-") == -1){
-        answer.innerHTML = minus.concat("", answer.innerHTML);
-    }
-    else{
+function changeSign() {
+    if(answer.innerHTML[0] == "-"){
         answer.innerHTML = answer.innerHTML.slice(1);
     }
+    else{
+        answer.innerHTML = `-${answer.innerHTML}`;
+    }
+    checkFontSize();
 }
 
 //Divides the input by a 100
 function persantage(){
     answer.innerHTML = convertToScientificNotation(parseFloat(answer.innerHTML)/100);
+    checkFontSize();
+}
+
+//Inserets a number into the input
+function number(number) {
+    setSign();
+    if(number !== "0"){
+        button1.innerHTML = "C";
+    }
+
+    if(answer.innerHTML == "-0"){
+        answer.innerHTML = `-${number}`;
+    }
+    else if(answer.innerHTML == "0" || signSelected){
+        answer.innerHTML = number;
+        signSelected = false;
+    }
+    else if(answer.innerHTML.length < 9){
+        answer.innerHTML += number;
+    }
+    nextNumberSelected = true;
+    checkFontSize();
+}
+
+function dot(){
+    if(!answer.innerHTML.includes(".")){
+        answer.innerHTML += ".";
+    }
 }
 
 //Chooses the sign with wich the input will be changed
 function sign(sign){
-    if(num1 !== false && nextNumberSelected){
+    if(number1 !== false && nextNumberSelected){
         equal();
     }
-    if(sign == "/"){
-        signArr.forEach(sign => {
-                sign.style.backgroundColor = "";
-                sign.style.color = "";
-        });
-        signArr[0].style.backgroundColor = "white";
-        signArr[0].style.color = "rgb(255 158 32)";
-        id = 0;
+    switch(sign){
+        case "/":
+            id = setSign(0);
+            break;
+        case "*":
+            id = setSign(1);
+            break;
+        case "-":
+            id = setSign(2);
+            break;
+        case "+":
+            id = setSign(3);
+            break;
     }
-    if(sign == "*"){
-        signArr.forEach(sign => {
-            sign.style.backgroundColor = "";
-            sign.style.color = "";
-        });
-        signArr[1].style.backgroundColor = "white";
-        signArr[1].style.color = "rgb(255 158 32)";
-        id = 1;
-    }
-    if(sign == "-"){
-        signArr.forEach(sign => {
-            sign.style.backgroundColor = "";
-            sign.style.color = "";
-        });
-        signArr[2].style.backgroundColor = "white";
-        signArr[2].style.color = "rgb(255 158 32)";
-        id = 2;
-    }
-    if(sign == "+"){
-        signArr.forEach(sign => {
-            sign.style.backgroundColor = "";
-            sign.style.color = "";
-        });
-        signArr[3].style.backgroundColor = "white";
-        signArr[3].style.color = "rgb(255 158 32)";
-        id = 3;
-    }
-    num1 = answer.innerHTML;
-    checkNum = true;
+    number1 = answer.innerHTML;
+    signSelected = true;
     signChanged = true;
-    worked = false;
 }
 
 //Solves the equation in the input
 function equal(){
-    if(id !== -1){
-    if(signChanged == true){
-    num2 = answer.innerHTML;
-    }
-    signArr.forEach(sign => {
-        sign.style.backgroundColor = "";
-        sign.style.color = "";
-    });
-    if(id == 0 && num1 !== false){
-        answer.innerHTML = parseFloat(num1) / parseFloat(num2);
-    }
-    else if(id == 1 && num1 !== false){
-        answer.innerHTML = parseFloat(num1) * parseFloat(num2);
-    }
-    else if(id == 2 && num1 !== false){
-        answer.innerHTML = parseFloat(num1) - parseFloat(num2);
-    }
-    else if(id == 3 && num1 !== false){
-        answer.innerHTML = parseFloat(num1) + parseFloat(num2);
-    }    
-    else if(id == 0 && num1 == false){
-        answer.innerHTML = parseFloat(answer.innerHTML) / parseFloat(answer.innerHTML);
-    }
-    else if(id == 1 && num1 == false){
-        answer.innerHTML = parseFloat(answer.innerHTML) * parseFloat(answer.innerHTML);
-    }
-    else if(id == 2 && num1 == false){
-        answer.innerHTML = parseFloat(answer.innerHTML) - parseFloat(answer.innerHTML);
-    }
-    else if(id == 3 && num1 == false){
-        answer.innerHTML = parseFloat(answer.innerHTML) + parseFloat(answer.innerHTML);
-    }
-    if(id > -1 && id < 4){
-        answer.innerHTML = convertToScientificNotation(parseFloat(parseFloat(answer.innerHTML).toFixed(8)));
-        num1 = answer.innerHTML;
-    }
-    signChanged = false;
-    nextNumberSelected = false;
+    if(id !== false){
+        if(signChanged){
+        number2 = answer.innerHTML;
+        }
+        setSign();
+        let operations = [
+            (a, b) => parseFloat(a) / parseFloat(b),
+            (a, b) => parseFloat(a) * parseFloat(b),
+            (a, b) => parseFloat(a) - parseFloat(b),
+            (a, b) => parseFloat(a) + parseFloat(b)
+        ];
+        if(number1 !== false){
+            answer.innerHTML = operations[id](number1, number2);
+        } 
+        else if(!number1){
+            answer.innerHTML = operations[id](answer.innerHTML, answer.innerHTML);
+        }
+        if(id > -1 && id < 4){
+            answer.innerHTML = convertToScientificNotation(parseFloat(parseFloat(answer.innerHTML).toFixed(8)));
+            number1 = answer.innerHTML;
+        }
+        signChanged = false;
+        nextNumberSelected = false;
+        checkFontSize();
     }
 }
 
-//Checks amount of words in the input and changes the font-size accordingly and also changes the AC and C every 10ms
-setInterval(() => {
-    if(parseInt(answer.innerHTML) > 0 || parseInt(answer.innerHTML) < 0 ){
-        button1.innerHTML = "C";
-    }
-    else{
-        button1.innerHTML = "AC";
-    }
+//Checks if font size of the answer is correct
+function checkFontSize(){
     if(answer.innerHTML.length < 9){
         answer.style.fontSize = "";
     }
@@ -218,6 +186,10 @@ setInterval(() => {
     else if(answer.innerHTML.length > 11 && answer.innerHTML.length < 13){
         answer.style.fontSize = "6vh";
     }
+}
+
+//Checks if a new window if a new calculator window was opened
+setInterval(() => {
     if (getFromLocalStorage("calculatorTimestamp") !== calculatorTimeStamp.toString()) {
         window.close();
     }
@@ -226,84 +198,84 @@ setInterval(() => {
 //Numpad eventlistener, with this calculator can be used with numpad
 document.addEventListener("keydown", function(e) {
     switch (e.keyCode) {
-        case 109: // '-'
+        case 109: // "-"
             sign("-");
             break;
-        case 107: // '+'
+        case 107: // "+"
             sign("+");
             break;
-        case 111: // '/'
+        case 111: // "/"
             sign("/");
             break;
-        case 106: // '*'
+        case 106: // "*"
             sign("*");
             break;
-        case 13: // 'Enter'
-        case 187: // '='
+        case 13: // "Enter"
+        case 187: // "="
             equal();
             break;
-        case 8: // 'Backspace'
-        case 46: // 'Delete'
-            deleteW();
+        case 8: // "Backspace"
+        case 46: // "Delete"
+            deleteEverything();
             break;
-        case 110: // '.' on numpad
-        case 190: // '.'
-            number(".");
+        case 110: // "." on numpad
+        case 190: // "."
+            dot();
             break;
-        case 120: // 'F9'
-            changeSign("±");
+        case 120: // "F9"
+            changeSign();
             break;
-        case 121: // 'F10'
+        case 121: // "F10"
             persantage();
             break;
-        case 45: // '0' on numpad
-        case 96: // '0' on numpad
-        case 48: // '0'
+        case 45: // "0" on numpad
+        case 96: // "0" on numpad
+        case 48: // "0"
             number("0");
             break;
-        case 35: // '1' on numpad
-        case 97: // '1' on numpad
-        case 49: // '1'
+        case 35: // "1" on numpad
+        case 97: // "1" on numpad
+        case 49: // "1"
             number("1");
             break;
-        case 40: // '2' on numpad
-        case 98: // '2' on numpad
-        case 50: // '2'
+        case 40: // "2" on numpad
+        case 98: // "2" on numpad
+        case 50: // "2"
             number("2");
             break;
-        case 34: // '3' on numpad
-        case 99: // '3' on numpad
-        case 51: // '3'
+        case 34: // "3" on numpad
+        case 99: // "3" on numpad
+        case 51: // "3"
             number("3");
             break;
-        case 37: // '4' on numpad
-        case 100: // '4' on numpad
-        case 52: // '4'
+        case 37: // "4" on numpad
+        case 100: // "4" on numpad
+        case 52: // "4"
             number("4");
             break;
-        case 12: // '5' on numpad
-        case 101: // '5' on numpad
-        case 53: // '5'
+        case 12: // "5" on numpad
+        case 101: // "5" on numpad
+        case 53: // "5"
             number("5");
             break;
-        case 39: // '6' on numpad
-        case 102: // '6' on numpad
-        case 54: // '6'
+        case 39: // "6" on numpad
+        case 102: // "6" on numpad
+        case 54: // "6"
             number("6");
             break;
-        case 36: // '7' on numpad
-        case 103: // '7' on numpad
-        case 55: // '7'
+        case 36: // "7" on numpad
+        case 103: // "7" on numpad
+        case 55: // "7"
             number("7");
             break;
-        case 38: // '8' on numpad
-        case 104: // '8' on numpad
-        case 56: // '8'
+        case 38: // "8" on numpad
+        case 104: // "8" on numpad
+        case 56: // "8"
             number("8");
             break;
-        case 33: // '9' on numpad
-        case 105: // '9' on numpad
-        case 57: // '9'
+        case 33: // "9" on numpad
+        case 105: // "9" on numpad
+        case 57: // "9"
             number("9");
             break;
     }
@@ -315,58 +287,58 @@ document.querySelector(".copyTheAnswerImg").addEventListener("click", function()
     copyAnswer();
 });
 document.querySelector(".button1").addEventListener("click", function() {
-    deleteW();
+    deleteEverything();
 });
 document.querySelector(".button2").addEventListener("click", function() {
-    changeSign('±');
+    changeSign();
 });
 document.querySelector(".button3").addEventListener("click", function() {
     persantage();
 });
 document.querySelector(".button4").addEventListener("click", function() {
-    sign('/');
+    sign("/");
 });
 document.querySelector(".button5").addEventListener("click", function() {
-    number('7');
+    number("7");
 });
 document.querySelector(".button6").addEventListener("click", function() {
-    number('8');
+    number("8");
 });
 document.querySelector(".button7").addEventListener("click", function() {
-    number('9');
+    number("9");
 });
 document.querySelector(".button8").addEventListener("click", function() {
-    sign('*');
+    sign("*");
 });
 document.querySelector(".button9").addEventListener("click", function() {
-    number('4');
+    number("4");
 });
 document.querySelector(".button10").addEventListener("click", function() {
-    number('5');
+    number("5");
 });
 document.querySelector(".button11").addEventListener("click", function() {
-    number('6');
+    number("6");
 });
 document.querySelector(".button12").addEventListener("click", function() {
-    sign('-');
+    sign("-");
 });
 document.querySelector(".button13").addEventListener("click", function() {
-    number('1');
+    number("1");
 });
 document.querySelector(".button14").addEventListener("click", function() {
-    number('2');
+    number("2");
 });
 document.querySelector(".button15").addEventListener("click", function() {
-    number('3');
+    number("3");
 });
 document.querySelector(".button16").addEventListener("click", function() {
-    sign('+');
+    sign("+");
 });
 document.querySelector(".button17").addEventListener("click", function() {
-    number('0');
+    number("0");
 });
 document.querySelector(".button18").addEventListener("click", function() {
-    number('.');
+    dot();
 });
 document.querySelector(".button19").addEventListener("click", function() {
     equal();

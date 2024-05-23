@@ -200,6 +200,6 @@ link[rel="icon"] {
     transition: 0.25s;
 }
 .button:active, .longButton:active{
-    filter: brightness(1.5);
+    filter: brightness(125%);
     transition: 0.35s;
 }
