@@ -12,7 +12,7 @@ let values = document.querySelectorAll(".value");
 let resetButtons = document.querySelectorAll(".reset");
 let resetAllButton = document.querySelector(".resetAll");
 
-//Function that prevents form from reloading the page
+// Function that prevents form from reloading the page
 window.onload = function() {
   let form = document.querySelector("form");
   form.onsubmit = function(event) {
@@ -20,16 +20,16 @@ window.onload = function() {
   }
 }
 
-//Remove the first input so it doesn't intervene and the second one
+// Remove the first input so it doesn't intervene and the second one
 inputs.shift();
 inputs.splice(1, 1);
 
-//Add index numbers
+// Add index numbers
 inputs.forEach((element,index) => {
   indexElements[index].innerHTML = index + 1;  
 });
 
-//Set the browser select value
+// Set the browser select value
 if(getFromLocalStorage("search Engine") !== null){
   browserSelect.value = getFromLocalStorage("search Engine");
   engineLogo.src = `img/${browserSelect.value}.svg`;
@@ -56,7 +56,7 @@ inputs.forEach((element, index) => {
   }
 });
 
-//Sets values for each value element
+// Sets values for each value element
 inputs.forEach((element, index) => {
  setValue(index);
 });
@@ -100,7 +100,7 @@ inputs[0].addEventListener("input", (event) => {
   }
 });
 
-//Handle wallpaper selection through a link
+// Handle wallpaper selection through a link
 inputsNode[2].addEventListener("keyup", function(event) {
   if (event.keyCode === 13) { //"Enter" key
     let url = inputsNode[2].value;
@@ -121,12 +121,12 @@ inputsNode[2].addEventListener("keyup", function(event) {
   }
 });
 
-//Change border back to normal if text input loses focus
+// Change border back to normal if text input loses focus
 inputsNode[2].addEventListener("blur", function() {
   inputsNode[2].style.border = "";
 });
 
-//Change border back to normal if input value is equal to nothing
+// Change border back to normal if input value is equal to nothing
 inputsNode[2].addEventListener("input", function() {
   if(inputsNode[2].value == ""){
     inputsNode[2].style.border = "";
@@ -210,7 +210,7 @@ function resetInput(index){
   }
 }
 
-//Generates a config file text for a .txt file that will be downloaded
+// Generates a config file text for a .txt file that will be downloaded
 function generateConfigFileText(){
   let array = [];
   Object.keys(localStorage).sort().forEach((key) => {
@@ -221,7 +221,7 @@ function generateConfigFileText(){
   return array.join("\n");
 }
 
-//Adds the values of the inputs elements
+// Adds the values of the inputs elements
 function setValue(index){
     switch(buttonName[index].innerHTML){
       case "Wallpaper":
@@ -249,6 +249,7 @@ function setValue(index){
     }
 }
 
+// Checks if a new a settings window was opened
 setInterval(() => {
   if (getFromLocalStorage("settingsTimestamp") !== settingsTimeStamp.toString()) {
     window.close();

@@ -10,115 +10,105 @@ let settings = document.querySelector(".settings");
 
 // Initialize state variables
 let inputClearable = false;
-let calculatorOpened = false;
-let settingsOpened = false;
-let calculatorWindow;
-let settingsWindow;
+let calculatorWindow = false;
+let settingsWindow = false;
 
 //If wallpaper is not set it will switch back to default one
 if(getFromLocalStorage("Wallpaper") == null){
     saveToLocalStorage("Wallpaper", "img/wallpaper.png");
 }
 
-// Temporarily disable transitions for all customizable elements
-body.style.transition = "0s";
-calculator.style.transition = "0s";
-settings.style.transition = "0s";
-search.style.transition = "0s";
-clearInputIcon.style.transition = "0s";
-clock.style.transition = "0s";
-input.style.transition = "0s";
-inputForm.style.transition = "0s";
-
-// Apply styles from local storage to all customizable elements, if available
-body.style.backgroundImage = `url(${getFromLocalStorage("Wallpaper")})`;
-body.style.backgroundColor = `${getFromLocalStorage("Background color")}`;
-if(getFromLocalStorage("Background x size") == "cover"){
-    body.style.backgroundSize = `${getFromLocalStorage("Background x size")}`;
-}
-else if(getFromLocalStorage("Background x size") !== null){
-    body.style.backgroundSize = `${getFromLocalStorage("Background x size")}vw ${getFromLocalStorage("Background y size")}vh`;
-}
-body.style.backgroundPosition = `${getFromLocalStorage("Background x position")}vw ${getFromLocalStorage("Background y position")}vh`;
-calculator.style.fill = getFromLocalStorage("Calculator icon color");
-settings.style.fill = getFromLocalStorage("Settings icon color");
-search.style.fill = getFromLocalStorage("Search icon color");
-clearInputIcon.style.fill = getFromLocalStorage("X icon color");
-clock.style.color = getFromLocalStorage("Clock font color");
-input.style.setProperty('--placeholder-color', getFromLocalStorage("Search bar placeholder color"));
-input.style.color = getFromLocalStorage("Font inside search bar color");
-inputForm.style.background = getFromLocalStorage("Search bar background") + "9c"; // Add opacity to the background color
-inputForm.style.border = "0.2vw groove " + getFromLocalStorage("Search bar border");
-clock.style.fontSize = getFromLocalStorage("Clock font size") + "vw";
-input.style.fontSize = getFromLocalStorage("Search bar font size") + "vw";
-inputForm.style.width = getFromLocalStorage("Search bar width") + "%";
-inputForm.style.height = getFromLocalStorage("Search bar height") + "vw";
-
-
-// Re-enable transitions after a brief pause to allow for style application
-setTimeout(() => {
-    body.style.transition = "";
-    calculator.style.transition = "";
-    settings.style.transition = "";
-    search.style.transition = "";
-    clearInputIcon.style.transition = "";
-    clock.style.transition = "";
-    input.style.transition = "";
-    inputForm.style.transition = "";
-}, 210);
-
 // Apply default clock style if no custom style is set in local storage
-if(getFromLocalStorage(3) == null){
-    // Check for user's preferred color scheme and set clock color accordingly
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+if(getFromLocalStorage("Clock font color") == null){
+    if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
         clock.style.color = "black"; // Dark mode: set clock color to black
     } else {
         clock.style.color = "white"; // Light mode: set clock color to white
     }
 }
 
-// Function to toggle the calculator window open/close
-function openCalculator() {
-    if(!calculatorOpened || calculatorWindow.closed){
-        let calculatorTimeStamp = Date.now();
-        saveToLocalStorage("calculatorTimestamp", calculatorTimeStamp);
-        calculatorWindow = window.open(
-            "calculator/calculator.html",
-            "_blank",
-            "popup=yes, width=312,height=533"
-        );
-        calculatorOpened = true;
+//Updates all the changable styles on the web page
+function updateStyles(transitionDisableTime){
+    let elements = [
+        body.style,
+        calculator.style,
+        settings.style,
+        search.style,
+        clearInputIcon.style,
+        clock.style,
+        input.style,
+        inputForm.style,
+    ];
+    // Temporarily disable transitions for all customizable elements
+    if(updateStyles !== undefined){
+        elements.forEach(element => {
+            element.transition = "0s";
+        });
     }
-    else if(calculatorOpened) {
-        calculatorWindow.close();
-        calculatorOpened = false;
+
+
+    // Apply styles from local storage to all customizable elements, if available
+    if(getFromLocalStorage("Background x size") == "cover"){
+        elements[0].backgroundSize = `${getFromLocalStorage("Background x size")}`;
+    }
+    else if(getFromLocalStorage("Background x size") !== null){
+        elements[0].backgroundSize = `${getFromLocalStorage("Background x size")}vw ${getFromLocalStorage("Background y size")}vh`;
+    }
+    elements[0].backgroundImage = `url(${getFromLocalStorage("Wallpaper")})`;
+    elements[0].backgroundColor = `${getFromLocalStorage("Background color")}`;
+    elements[0].backgroundPosition = `${getFromLocalStorage("Background x position")}vw ${getFromLocalStorage("Background y position")}vh`;
+    elements[1].fill = getFromLocalStorage("Calculator icon color");
+    elements[2].fill = getFromLocalStorage("Settings icon color");
+    elements[3].fill = getFromLocalStorage("Search icon color");
+    elements[4].fill = getFromLocalStorage("X icon color");
+    elements[5].color = getFromLocalStorage("Clock font color");
+    elements[5].fontSize = getFromLocalStorage("Clock font size") + "vw";
+    elements[6].setProperty("--placeholder-color", getFromLocalStorage("Search bar placeholder color"));
+    elements[6].color = getFromLocalStorage("Font inside search bar color");
+    elements[6].fontSize = getFromLocalStorage("Search bar font size") + "vw";
+    elements[7].background = getFromLocalStorage("Search bar background") + "9c"; // Add opacity to the background color
+    elements[7].border = "0.2vw groove " + getFromLocalStorage("Search bar border");
+    elements[7].width = getFromLocalStorage("Search bar width") + "%";
+    elements[7].height = getFromLocalStorage("Search bar height") + "vw";
+
+
+    // Re-enable transitions after a brief pause to allow for style application
+    if(updateStyles !== undefined){
+        setTimeout(() => {
+            elements.forEach(element => {
+                element.transition = "";
+            });
+        }, transitionDisableTime);
     }
 }
 
-// Function to toggle the settings window open/close
-function openSettings(){
-    if(!settingsOpened || settingsWindow.closed){
-        let settingsTimeStamp = Date.now();
-        saveToLocalStorage("settingsTimestamp", settingsTimeStamp.toString());
-        settingsWindow = window.open(
-            "settings/index.html",
-            "_blank",
-            "popup=yes, width=750,height=500"
+// Initial styles update
+updateStyles(210);
+
+// Opens a pop up of a specified name and width and height
+function openPopup(windowName, width, height, popupWindow) {
+    if(!popupWindow || popupWindow.closed){
+        let windowTimestamp = Date.now();
+        saveToLocalStorage(`${windowName}Timestamp`, windowTimestamp.toString());
+        let popupWindow = window.open(
+            `${windowName}/index.html`,
+            `_blank`,
+            `popup=yes, width=${width},height=${height}`
         );
-        settings.style.rotate = "90deg";
-        settingsOpened = true;
+        return popupWindow;
     }
-    else if(settingsOpened){
-        settingsWindow.close();
-        calculatorOpened = false;
-        settings.style.rotate = "";
-        settingsOpened = false;
+    else{
+        popupWindow.close();
+        return false;
     }
 }
 
 // Function to clear the search input field
 function clearInput() {
     input.value = "";
+    clearInputIcon.style.cursor = "default";
+    clearInputIcon.style.opacity = "0";
+    inputClearable = false;
 }
 
 // Function to perform a Google search with the value entered in the input field
@@ -142,64 +132,36 @@ function searchValue(){
     }
 }
 
-// Event listener for the 'Enter' key to trigger a search
-input.addEventListener('keyup', function(event){
-    if(13 === event.keyCode){
-        searchValue();
-    }
-});
-
-
-// Makes the input of the input field clearable based on input field content
-setInterval(() => {
-    if(/^\s*$/.test(input.value)){
-        clearInputIcon.style.cursor = "default";
-        clearInputIcon.style.opacity = "0";
-        inputClearable = false;
-    }
-    else{
-        clearInputIcon.style.cursor = "pointer";
-        clearInputIcon.style.opacity = "1";
-        inputClearable = true;
-    }
-    if(settingsOpened){
-        if(settingsWindow.closed){
-            settings.style.rotate = "";
-        }
-    }
-    body.style.backgroundImage = `url(${getFromLocalStorage("Wallpaper")})`;
-    body.style.backgroundColor = `${getFromLocalStorage("Background color")}`;
-    if(getFromLocalStorage("Background x size") == "cover"){
-        body.style.backgroundSize = `${getFromLocalStorage("Background x size")}`;
-    }
-    else if(getFromLocalStorage("Background x size") !== null){
-        body.style.backgroundSize = `${getFromLocalStorage("Background x size")}vw ${getFromLocalStorage("Background y size")}vh`;
-    }
-    body.style.backgroundPosition = `${getFromLocalStorage("Background x position")}vw ${getFromLocalStorage("Background y position")}vh`;
-    calculator.style.fill = getFromLocalStorage("Calculator icon color");
-    settings.style.fill = getFromLocalStorage("Settings icon color");
-    search.style.fill = getFromLocalStorage("Search icon color");
-    clearInputIcon.style.fill = getFromLocalStorage("X icon color");
-    clock.style.color = getFromLocalStorage("Clock font color");
-    input.style.setProperty('--placeholder-color', getFromLocalStorage("Search bar placeholder color"));
-    input.style.color = getFromLocalStorage("Font inside search bar color");
-    inputForm.style.background = getFromLocalStorage("Search bar background") + "9c"; // Add opacity to the background color
-    inputForm.style.border = "0.2vw groove " + getFromLocalStorage("Search bar border");
-    clock.style.fontSize = getFromLocalStorage("Clock font size") + "vw";
-    input.style.fontSize = getFromLocalStorage("Search bar font size") + "vw";
-    inputForm.style.width = getFromLocalStorage("Search bar width") + "%";
-    inputForm.style.height = getFromLocalStorage("Search bar height") + "vw";
-}, 200);
-
 // Function to display the current time in HH : MM : SS format
 function displayTime() {
     let date = new Date();
-    clock.innerHTML = `${date.getHours().toString().padStart(2, '0')} : ${date.getMinutes().toString().padStart(2, '0')} : ${date.getSeconds().toString().padStart(2, '0')}`;
+    clock.innerHTML = `${date.getHours().toString().padStart(2, "0")} : ${date.getMinutes().toString().padStart(2, "0")} : ${date.getSeconds().toString().padStart(2, "0")}`;
     setTimeout(displayTime, 1000 - (date.getTime() % 1000));
 }
 
 // Initialize the display of time
 displayTime();
+
+// Event listener for local storage, updates styles if it gets updated
+addEventListener("storage", function(event){
+    updateStyles();
+});
+
+// Event listener for the "Enter" key to trigger a search
+input.addEventListener("keyup", function(event){
+    if(13 === event.keyCode){
+        searchValue();
+    }
+});
+
+// Event listener for clear input button to appear
+input.addEventListener("input", function(event){
+    if(!/^\s*$/.test(input.value)){
+        clearInputIcon.style.cursor = "pointer";
+        clearInputIcon.style.opacity = "1";
+        inputClearable = true;
+    }
+});
 
 // Add event listeners to buttons for their respective functionalities
 search.addEventListener("click", function() {
@@ -211,13 +173,26 @@ clearInputIcon.addEventListener("click", function() {
     }
 });
 calculator.addEventListener("click", function() {
-    openCalculator();
+    let popup = openPopup("calculator", 312, 533, calculatorWindow);
+    calculatorWindow = popup;
 });
 
 settings.addEventListener("click",function() {
-    openSettings();
-})
+    let popup = openPopup("settings", 750, 500, settingsWindow);
+    settingsWindow = popup;
+    settings.style.rotate = "90deg";
+});
 
+// Waits for the settings window to be closed
+setInterval(() => {
+    if(!settingsWindow || settingsWindow.closed){
+        setTimeout(() => {
+            settings.style.rotate = "";
+        }, 10);
+    }
+}, 200);
+
+// Waits for the window to be closed and closes te settings Window with itself
 window.onunload = function() {
     settingsWindow.close();
 }

@@ -2,6 +2,14 @@
 let calculatorTimeStamp = getFromLocalStorage("calculatorTimestamp");
 let answer = document.querySelector(".text");
 let button1 = document.querySelector(".button1");
+let signArr = [
+    document.querySelector(".button4"),
+    document.querySelector(".button8"),
+    document.querySelector(".button12"),
+    document.querySelector(".button16"),
+];
+
+// Initialize state variables
 let id = false;
 let number1 = false;
 let number2 = false;
@@ -9,12 +17,6 @@ let signSelected = false;
 let signChanged = false;
 let nextNumberSelected = false;
 let canCopy = true;
-let signArr = [
-    document.querySelector(".button4"),
-    document.querySelector(".button8"),
-    document.querySelector(".button12"),
-    document.querySelector(".button16"),
-];
 
 // Function to copy the answer
 function copyAnswer() {
@@ -32,7 +34,7 @@ function copyAnswer() {
     }
 }
 
-//Converts a number into a scientific notation
+// Converts a number into a scientific notation
 function convertToScientificNotation(num) {
     let str = num.toString();
     let parts = str.split(".");
@@ -50,7 +52,7 @@ function convertToScientificNotation(num) {
     }
 }
 
-//Sets the color for the sign
+// Sets the color for the sign
 function setSign(id){
     signArr.forEach(sign => {
         sign.style.backgroundColor = "";
@@ -63,7 +65,7 @@ function setSign(id){
     }
 }
 
-//Deletes everything from the input 
+// Deletes everything from the input 
 function deleteEverything() {
     answer.innerHTML = "0";
     number1 = false;
@@ -75,7 +77,7 @@ function deleteEverything() {
     checkFontSize();
 }
 
-//Change the sign from + to - or vice versa
+// Change the sign from + to - or vice versa
 function changeSign() {
     if(answer.innerHTML[0] == "-"){
         answer.innerHTML = answer.innerHTML.slice(1);
@@ -86,13 +88,13 @@ function changeSign() {
     checkFontSize();
 }
 
-//Divides the input by a 100
+// Divides the input by a 100
 function persantage(){
     answer.innerHTML = convertToScientificNotation(parseFloat(answer.innerHTML)/100);
     checkFontSize();
 }
 
-//Inserets a number into the input
+// Inserets a number into the input
 function number(number) {
     setSign();
     if(number !== "0"){
@@ -119,7 +121,7 @@ function dot(){
     }
 }
 
-//Chooses the sign with wich the input will be changed
+// Chooses the sign with wich the input will be changed
 function sign(sign){
     if(number1 !== false && nextNumberSelected){
         equal();
@@ -143,7 +145,7 @@ function sign(sign){
     signChanged = true;
 }
 
-//Solves the equation in the input
+// Solves the equation in the input
 function equal(){
     if(id !== false){
         if(signChanged){
@@ -172,7 +174,7 @@ function equal(){
     }
 }
 
-//Checks if font size of the answer is correct
+// Checks if font size of the answer is correct
 function checkFontSize(){
     if(answer.innerHTML.length < 9){
         answer.style.fontSize = "";
@@ -188,14 +190,14 @@ function checkFontSize(){
     }
 }
 
-//Checks if a new window if a new calculator window was opened
+// Checks if a new window if a new calculator window was opened
 setInterval(() => {
     if (getFromLocalStorage("calculatorTimestamp") !== calculatorTimeStamp.toString()) {
         window.close();
     }
 }, 10);
 
-//Numpad eventlistener, with this calculator can be used with numpad
+// Numpad eventlistener, with this calculator can be used with numpad
 document.addEventListener("keydown", function(e) {
     switch (e.keyCode) {
         case 109: // "-"
@@ -282,7 +284,7 @@ document.addEventListener("keydown", function(e) {
 });
 
 
-//Event listeners for buttons
+// Event listeners for buttons
 document.querySelector(".copyTheAnswerImg").addEventListener("click", function() {
     copyAnswer();
 });
