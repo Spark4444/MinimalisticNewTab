@@ -1,13 +1,109 @@
 // Initialize DOM elements variables
-let calculatorTimeStamp = getFromLocalStorage("calculatorTimestamp");
+let body = document.querySelector("body");
+let calculator = document.querySelector(".calculator");
+let calculatorTimeStamp = getFromLocalStorage("calculatorTimeStamp");
 let answer = document.querySelector(".text");
-let button1 = document.querySelector(".button1");
+let copyButton = document.querySelector(".copyTheAnswer");
+let activeArr = [
+    document.querySelector(".button1"),
+    document.querySelector(".button2"),
+    document.querySelector(".button3")
+];
+let equalSign = document.querySelector(".button19");
+let numberArr = [
+    document.querySelector(".button17"),
+    document.querySelector(".button13"),
+    document.querySelector(".button14"),
+    document.querySelector(".button15"),
+    document.querySelector(".button9"),
+    document.querySelector(".button10"),
+    document.querySelector(".button11"),
+    document.querySelector(".button5"),
+    document.querySelector(".button6"),
+    document.querySelector(".button7")
+];
+let dotSign = document.querySelector(".button18");
 let signArr = [
     document.querySelector(".button4"),
     document.querySelector(".button8"),
     document.querySelector(".button12"),
     document.querySelector(".button16"),
 ];
+
+// Updates all the changable styles on the web page
+function updateStylesCalculator(transitionDisableTime){
+    let elements = [
+        [calculator, body],
+        activeArr,
+        [...numberArr, dotSign],
+        [...signArr, equalSign],
+        answer,
+        copyButton,
+    ];
+    // Temporarily disable transitions for all customizable elements
+    if(transitionDisableTime !== undefined){
+        elements.forEach(element => {
+            if(typeof element == Array){
+                element.forEach(element2 => {
+                    element2.transition = "0s";
+                });
+            }
+            else{
+                element.transition = "0s";
+            }
+        });
+    }
+
+    // Apply styles from local storage to all customizable elements, if available
+    let backgroundColorFontArr = [
+        [getFromLocalStorage("Action buttons background color"), getFromLocalStorage("Action buttons font color")],
+        [getFromLocalStorage("Number buttons background color"), getFromLocalStorage("Number buttons font color")],
+        [getFromLocalStorage("Sign buttons background color"), getFromLocalStorage("Sign buttons font color")]
+    ];
+    elements[0][0].style.background = getFromLocalStorage("Calculator background");
+    elements[0][1].style.background = getFromLocalStorage("Calculator background");
+    elements[1].forEach(element => {
+        element.style.background = backgroundColorFontArr[0][0];
+    });
+    elements[1].forEach(element => {
+        element.style.color = backgroundColorFontArr[0][1];
+    });
+    elements[2].forEach(element => {
+        element.style.background = backgroundColorFontArr[1][0];
+    });
+    elements[2].forEach(element => {
+        element.style.color = backgroundColorFontArr[1][1];
+    });
+    elements[3].forEach(element => {
+        element.style.background = backgroundColorFontArr[2][0];
+    });
+    elements[3].forEach(element => {
+        element.style.color = backgroundColorFontArr[2][1];
+    });
+    elements[4].style.color = getFromLocalStorage("Answer font color");
+    elements[5].style.fill = getFromLocalStorage("Copy icon color");
+
+
+    // Re-enable transitions after a brief pause to allow for style application
+    if(transitionDisableTime !== undefined){
+        setTimeout(() => {
+            elements.forEach(element => {
+                if(typeof element == Array){
+                    element.forEach(element2 => {
+                        element2.transition = "";
+                    });
+                }
+                else{
+                    element.transition = "";
+                }
+            });
+        }, transitionDisableTime);
+    }
+
+}
+
+// Initial styles update
+updateStylesCalculator(210);
 
 // Initialize state variables
 let id = false;
@@ -22,11 +118,9 @@ let canCopy = true;
 function copyAnswer() {
     if(canCopy){
     canCopy = false;
-    let copyButton = document.querySelector(".copyTheAnswerImg");
-
-    copyButton.src = "img/copied.svg";
+    copyButton.innerHTML = `<path d="M380.423-314.192 742.962-677.5q4.157-3.115 10.694-3.5 6.536-.385 11.19 3.553 4.654 4.706 4.654 11.269t-4.654 10.063L400.154-291.038q-8.616 8.615-19.731 8.615-11.115 0-18.846-8.615L195.423-457.192q-4.769-3.952-4.846-10.341-.077-6.39 4.629-11.044 4.707-3.885 10.885-3.885t11.332 3.885l163 164.385Z"/>`;
     setTimeout(() => {
-        copyButton.src = "img/copy.svg";
+        copyButton.innerHTML = `<path d="M336.346-261.538q-22.411 0-38.609-16.198-16.199-16.199-16.199-38.61v-467.693q0-22.411 16.199-38.609 16.198-16.198 38.609-16.198h347.693q22.411 0 38.609 16.198t16.198 38.609v467.693q0 22.411-16.198 38.61-16.198 16.198-38.609 16.198H336.346Zm0-30.193h347.693q9.231 0 16.923-7.692 7.692-7.692 7.692-16.923v-467.693q0-9.23-7.692-16.923-7.692-7.692-16.923-7.692H336.346q-9.231 0-16.923 7.692-7.692 7.693-7.692 16.923v467.693q0 9.231 7.692 16.923 7.692 7.692 16.923 7.692ZM235.961-161.153q-22.411 0-38.609-16.199-16.198-16.198-16.198-38.609v-483.232q0-5.828 4.4-10.241 4.4-4.412 10.885-4.412 6.484 0 10.695 4.412 4.212 4.413 4.212 10.241v483.232q0 9.231 7.692 16.923 7.692 7.692 16.923 7.692h363.232q5.828 0 10.241 4.467 4.413 4.467 4.413 10.376 0 6.926-4.413 11.138t-10.241 4.212H235.961Zm75.77-130.578v-516.923 516.923Z"/>`;
         canCopy = true;
     }, 1000);
     // Copy the answer to the clipboard
@@ -73,7 +167,7 @@ function deleteEverything() {
     if(button1.innerHTML == "AC"){
         setSign();
     }
-    button1.innerHTML = "AC";
+    activeArr[0].innerHTML = "AC";
     checkFontSize();
 }
 
@@ -98,7 +192,7 @@ function persantage(){
 function number(number) {
     setSign();
     if(number !== "0"){
-        button1.innerHTML = "C";
+        activeArr[0].innerHTML = "C";
     }
 
     if(answer.innerHTML == "-0"){
@@ -192,7 +286,7 @@ function checkFontSize(){
 
 // Checks if a new window if a new calculator window was opened
 setInterval(() => {
-    if (getFromLocalStorage("calculatorTimestamp") !== calculatorTimeStamp.toString()) {
+    if (getFromLocalStorage("calculatorTimeStamp") !== calculatorTimeStamp.toString()) {
         window.close();
     }
 }, 10);
@@ -283,65 +377,45 @@ document.addEventListener("keydown", function(e) {
     }
 });
 
-
 // Event listeners for buttons
-document.querySelector(".copyTheAnswerImg").addEventListener("click", function() {
+numberArr.forEach((element,index) => {
+    element.addEventListener("click", function() {
+        number(`${index}`);
+    });
+});
+
+copyButton.addEventListener("click", function() {
     copyAnswer();
 });
-document.querySelector(".button1").addEventListener("click", function() {
+activeArr[0].addEventListener("click", function() {
     deleteEverything();
 });
-document.querySelector(".button2").addEventListener("click", function() {
+activeArr[1].addEventListener("click", function() {
     changeSign();
 });
-document.querySelector(".button3").addEventListener("click", function() {
+activeArr[2].addEventListener("click", function() {
     persantage();
 });
-document.querySelector(".button4").addEventListener("click", function() {
+signArr[0].addEventListener("click", function() {
     sign("/");
 });
-document.querySelector(".button5").addEventListener("click", function() {
-    number("7");
-});
-document.querySelector(".button6").addEventListener("click", function() {
-    number("8");
-});
-document.querySelector(".button7").addEventListener("click", function() {
-    number("9");
-});
-document.querySelector(".button8").addEventListener("click", function() {
+signArr[1].addEventListener("click", function() {
     sign("*");
 });
-document.querySelector(".button9").addEventListener("click", function() {
-    number("4");
-});
-document.querySelector(".button10").addEventListener("click", function() {
-    number("5");
-});
-document.querySelector(".button11").addEventListener("click", function() {
-    number("6");
-});
-document.querySelector(".button12").addEventListener("click", function() {
+signArr[2].addEventListener("click", function() {
     sign("-");
 });
-document.querySelector(".button13").addEventListener("click", function() {
-    number("1");
-});
-document.querySelector(".button14").addEventListener("click", function() {
-    number("2");
-});
-document.querySelector(".button15").addEventListener("click", function() {
-    number("3");
-});
-document.querySelector(".button16").addEventListener("click", function() {
+signArr[3].addEventListener("click", function() {
     sign("+");
 });
-document.querySelector(".button17").addEventListener("click", function() {
-    number("0");
-});
-document.querySelector(".button18").addEventListener("click", function() {
+dotSign.addEventListener("click", function() {
     dot();
 });
-document.querySelector(".button19").addEventListener("click", function() {
+equalSign.addEventListener("click", function() {
     equal();
+});
+
+// Event listener for local storage, updates styles if it gets updated
+addEventListener("storage", function(event){
+    updateStylesCalculator();
 });

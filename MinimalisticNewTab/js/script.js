@@ -13,21 +13,12 @@ let inputClearable = false;
 let calculatorWindow = false;
 let settingsWindow = false;
 
-//If wallpaper is not set it will switch back to default one
+// If wallpaper is not set it will switch back to default one
 if(getFromLocalStorage("Wallpaper") == null){
     saveToLocalStorage("Wallpaper", "img/wallpaper.png");
 }
 
-// Apply default clock style if no custom style is set in local storage
-if(getFromLocalStorage("Clock font color") == null){
-    if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
-        clock.style.color = "black"; // Dark mode: set clock color to black
-    } else {
-        clock.style.color = "white"; // Light mode: set clock color to white
-    }
-}
-
-//Updates all the changable styles on the web page
+// Updates all the changable styles on the web page
 function updateStyles(transitionDisableTime){
     let elements = [
         body.style,
@@ -40,7 +31,7 @@ function updateStyles(transitionDisableTime){
         inputForm.style,
     ];
     // Temporarily disable transitions for all customizable elements
-    if(updateStyles !== undefined){
+    if(transitionDisableTime !== undefined){
         elements.forEach(element => {
             element.transition = "0s";
         });
@@ -73,7 +64,7 @@ function updateStyles(transitionDisableTime){
 
 
     // Re-enable transitions after a brief pause to allow for style application
-    if(updateStyles !== undefined){
+    if(transitionDisableTime !== undefined){
         setTimeout(() => {
             elements.forEach(element => {
                 element.transition = "";
@@ -89,7 +80,7 @@ updateStyles(210);
 function openPopup(windowName, width, height, popupWindow) {
     if(!popupWindow || popupWindow.closed){
         let windowTimestamp = Date.now();
-        saveToLocalStorage(`${windowName}Timestamp`, windowTimestamp.toString());
+        saveToLocalStorage(`${windowName}TimeStamp`, windowTimestamp.toString());
         let popupWindow = window.open(
             `${windowName}/index.html`,
             `_blank`,
@@ -176,7 +167,6 @@ calculator.addEventListener("click", function() {
     let popup = openPopup("calculator", 312, 533, calculatorWindow);
     calculatorWindow = popup;
 });
-
 settings.addEventListener("click",function() {
     let popup = openPopup("settings", 750, 500, settingsWindow);
     settingsWindow = popup;

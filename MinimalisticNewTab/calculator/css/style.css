@@ -5,6 +5,7 @@ html{
 }
 body{
     background: black;
+    color: white;
     display: flex;
     font-family: Helvetica;
     font-weight:bold;
@@ -38,22 +39,17 @@ link[rel="icon"] {
     background: none;
     border: none;
     cursor: pointer;
+    fill: white;
     margin: 2%;
     outline: none;
     position: absolute;
     left: 0;
     top: 0;
     transition: 0.25s;
-    width: 12vh;
-}
-.copyTheAnswerImg{
-    transition: 0.25s;
-    width: 100%;
-    filter: invert(1);
+    width: 10vh;
 }
 .answer {
     align-items: flex-end;
-    color: white;
     display: flex;
     font-size: 11vh;
     font-weight: 500;
@@ -85,9 +81,8 @@ link[rel="icon"] {
 .button {
     aspect-ratio: 1;
     align-items: center;
-    background-color: rgb(59 59 59);
+    background-color: #3b3b3b;
     border-radius: 100%;
-    color: white;
     cursor: pointer;
     display: flex;
     font-size: 6vh;
@@ -190,7 +185,6 @@ link[rel="icon"] {
     align-items: center;
     background: #3B3B3B;
     border-radius: 36vw;
-    color: white;
     cursor: pointer;
     display: flex;
     font-size: 7vh;

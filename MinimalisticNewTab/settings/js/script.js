@@ -26,7 +26,7 @@ inputs.splice(1, 1);
 
 // Add index numbers
 inputs.forEach((element,index) => {
-  indexElements[index].innerHTML = index + 1;  
+  indexElements[index].innerHTML = index + 1 + ".";  
 });
 
 // Set the browser select value
@@ -92,7 +92,8 @@ inputs[0].addEventListener("input", (event) => {
         saveToLocalStorage(buttonName[0].innerHTML, base64Image);
       } catch (e) {
         if (e.code === 22) {
-            alert("This file is larger then 5mb");
+           inputsNode[2].style.border = "0.2vw solid red";
+           alert("This file is larger then 5mb");
         }
       }
     };
@@ -102,23 +103,28 @@ inputs[0].addEventListener("input", (event) => {
 
 // Handle wallpaper selection through a link
 inputsNode[2].addEventListener("keyup", function(event) {
-  if (event.keyCode === 13) { //"Enter" key
+  if (event.keyCode === 13) { // "Enter" key
     let url = inputsNode[2].value;
-    let regex = /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|jpeg|png|svg|gif|webp|apng|avif)$/;
-    if (regex.test(url)) {
-      inputsNode[2].style.border = "0.2vw solid green";
-      try {
-        saveToLocalStorage(buttonName[0].innerHTML, url);
-      } catch (e) {
-        if (e.code === 22) {
+    isImageUrl(url).then(isImage => {
+      if (isImage) {
+        try {
+          inputsNode[2].style.border = "0.2vw solid green";
+          saveToLocalStorage(buttonName[0].innerHTML, url);
+        } 
+        catch (e) {
+          if (e.code === 22) {
+            inputsNode[2].style.border = "0.2vw solid red";
             alert("This URL is larger then 5mb");
+          }
         }
+      } 
+      else {
+        inputsNode[2].style.border = "0.2vw solid red";
       }
-    }
-    else{
+    }).catch(error => {
       inputsNode[2].style.border = "0.2vw solid red";
+    });
     }
-  }
 });
 
 // Change border back to normal if text input loses focus
@@ -157,7 +163,7 @@ uploadButton.addEventListener("input", function () {
 
 // Handle reset all button click
 resetAllButton.addEventListener("click", () =>{
-  clearLocalStorageExcept("settingsTimestamp");
+  clearLocalStorageExcept(["settingsTimestamp","calculatorTimeStamp"]);
   browserSelect.value = "g";
   browserSelect.dispatchEvent(new Event("input"));
   inputs.forEach((element,index) => {
@@ -186,27 +192,28 @@ function resetInput(index){
     }
   }
   else{
-  switch (buttonName[index].innerHTML) {
-    case "Wallpaper":
-      inputs[index].value = null;
-      inputsNode[2].value = "";
-      saveToLocalStorage(buttonName[index].innerHTML, "img/wallpaper.png");
-    break;
-    case "Clock font color":
-    case "Background color":
-      let preferredColor = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches
-        ? "#000000"
-        : "#ffffff";
-        inputs[index].value = preferredColor;
-      break;
-    case "Search bar background":
-      inputs[index].value = "#ffffff";
-    break;
-    default:
-      inputs[index].value = "#000000";
-    break;
-  }
-  inputs[index].dispatchEvent(new Event("input"));
+    let defaultValue = resetButtons[index].getAttribute("defaultValue");
+    if(defaultValue !== null){
+      if(defaultValue == "preferredColor"){
+        defaultValue = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "#000000"
+          : "#ffffff";
+      }
+      inputs[index].value = defaultValue;
+    }
+    else{
+      switch(inputs[index].type){
+        case "file":
+          inputs[index].value = null;
+          inputsNode[2].value = "";
+          saveToLocalStorage(buttonName[index].innerHTML, "img/wallpaper.png");
+          break;
+        case "color":
+          inputs[index].value = "#000000";
+          break;
+      }
+    }
+    inputs[index].dispatchEvent(new Event("input"));
   }
 }
 

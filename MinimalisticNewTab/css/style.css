@@ -77,3 +77,9 @@ body {
     transition: 0.5s;
     width: 2.5%;
 }
+
+@media (prefers-color-scheme: light) {
+    .clock{
+        color: white;
+    }
+}
