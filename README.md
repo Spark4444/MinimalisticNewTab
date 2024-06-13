@@ -1,7 +1,7 @@
 # Minimalistic New Tab
 This chrome extension replaces the default new tab of your browser with a more customizable one
 <br>
-[chrome web store link](https://chromewebstore.google.com/detail/minimalistic-new-tab/ohoamgbkilfcfdhfombdlodaafjmlihf?authuser=0&hl=uk)
+[Chrome Web Store link](https://chromewebstore.google.com/detail/minimalistic-new-tab/ohoamgbkilfcfdhfombdlodaafjmlihf)
 
 ## Instalation
 
