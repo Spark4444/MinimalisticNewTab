@@ -1,7 +1,5 @@
-* Add calculator and main reset buttons
 * Add search autocomplete results display
-* Remove calculatorTimeStamp and settingsTimeStamp from config
-* Fix calculator styles
+* add date display which scrolls at the bottom
 
 2.
 // Get the input element

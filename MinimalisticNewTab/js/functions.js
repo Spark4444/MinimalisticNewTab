@@ -8,11 +8,23 @@ function getFromLocalStorage(key){
     return localStorage.getItem(key);
 }
 
-// Clears everything in localStorage except one item wich is specified
+// Retrieve a value from local storage by its key if it's not default and if it is it returns the default value for this key that's specified
+function getFromLocalStorageIfNotDefault(key, defaultValue){
+    let item = localStorage.getItem(key);
+    if(item !== null){
+        return item;
+    }
+    else{
+        return defaultValue;
+    }
+}
+
+// Clears everything in localStorage except items which are specified
 function clearLocalStorageExcept(keysToKeep) {
     const keysToKeepSet = new Set(keysToKeep);
     for (let i = localStorage.length - 1; i >= 0; i--) {
         const key = localStorage.key(i);
+
         if (!keysToKeepSet.has(key)) {
             localStorage.removeItem(key);
         }

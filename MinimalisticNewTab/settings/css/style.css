@@ -72,6 +72,16 @@ body {
     height: 90%;
 }
 
+.resetSection {
+    cursor: pointer;
+    margin: 0 0 5vw 0;
+    transition: 0.5s;
+}
+
+.resetSection:hover{
+    color: blue;
+}
+
 .seperator {
     width: 100%;
     height: 0.5vw;
@@ -82,6 +92,14 @@ body {
     font-size: 3vw;
     padding: 4% 0 0 0;
     transition: 0.5s;
+}
+
+.section {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
 }
 
 .buttons {
@@ -349,6 +367,10 @@ input[type="range"]::-webkit-slider-thumb {
 
     .upload:hover{
         fill: #d590eb;
+    }
+
+    .resetSection:hover{
+        color: #d590eb;
     }
 
     .seperator {

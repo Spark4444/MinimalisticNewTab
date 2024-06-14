@@ -1,5 +1,6 @@
 // Initialize DOM elements variables
-let settingsTimeStamp = getFromLocalStorage("settingsTimestamp");
+let settingsTimeStamp = getFromLocalStorage("settingsTimeStamp");
+let form = document.querySelector("form");
 let indexElements = document.querySelectorAll(".index");
 let buttonName = document.querySelectorAll(".name");
 let engineLogo = document.querySelector(".engineLogo")
@@ -10,6 +11,8 @@ let downloadButton = document.querySelector(".download");
 let uploadButton = inputsNode[0];
 let values = document.querySelectorAll(".value");
 let resetButtons = document.querySelectorAll(".reset");
+let sections = document.querySelectorAll(".section")
+let resetSectionButtons = document.querySelectorAll(".resetSection");
 let resetAllButton = document.querySelector(".resetAll");
 
 // Function that prevents form from reloading the page
@@ -30,31 +33,29 @@ inputs.forEach((element,index) => {
 });
 
 // Set the browser select value
-if(getFromLocalStorage("search Engine") !== null){
-  browserSelect.value = getFromLocalStorage("search Engine");
-  engineLogo.src = `img/${browserSelect.value}.svg`;
-}
-else{
-  browserSelect.value = "g";
-  engineLogo.src = "img/g.svg";
-}
+browserSelect.value = getFromLocalStorage("search Engine");
+engineLogo.src = `img/${browserSelect.value}.svg`;
 
 // Load input values from local storage
-inputs.forEach((element, index) => {
-  if(index !== 0){
-    if(getFromLocalStorage(buttonName[index].innerHTML) !== null){
-      if(getFromLocalStorage(buttonName[index].innerHTML) == "cover"){
-        element.value = element.defaultValue;
+function loadValuesAll() {
+  inputs.forEach((element, index) => {
+    if(index !== 0){
+      if(getFromLocalStorage(buttonName[index].innerHTML) !== null){
+        if(getFromLocalStorage(buttonName[index].innerHTML) == "cover"){
+          element.value = element.defaultValue;
+        }
+        else{
+          element.value = getFromLocalStorage(buttonName[index].innerHTML);
+        }
       }
       else{
-        element.value = getFromLocalStorage(buttonName[index].innerHTML);
+        resetInput(index);
       }
     }
-    else{
-      resetInput(index);
-    }
-  }
-});
+  });
+}
+
+loadValuesAll();
 
 // Sets values for each value element
 inputs.forEach((element, index) => {
@@ -79,6 +80,18 @@ inputs.forEach((element, index) => {
     resetButtons[index].addEventListener("click", () => {
       resetInput(index);
     });
+});
+
+// Reset section button functionality
+sections.forEach((element, index) => {
+  resetSectionButtons[index].addEventListener("click", () => {
+    let indexes = element.querySelectorAll(".index");
+    let firstIndex = indexes[0].innerHTML.slice(0, -1) - 1;
+    let lastIndex = indexes[indexes.length - 1].innerHTML.slice(0, -1);
+    for(let i = firstIndex; i < lastIndex; i++){
+      resetInput(i);
+    }
+  });
 });
 
 // Handle file selection
@@ -158,12 +171,15 @@ uploadButton.addEventListener("input", function () {
 
   reader.readAsText(file);
   uploadButton.value = null;
+  setTimeout(() => {
+    loadValuesAll();
+  }, 10);
 });
 
 
 // Handle reset all button click
 resetAllButton.addEventListener("click", () =>{
-  clearLocalStorageExcept(["settingsTimestamp","calculatorTimeStamp"]);
+  clearLocalStorageExcept(["settingsTimeStamp","calculatorTimeStamp"]);
   browserSelect.value = "g";
   browserSelect.dispatchEvent(new Event("input"));
   inputs.forEach((element,index) => {
@@ -221,7 +237,7 @@ function resetInput(index){
 function generateConfigFileText(){
   let array = [];
   Object.keys(localStorage).sort().forEach((key) => {
-    if(key !== "settingsTimestamp"){
+    if(key !== "settingsTimeStamp" && key !== "calculatorTimeStamp"){
       array.push(`${key}: ${localStorage.getItem(key)}`);
     }
   });
@@ -258,7 +274,7 @@ function setValue(index){
 
 // Checks if a new a settings window was opened
 setInterval(() => {
-  if (getFromLocalStorage("settingsTimestamp") !== settingsTimeStamp.toString()) {
+  if (getFromLocalStorage("settingsTimeStamp") !== settingsTimeStamp.toString()) {
     window.close();
   }
 }, 10);

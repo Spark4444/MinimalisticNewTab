@@ -30,6 +30,16 @@ let signArr = [
     document.querySelector(".button16"),
 ];
 
+// Initialize state variables
+let id = false;
+let number1 = false;
+let number2 = false;
+let signSelected = false;
+let signChanged = false;
+let nextNumberSelected = false;
+let canCopy = true;
+let selectedSign = false;
+
 // Updates all the changable styles on the web page
 function updateStylesCalculator(transitionDisableTime){
     let elements = [
@@ -62,24 +72,18 @@ function updateStylesCalculator(transitionDisableTime){
     ];
     elements[0][0].style.background = getFromLocalStorage("Calculator background");
     elements[0][1].style.background = getFromLocalStorage("Calculator background");
-    elements[1].forEach(element => {
-        element.style.background = backgroundColorFontArr[0][0];
-    });
-    elements[1].forEach(element => {
-        element.style.color = backgroundColorFontArr[0][1];
-    });
-    elements[2].forEach(element => {
-        element.style.background = backgroundColorFontArr[1][0];
-    });
-    elements[2].forEach(element => {
-        element.style.color = backgroundColorFontArr[1][1];
-    });
-    elements[3].forEach(element => {
-        element.style.background = backgroundColorFontArr[2][0];
-    });
-    elements[3].forEach(element => {
-        element.style.color = backgroundColorFontArr[2][1];
-    });
+    for(let i = 1;i < 4;i++){
+        elements[i].forEach(element => {
+            element.style.background = backgroundColorFontArr[i-1][0];
+        });
+        elements[i].forEach(element => {
+            element.style.color = backgroundColorFontArr[i-1][1];
+        });
+    }
+    if(selectedSign !== false){
+        elements[3][selectedSign].style.backgroundColor = getFromLocalStorageIfNotDefault("Sign buttons selected background color", "#ffffff");
+        elements[3][selectedSign].style.color = getFromLocalStorageIfNotDefault("Sign buttons selected font color", "#FF9E20");
+    }
     elements[4].style.color = getFromLocalStorage("Answer font color");
     elements[5].style.fill = getFromLocalStorage("Copy icon color");
 
@@ -104,15 +108,6 @@ function updateStylesCalculator(transitionDisableTime){
 
 // Initial styles update
 updateStylesCalculator(210);
-
-// Initialize state variables
-let id = false;
-let number1 = false;
-let number2 = false;
-let signSelected = false;
-let signChanged = false;
-let nextNumberSelected = false;
-let canCopy = true;
 
 // Function to copy the answer
 function copyAnswer() {
@@ -149,13 +144,17 @@ function convertToScientificNotation(num) {
 // Sets the color for the sign
 function setSign(id){
     signArr.forEach(sign => {
-        sign.style.backgroundColor = "";
-        sign.style.color = "";
+        sign.style.backgroundColor = getFromLocalStorage("Sign buttons background color");
+        sign.style.color = getFromLocalStorage("Sign buttons font color");
     });
     if(id !== undefined){
-        signArr[id].style.backgroundColor = "white";
-        signArr[id].style.color = "rgb(255 158 32)";
+        selectedSign = id;
+        signArr[id].style.backgroundColor = getFromLocalStorageIfNotDefault("Sign buttons selected background color", "#ffffff");
+        signArr[id].style.color = getFromLocalStorageIfNotDefault("Sign buttons selected font color", "#FF9E20");
         return id;
+    }
+    else{
+        selectedSign = false;
     }
 }
 
@@ -164,7 +163,7 @@ function deleteEverything() {
     answer.innerHTML = "0";
     number1 = false;
     id = false;
-    if(button1.innerHTML == "AC"){
+    if(activeArr[0].innerHTML == "AC"){
         setSign();
     }
     activeArr[0].innerHTML = "AC";

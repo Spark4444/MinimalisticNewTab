@@ -18,6 +18,11 @@ if(getFromLocalStorage("Wallpaper") == null){
     saveToLocalStorage("Wallpaper", "img/wallpaper.png");
 }
 
+// If browser is not set it will switch back to default one
+if(getFromLocalStorage("Search engine") == null){
+    saveToLocalStorage("search Engine", "g");
+}
+
 // Updates all the changable styles on the web page
 function updateStyles(transitionDisableTime){
     let elements = [
@@ -59,6 +64,7 @@ function updateStyles(transitionDisableTime){
     elements[6].fontSize = getFromLocalStorage("Search bar font size") + "vw";
     elements[7].background = getFromLocalStorage("Search bar background") + "9c"; // Add opacity to the background color
     elements[7].border = "0.2vw groove " + getFromLocalStorage("Search bar border");
+    elements[7].borderRadius = getFromLocalStorage("Search bar border radius") + "vw";
     elements[7].width = getFromLocalStorage("Search bar width") + "%";
     elements[7].height = getFromLocalStorage("Search bar height") + "vw";
 
@@ -140,6 +146,7 @@ addEventListener("storage", function(event){
 
 // Event listener for the "Enter" key to trigger a search
 input.addEventListener("keyup", function(event){
+    console.log(event.keyCode);
     if(13 === event.keyCode){
         searchValue();
     }
