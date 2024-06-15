@@ -109,6 +109,7 @@ body {
     text-align: center;
     width: 17%;
 }
+
 .browserSelect {
     appearance: none;
     background: white;
@@ -125,7 +126,7 @@ body {
     text-align: center;
     transition: 0.5s;
     width: 100%;
-}   
+}
 
 .browserSelect:focus{
     background-image: url("../img/downArrow.svg");
@@ -153,6 +154,41 @@ body {
 
 .upload:hover{
     fill: blue;
+}
+
+.sectionAnchors {
+    align-items: center;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    height: 11vw;
+    justify-content: space-evenly;
+    left: 0;
+    position: fixed;
+    transition: 0.5s;
+    width: 23%;
+}
+
+a {
+    color: black;
+    cursor: pointer;
+    text-decoration: none;
+    transition: 0.5s;
+}
+
+a:link {
+    color: black;
+    transition: 0.5s;
+}
+
+a:visited {
+    color: black;
+    transition: 0.5s;
+}
+
+a:hover{
+    color: blue;
+    transition: 0.5s;
 }
 
 .button {
@@ -216,6 +252,24 @@ input[type="color"]::-webkit-color-swatch-wrapper {
 
 input[type="color"]::-webkit-color-swatch {
     border: none;
+}
+
+input[type="checkbox"] {
+    appearance: none;
+    aspect-ratio: 1;
+    background: #dce0f8;
+    border: 0.2vw solid black;
+    outline: none;
+    transition: 0.5s;
+    width: 2vw;
+}
+
+input[type="checkbox"]:hover{
+    border-radius: 1vw;
+}
+
+input[type="checkbox"]:checked{
+    background: blue;
 }
 
 .wallpaperSelect {
@@ -397,8 +451,33 @@ input[type="range"]::-webkit-slider-thumb {
         color: #d590eb;
     }
 
+    a{
+        color: white;
+    }
+    
+    a:link {
+        color: white;
+    }
+    
+    a:visited {
+        color: white; 
+    }
+    
+    a:hover{
+        color: #d590eb;
+    }
+
     input[type="color"]{
         border: 0.2vw solid #575757;
+    }
+
+    input[type="checkbox"] {
+        background: #2d3143;
+        border: 0.2vw solid #575757;
+    }
+
+    input[type="checkbox"]:checked{
+        background: #d590eb;
     }
 
     input[type="range"]{

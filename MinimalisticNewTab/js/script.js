@@ -1,12 +1,15 @@
 // Initialize DOM elements variables
 let body = document.querySelector("body");
 let inputForm = document.querySelector(".inputForm");
+let topSection = document.querySelector(".topSection");
 let input = document.querySelector(".input");
 let clearInputIcon = document.querySelector(".clearInputImg");
 let search = document.querySelector(".searchIcon");
 let clock = document.querySelector(".clock");
 let calculator = document.querySelector(".calculator");
 let settings = document.querySelector(".settings");
+let dateScroll = document.querySelector(".dateScroll");
+let dateText = document.querySelector(".dateText");
 
 // Initialize state variables
 let inputClearable = false;
@@ -34,6 +37,9 @@ function updateStyles(transitionDisableTime){
         clock.style,
         input.style,
         inputForm.style,
+        dateScroll.style,
+        dateText.style,
+        topSection.style,
     ];
     // Temporarily disable transitions for all customizable elements
     if(transitionDisableTime !== undefined){
@@ -66,7 +72,21 @@ function updateStyles(transitionDisableTime){
     elements[7].border = "0.2vw groove " + getFromLocalStorage("Search bar border");
     elements[7].borderRadius = getFromLocalStorage("Search bar border radius") + "vw";
     elements[7].width = getFromLocalStorage("Search bar width") + "%";
-    elements[7].height = getFromLocalStorage("Search bar height") + "vw";
+    elements[8].display = parseBoolean(getFromLocalStorage("Date display")) ? "" : "none";
+    elements[8].justifyContent = parseBoolean(getFromLocalStorage("Date display scroll")) ? "normal" : "center";
+    getFromLocalStorage("Date display background") == null ?
+    elements[8].background = parseBoolean(getFromLocalStorage("Date display background and border")) ? `` : "none" :
+    elements[8].background = parseBoolean(getFromLocalStorage("Date display background and border")) ? `${getFromLocalStorage("Date display background")}` : "none"
+    getFromLocalStorage("Date display border color") == null ?
+    elements[8].border = parseBoolean(getFromLocalStorage("Date display background and border")) ? `` : "none" :
+    elements[8].border = parseBoolean(getFromLocalStorage("Date display background and border")) ? `${getFromLocalStorage("Date display border color")} 0.2vw solid` : "none"
+    elements[8].borderRadius = getFromLocalStorage("Date display border radius") + "vw";
+    elements[8].height = getFromLocalStorage("Date display height") + "vw";
+    elements[8].fontSize = getFromLocalStorage("Date display font size") + "vw";
+    elements[8].color = getFromLocalStorage("Date display font color");
+    elements[9].animation = parseBoolean(getFromLocalStorage("Date display scroll")) ? "scrollText 10s infinite linear" : "none";
+    elements[10].height = getFromLocalStorage("Search bar height") + "vw";
+
 
 
     // Re-enable transitions after a brief pause to allow for style application
@@ -108,23 +128,30 @@ function clearInput() {
     inputClearable = false;
 }
 
-// Function to perform a Google search with the value entered in the input field
-function searchValue(){
+// Function to perform an engine search with the value entered in the input field
+function searchValue(newTab = false){
     if(!/^\s*$/.test(input.value)){
         // Redirect to Search engines search results if input is not empty or whitespace only
+        let url;
         switch(getFromLocalStorage("search Engine")){
             case "g":
-                window.location.href = `https://www.google.com/search?q=${input.value}`;
+                url = `https://www.google.com/search?q=${input.value}`;
                 break;
             case "b":
-                window.location.href = `https://www.bing.com/search?q=${input.value}`;
+                url = `https://www.bing.com/search?q=${input.value}`;
                 break;
             case "y":
-                window.location.href = `https://search.yahoo.com/search?p=${input.value}`;
+                url = `https://search.yahoo.com/search?p=${input.value}`;
                 break;
             case "d":
-                window.location.href = `https://duckduckgo.com/?q=${input.value}`;
+                url = `https://duckduckgo.com/?q=${input.value}`;
                 break;
+        }
+        // If newTab is true, open the search in a new tab. Otherwise, perform the search in the current tab
+        if(newTab){
+            window.open(url, '_blank');
+        } else {
+            window.location.href = url;
         }
     }
 }
@@ -133,6 +160,7 @@ function searchValue(){
 function displayTime() {
     let date = new Date();
     clock.innerHTML = `${date.getHours().toString().padStart(2, "0")} : ${date.getMinutes().toString().padStart(2, "0")} : ${date.getSeconds().toString().padStart(2, "0")}`;
+    dateText.innerHTML = getFormattedDate();
     setTimeout(displayTime, 1000 - (date.getTime() % 1000));
 }
 
@@ -146,9 +174,10 @@ addEventListener("storage", function(event){
 
 // Event listener for the "Enter" key to trigger a search
 input.addEventListener("keyup", function(event){
-    console.log(event.keyCode);
-    if(13 === event.keyCode){
-        searchValue();
+    if(event.keyCode === 13){
+        // If "Alt+Enter" is pressed, pass true to the searchValue function
+        // If only "Enter" is pressed, pass false or nothing to the searchValue function
+        searchValue(event.altKey);
     }
 });
 

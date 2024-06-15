@@ -25,9 +25,14 @@
         <svg xmlns="http://www.w3.org/2000/svg" class="upload" viewBox="0 -960 960 960"><path d="M458.85-235.46h42.77v-205.31l90 90.77 29-29L479-517.92 339.62-377.77l27.23 28.23 92-91.23v205.31ZM253.38-104q-28.23 0-48.3-20.08Q185-144.15 185-172.38v-615.24q0-28.23 20.08-48.3Q225.15-856 253.38-856h330.08L775-665.46v493.08q0 28.23-20.08 48.3Q734.85-104 706.62-104H253.38Zm308.7-540.54h169.15L562.08-812.23v167.69Z"/></svg>
         </label>
         <div class="ButtonName">Save/Upload config</div>
-        </div>
+    </div>
+    <div class="sectionAnchors">
+        <a hash="Main" draggable="false">Main section</a>
+        <a hash="Calculator" draggable="false">Calculator section</a>
+        <a hash="Date" draggable="false">Date display section</a>
+    </div>
     <form action="">
-        <div class="title">Main settings</div>
+        <div class="title" id="Main">Main settings</div>
         <div class="section">
             <div class="button" style="margin: 5vw 0;">
                 <div class="index"></div>
@@ -110,77 +115,70 @@
             <div class="button">
                 <div class="index"></div>
                 <div class="name">Clock font size</div>
-                <input type="range" class="sizeSelect" value="4" min="0" max="10" step="0.5">
+                <input type="range" class="sizeSelect" value="4" unit="vw" min="0" max="10" step="0.5">
                 <div class="value"></div>
                 <div class="reset">Reset</div>
             </div>
             <div class="button">
                 <div class="index"></div>
                 <div class="name">Search bar font size</div>
-                <input type="range" class="sizeSelect" value="1.4" min="0" max="3" step="0.1">
+                <input type="range" class="sizeSelect" value="1.4" unit="vw" min="0" max="3" step="0.1">
                 <div class="value"></div>
                 <div class="reset">Reset</div>
             </div>
             <div class="button">
                 <div class="index"></div>
                 <div class="name">Background x size</div>
-                <input type="range" class="sizeSelect" value="100" min="0" max="200" step="1">
+                <input type="range" class="sizeSelect" value="100" unit="vw" min="0" max="200" step="1">
                 <div class="value"></div>
                 <div class="reset">Reset</div>
             </div>
             <div class="button">
                 <div class="index"></div>
                 <div class="name">Background y size</div>
-                <input type="range" class="sizeSelect" value="100" min="0" max="200" step="1">
+                <input type="range" class="sizeSelect" value="100" unit="vh" min="0" max="200" step="1">
                 <div class="value"></div>
                 <div class="reset">Reset</div>
             </div>
             <div class="button">
                 <div class="index"></div>
                 <div class="name">Search bar width</div>
-                <input type="range" class="sizeSelect" value="40" min="0" max="98" step="1">
+                <input type="range" class="sizeSelect" value="40" unit="%" min="0" max="98" step="1">
                 <div class="value"></div>
                 <div class="reset">Reset</div>
             </div>
             <div class="button">
                 <div class="index"></div>
                 <div class="name">Search bar height</div>
-                <input type="range" class="sizeSelect" value="3" min="0" max="10" step="1">
+                <input type="range" class="sizeSelect" value="3" unit="vh" min="0" max="10" step="1">
                 <div class="value"></div>
                 <div class="reset">Reset</div>
             </div>
             <div class="button">
                 <div class="index"></div>
                 <div class="name">Search bar border radius</div>
-                <input type="range" class="sizeSelect" value="3" min="0" max="10" step="0.5">
+                <input type="range" class="sizeSelect" value="2" unit="vw" min="0" max="10" step="0.5">
                 <div class="value"></div>
                 <div class="reset">Reset</div>
             </div>
             <div class="button">
                 <div class="index"></div>
                 <div class="name">Background x position</div>
-                <input type="range" class="sizeSelect" value="0" min="-100" max="100" step="1">
+                <input type="range" class="sizeSelect" value="0" unit="vw" min="-100" max="100" step="1">
                 <div class="value"></div>
                 <div class="reset">Reset</div>
             </div>
             <div class="button">
                 <div class="index"></div>
                 <div class="name">Background y position</div>
-                <input type="range" class="sizeSelect" value="0" min="-100" max="100" step="1">
-                <div class="value"></div>
-                <div class="reset">Reset</div>
-            </div>
-            <div class="button">
-                <div class="index"></div>
-                <div class="name">Background y position</div>
-                <input type="range" class="sizeSelect" value="0" min="-100" max="100" step="1">
+                <input type="range" class="sizeSelect" value="0" unit="vh" min="-100" max="100" step="1">
                 <div class="value"></div>
                 <div class="reset">Reset</div>
             </div>
         </div>
         <div class="resetSection">Reset section</div>
         <div class="seperator"></div>
-        <div class="title">Calculator settings</div>
+        <div class="title" id="Calculator">Calculator settings</div>
         <div class="section">
             <div class="button" style="margin: 5vw 0;">
                 <div class="index"></div>
@@ -261,6 +259,74 @@
             </div>
         </div>
         <div class="resetSection">Reset Section</div>
+        <div class="seperator"></div>
+        <div class="title" id="Date">Date dispay settings</div>
+        <div class="section">
+            <div class="button" style="margin: 5vw 0;">
+                <div class="index"></div>
+                <div class="name">Date display</div>
+                <input type="checkbox" class="checkbox">
+                <div class="value"></div>
+                <div class="reset">Reset</div>
+            </div>
+            <div class="button">
+                <div class="index"></div>
+                <div class="name">Date display scroll</div>
+                <input type="checkbox" class="checkbox">
+                <div class="value"></div>
+                <div class="reset">Reset</div>
+            </div>
+            <div class="button">
+                <div class="index"></div>
+                <div class="name">Date display background and border</div>
+                <input type="checkbox" class="checkbox">
+                <div class="value"></div>
+                <div class="reset">Reset</div>
+            </div>
+            <div class="button">
+                <div class="index"></div>
+                <div class="name">Date display background</div>
+                <input type="color" class="colorSelect">
+                <div class="value"></div>
+                <div class="reset">Reset</div>
+            </div>
+            <div class="button">
+                <div class="index"></div>
+                <div class="name">Date display border color</div>
+                <input type="color" class="colorSelect">
+                <div class="value"></div>
+                <div class="reset" defaultValue="#ffffff">Reset</div>
+            </div>
+            <div class="button">
+                <div class="index"></div>
+                <div class="name">Date display font color</div>
+                <input type="color" class="colorSelect">
+                <div class="value"></div>
+                <div class="reset" defaultValue="#ffffff">Reset</div>
+            </div>
+            <div class="button">
+                <div class="index"></div>
+                <div class="name">Date display height</div>
+                <input type="range" class="sizeSelect" value="2" unit="vw" min="0" max="10" step="0.5">
+                <div class="value"></div>
+                <div class="reset">Reset</div>
+            </div>
+            <div class="button">
+                <div class="index"></div>
+                <div class="name">Date display font size</div>
+                <input type="range" class="sizeSelect" value="1" unit="vw" min="0" max="3" step="0.25">
+                <div class="value"></div>
+                <div class="reset">Reset</div>
+            </div>
+            <div class="button">
+                <div class="index"></div>
+                <div class="name">Date display border radius</div>
+                <input type="range" class="sizeSelect" value="0" unit="vw" min="0" max="5" step="0.1">
+                <div class="value"></div>
+                <div class="reset">Reset</div>
+            </div>
+        </div>
+        <div class="resetSection">Reset section</div>
     </form>
     <script src="../js/functions.js"></script>
     <script src="js/script.js"></script>

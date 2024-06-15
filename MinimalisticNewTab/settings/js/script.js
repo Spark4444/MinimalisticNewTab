@@ -2,7 +2,7 @@
 let settingsTimeStamp = getFromLocalStorage("settingsTimeStamp");
 let form = document.querySelector("form");
 let indexElements = document.querySelectorAll(".index");
-let buttonName = document.querySelectorAll(".name");
+let buttonNames = document.querySelectorAll(".name");
 let engineLogo = document.querySelector(".engineLogo")
 let browserSelect = document.querySelector(".browserSelect");
 let inputsNode = document.querySelectorAll("input");
@@ -14,6 +14,8 @@ let resetButtons = document.querySelectorAll(".reset");
 let sections = document.querySelectorAll(".section")
 let resetSectionButtons = document.querySelectorAll(".resetSection");
 let resetAllButton = document.querySelector(".resetAll");
+let titleElements = document.querySelectorAll(".title");
+let anchors = document.querySelectorAll("a");
 
 // Function that prevents form from reloading the page
 window.onload = function() {
@@ -36,16 +38,25 @@ inputs.forEach((element,index) => {
 browserSelect.value = getFromLocalStorage("search Engine");
 engineLogo.src = `img/${browserSelect.value}.svg`;
 
+anchors.forEach(element => {
+  element.addEventListener("click", () =>{
+    window.location.hash = element.getAttribute("hash");
+  })
+});
+
 // Load input values from local storage
 function loadValuesAll() {
   inputs.forEach((element, index) => {
     if(index !== 0){
-      if(getFromLocalStorage(buttonName[index].innerHTML) !== null){
-        if(getFromLocalStorage(buttonName[index].innerHTML) == "cover"){
+      if(getFromLocalStorage(buttonNames[index].innerHTML) !== null){
+        if(getFromLocalStorage(buttonNames[index].innerHTML) == "cover"){
           element.value = element.defaultValue;
         }
+        else if(element.type == "checkbox"){
+          element.checked = getFromLocalStorage(buttonNames[index].innerHTML);
+        }
         else{
-          element.value = getFromLocalStorage(buttonName[index].innerHTML);
+          element.value = getFromLocalStorage(buttonNames[index].innerHTML);
         }
       }
       else{
@@ -72,10 +83,18 @@ browserSelect.addEventListener("input", (event) =>{
 // Save values of inputs on change event and reset buttons functionality
 inputs.forEach((element, index) => {
     if(index !== 0){
-      element.addEventListener("input", (event) => {
-        setValue(index);
-        saveToLocalStorage(buttonName[index].innerHTML, element.value);
-      });
+      if(element.type == "checkbox"){
+        element.addEventListener("input", (event) => {
+          setValue(index);
+          saveToLocalStorage(buttonNames[index].innerHTML, element.checked);
+        });
+      }
+      else{
+        element.addEventListener("input", (event) => {
+          setValue(index);
+          saveToLocalStorage(buttonNames[index].innerHTML, element.value);
+        });
+      }
     }
     resetButtons[index].addEventListener("click", () => {
       resetInput(index);
@@ -102,7 +121,7 @@ inputs[0].addEventListener("input", (event) => {
     reader.onload = (e) => {
       let base64Image = e.target.result;
       try {
-        saveToLocalStorage(buttonName[0].innerHTML, base64Image);
+        saveToLocalStorage(buttonNames[0].innerHTML, base64Image);
       } catch (e) {
         if (e.code === 22) {
            inputsNode[2].style.border = "0.2vw solid red";
@@ -122,7 +141,7 @@ inputsNode[2].addEventListener("keyup", function(event) {
       if (isImage) {
         try {
           inputsNode[2].style.border = "0.2vw solid green";
-          saveToLocalStorage(buttonName[0].innerHTML, url);
+          saveToLocalStorage(buttonNames[0].innerHTML, url);
         } 
         catch (e) {
           if (e.code === 22) {
@@ -194,42 +213,50 @@ downloadButton.addEventListener("click", () =>{
 
 // Resets input of a specified index to default value
 function resetInput(index){
-  if(inputs[index].type == "range"){
-    switch(buttonName[index].innerHTML){
+  let input = inputs[index];
+  if(input.type == "range"){
+    switch(buttonNames[index].innerHTML){
       case "Background x size":
-        inputs[index].value = inputs[index].defaultValue;
-        saveToLocalStorage(buttonName[index].innerHTML, "cover");
+        input.value = input.defaultValue;
+        saveToLocalStorage(buttonNames[index].innerHTML, "cover");
         setValue(index);
         break;
       default:
-        inputs[index].value = inputs[index].defaultValue;
-        inputs[index].dispatchEvent(new Event("input"));
+        input.value = input.defaultValue;
+        input.dispatchEvent(new Event("input"));
         break;
     }
   }
   else{
     let defaultValue = resetButtons[index].getAttribute("defaultValue");
     if(defaultValue !== null){
-      if(defaultValue == "preferredColor"){
-        defaultValue = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches
-          ? "#000000"
-          : "#ffffff";
+      if(input.type == "checkbox"){
+        input.checked = defaultValue;
       }
-      inputs[index].value = defaultValue;
+      else{
+        if(defaultValue == "preferredColor"){
+          defaultValue = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches
+              ? "#000000"
+              : "#ffffff";
+        }
+        input.value = defaultValue;
+      }
     }
     else{
-      switch(inputs[index].type){
+      switch(input.type){
         case "file":
-          inputs[index].value = null;
+          input.value = null;
           inputsNode[2].value = "";
-          saveToLocalStorage(buttonName[index].innerHTML, "img/wallpaper.png");
+          saveToLocalStorage(buttonNames[index].innerHTML, "img/wallpaper.png");
           break;
         case "color":
-          inputs[index].value = "#000000";
+          input.value = "#000000";
           break;
+        case "checkbox":
+          input.checked = false;
       }
     }
-    inputs[index].dispatchEvent(new Event("input"));
+    input.dispatchEvent(new Event("input"));
   }
 }
 
@@ -246,29 +273,26 @@ function generateConfigFileText(){
 
 // Adds the values of the inputs elements
 function setValue(index){
-    switch(buttonName[index].innerHTML){
-      case "Wallpaper":
-        break;
-      case "Search bar width":
-        values[index-1].innerHTML = inputs[index].value + "%";
-        break;
-      case "Background x size":
-      case "Background x position":
-      case "Search bar font size":
-      case "Clock font size":
-        values[index-1].innerHTML = inputs[index].value + "vw";
-        break;
-      case "Search bar height":
-      case "Background y size":  
-      case "Background y position":
-        values[index-1].innerHTML = inputs[index].value + "vh";
-        break;
-      default:
-        values[index-1].innerHTML = inputs[index].value;
-        break;
+    let unit = inputs[index].getAttribute("unit");
+    let input = inputs[index];
+    let value = values[index-1];
+    let buttonName = buttonNames[index];
+    if(unit !== null && buttonName.innerHTML !== "Background x size"){
+      value.innerHTML = input.value + unit;
     }
-    if(buttonName[index].innerHTML == "Background x size" && getFromLocalStorage("Background x size") == "cover"){
-      values[index-1].innerHTML = "cover";
+    else if(buttonName.innerHTML == "Background x size" && getFromLocalStorage("Background x size") == "cover"){
+      value.innerHTML = "cover";
+    }
+    else if(input.type == "checkbox"){
+      if(input.checked){
+        value.innerHTML = "On";
+      }
+      else{
+        value.innerHTML = "Off";
+      }
+    }
+    else if(input.type !== "file"){
+      value.innerHTML = input.value;
     }
 }
 
@@ -277,4 +301,16 @@ setInterval(() => {
   if (getFromLocalStorage("settingsTimeStamp") !== settingsTimeStamp.toString()) {
     window.close();
   }
-}, 10);
+}, 200);
+
+// Removes anchors if you're already on that anchor
+setInterval(() => {
+  titleElements.forEach((title, index) => {
+    if(isElementInViewport(title)){
+      anchors[index].style.display = "none";
+    }
+    else{
+      anchors[index].style.display = "";
+    }
+});
+}, 100);

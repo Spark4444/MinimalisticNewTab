@@ -25,6 +25,15 @@ body {
     width: 2%;
 }
 
+.settings {
+    cursor: pointer;
+    position: absolute;
+    right: 1%;
+    top: 1%;
+    transition: 0.5s;
+    width: 2.5%;
+}
+
 .clearInputImg, .searchIcon {
     cursor: pointer;
     height: 100%;
@@ -58,24 +67,72 @@ body {
 .inputForm {
     background-color: #ffffff9c;
     border: 0.2vw groove black;
-    border-radius: 12vw;
+    border-radius: 2vw;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: nowrap;
-    height: 3vw;
-    justify-content: space-between;
+    height: max-content;
+    justify-content: flex-start;
     padding: 0.5vw;
     transition: 0.5s;
     width: 40%;
+    align-items: center;
 }
 
-.settings {
+.topSection {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    height: 4vw;
+    justify-content: center;
+    width: 100%;
+}
+
+.autoCompleteItem {
     cursor: pointer;
-    position: absolute;
-    right: 1%;
-    top: 1%;
+    font-size: 1.25vw;
+    width: 100%;
+    height: 2vw;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+}
+
+.searchIcon2 {
+    cursor: pointer;
+    height: 100%;
+    width: 13%;
     transition: 0.5s;
-    width: 2.5%;
+}
+
+.dateScroll {
+    align-items: center;
+    background: black;
+    border: white 0.2vw solid;
+    bottom: 0;
+    color: white;
+    display: flex;
+    font-size: 1vw;
+    font-weight: 700;
+    height: 2vw;
+    position: absolute;
+    width: 99.6%;
+}
+
+.dateText {
+    animation: scrollText 10s infinite linear;
+    left: 0;
+    position: relative;
+}
+
+@keyframes scrollText {
+    0%{
+        left: -38%;
+    }
+    100%{
+        left: 101%;
+    }
 }
 
 @media (prefers-color-scheme: light) {

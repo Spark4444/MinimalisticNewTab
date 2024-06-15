@@ -43,12 +43,12 @@ let selectedSign = false;
 // Updates all the changable styles on the web page
 function updateStylesCalculator(transitionDisableTime){
     let elements = [
-        [calculator, body],
-        activeArr,
-        [...numberArr, dotSign],
-        [...signArr, equalSign],
-        answer,
-        copyButton,
+        [calculator.style, body.style],
+        activeArr.map(el => el.style),
+        [...numberArr.map(el => el.style), dotSign.style],
+        [...signArr.map(el => el.style), equalSign.style],
+        answer.style,
+        copyButton.style,
     ];
     // Temporarily disable transitions for all customizable elements
     if(transitionDisableTime !== undefined){
@@ -70,22 +70,22 @@ function updateStylesCalculator(transitionDisableTime){
         [getFromLocalStorage("Number buttons background color"), getFromLocalStorage("Number buttons font color")],
         [getFromLocalStorage("Sign buttons background color"), getFromLocalStorage("Sign buttons font color")]
     ];
-    elements[0][0].style.background = getFromLocalStorage("Calculator background");
-    elements[0][1].style.background = getFromLocalStorage("Calculator background");
+    elements[0][0].background = getFromLocalStorage("Calculator background");
+    elements[0][1].background = getFromLocalStorage("Calculator background");
     for(let i = 1;i < 4;i++){
         elements[i].forEach(element => {
-            element.style.background = backgroundColorFontArr[i-1][0];
+            element.background = backgroundColorFontArr[i-1][0];
         });
         elements[i].forEach(element => {
-            element.style.color = backgroundColorFontArr[i-1][1];
+            element.color = backgroundColorFontArr[i-1][1];
         });
     }
     if(selectedSign !== false){
-        elements[3][selectedSign].style.backgroundColor = getFromLocalStorageIfNotDefault("Sign buttons selected background color", "#ffffff");
-        elements[3][selectedSign].style.color = getFromLocalStorageIfNotDefault("Sign buttons selected font color", "#FF9E20");
+        elements[3][selectedSign].backgroundColor = getFromLocalStorageIfNotDefault("Sign buttons selected background color", "#ffffff");
+        elements[3][selectedSign].color = getFromLocalStorageIfNotDefault("Sign buttons selected font color", "#FF9E20");
     }
-    elements[4].style.color = getFromLocalStorage("Answer font color");
-    elements[5].style.fill = getFromLocalStorage("Copy icon color");
+    elements[4].color = getFromLocalStorage("Answer font color");
+    elements[5].fill = getFromLocalStorage("Copy icon color");
 
 
     // Re-enable transitions after a brief pause to allow for style application
