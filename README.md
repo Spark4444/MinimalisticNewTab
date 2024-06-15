@@ -28,6 +28,6 @@ bash git clone https://github.com/Spark4444/FandomAdBlocker
 ## Current state of this project
 The project is nearly finished, but I can't implement some features and need help implementing them.
 1. I can't implement the display of suggested queries when searching for something; I'm using:
-`http://suggestqueries.google.com/complete/search?client=chrome&q=`
+`http://suggestqueries.google.com/complete/search?client=chrome&q=`<br>
 All the assets inside the code are done, I just need the results of the suggested queries.
 2. I can't implement webpage translation to the default browser language of the user because the Google Translate API costs money and I can't find any alternatives.
