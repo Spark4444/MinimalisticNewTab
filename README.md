@@ -30,4 +30,4 @@ The project is nearly finished, but I can't implement some features and need hel
 1. I can't implement the display of suggested queries when searching for something; I'm using:
 `http://suggestqueries.google.com/complete/search?client=chrome&q=`
 All the assets inside the code are done, I just need the results of the suggested queries.
-2. I can't implement webpage translation in the default browser language of the users because the Google Translate API costs money and I can't find any alternatives.
+2. I can't implement webpage translation to the default browser language of the user because the Google Translate API costs money and I can't find any alternatives.
