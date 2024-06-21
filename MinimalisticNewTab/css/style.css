@@ -65,9 +65,10 @@ body {
 }
 
 .inputForm {
+    align-items: center;
     background-color: #ffffff9c;
-    border: 0.2vw groove black;
     border-radius: 2vw;
+    border: 0.2vw groove black;
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
@@ -76,7 +77,6 @@ body {
     padding: 0.5vw;
     transition: 0.5s;
     width: 40%;
-    align-items: center;
 }
 
 .topSection {
@@ -89,21 +89,21 @@ body {
 }
 
 .autoCompleteItem {
-    cursor: pointer;
-    font-size: 1.25vw;
-    width: 100%;
-    height: 2vw;
-    display: flex;
     align-items: center;
-    justify-content: flex-start;
+    cursor: pointer;
+    display: flex;
     flex-direction: row;
+    font-size: 1.25vw;
+    height: 2vw;
+    justify-content: flex-start;
+    width: 100%;
 }
 
 .searchIcon2 {
     cursor: pointer;
     height: 100%;
-    width: 13%;
     transition: 0.5s;
+    width: 13%;
 }
 
 .dateScroll {
@@ -140,3 +140,4 @@ body {
         color: white;
     }
 }
+
