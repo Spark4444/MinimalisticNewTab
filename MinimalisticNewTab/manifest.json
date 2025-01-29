@@ -1,6 +1,6 @@
 {
     "name": "Minimalistic new tab",
-    "version": "2.0.6",
+    "version": "2.0.7",
     "description": "This extension replaces the default new tab with a more minimalstic one",
     "icons": {
         "16": "img/newtab16.png",
