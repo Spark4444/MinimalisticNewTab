@@ -1,121 +1,9 @@
-::-webkit-scrollbar {
-    width: auto;
-}
-
-::-webkit-scrollbar-track {
-    background: #f1f1f1;
-}
-
-::-webkit-scrollbar-thumb {
-    background: #d6d6d6;
-    cursor: grab;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: #b3b3b3;
-}
-
-::-webkit-scrollbar-thumb:active {
-    background: #8d8d8d;
-    cursor: grabbing;
-}
-
-body {
-    background: #dce0f8;
-    font-family: Helvetica;
-    font-size: 1.5vw;
-    font-weight: bold;
-    margin: 0;
-    overflow-x: hidden;
-    padding: 0;
-    transition: 0.25s;
-    user-select: none;
-    width: 100%;
-}
-
-.resetAll {
-    color: black;
-    cursor: pointer;
-    left: 1%;
-    position: fixed;
-    top: 1%;
-    transition: 0.5s;
-}
-
-.resetAll:hover {
-    color: blue;
-}
-
-.select {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    height: 7.5vw;
-    justify-content: space-between;
-    position: fixed;
-    right: 1%;
-    top: 1%;
-    width: 18%;
-}
-
-.selectName {
-    align-items: center;
-    display: flex;
-    flex-direction: row;
-    height: 55%;
-    justify-content: space-between;
-    width: 100%;
-}
-
-.engineLogo {
-    height: 90%;
-}
-
-.resetSection {
-    cursor: pointer;
-    margin: 0 0 5vw 0;
-    transition: 0.5s;
-}
-
-.resetSection:hover {
-    color: blue;
-}
-
-.seperator {
-    background: black;
-    height: 0.5vw;
-    width: 100%;
-}
-
-.title {
-    font-size: 3vw;
-    padding: 4% 0 0 0;
-    transition: 0.5s;
-}
-
-.section {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 100%;
-}
-
-.buttons {
-    bottom: 1%;
-    position: fixed;
-    right: 0%;
-    text-align: center;
-    width: 17%;
-}
-
 .browserSelect {
     appearance: none;
     background-image: url("../img/rightArrow.svg");
     background-position: right;
     background-repeat: no-repeat;
     background-size: 20% 57%;
-    background: white;
     border: black solid 0.2vw;
     cursor: pointer;
     font-family: helvetica;
@@ -133,61 +21,6 @@ body {
 
 .browserSelect:hover {
     border-radius: 2vw;
-}
-
-.download {
-    cursor: pointer;
-    transition: 0.5s;
-    width: 25%;
-}
-
-.download:hover {
-    fill: blue;
-}
-
-.upload {
-    cursor: pointer;
-    transition: 0.5s;
-    width: 25%;
-}
-
-.upload:hover {
-    fill: blue;
-}
-
-.sectionAnchors {
-    align-items: center;
-    bottom: 0;
-    display: flex;
-    flex-direction: column;
-    height: 11vw;
-    justify-content: space-evenly;
-    left: 0;
-    position: fixed;
-    transition: 0.5s;
-    width: 23%;
-}
-
-a {
-    color: black;
-    cursor: pointer;
-    text-decoration: none;
-    transition: 0.5s;
-}
-
-a:link {
-    color: black;
-    transition: 0.5s;
-}
-
-a:visited {
-    color: black;
-    transition: 0.5s;
-}
-
-a:hover {
-    color: blue;
-    transition: 0.5s;
 }
 
 .button {
@@ -208,6 +41,28 @@ a:hover {
     border-radius: 2vw;
 }
 
+.buttons {
+    bottom: 1%;
+    position: fixed;
+    right: 0%;
+    text-align: center;
+    width: 17%;
+}
+
+.download {
+    cursor: pointer;
+    transition: 0.5s;
+    width: 25%;
+}
+
+.download:hover {
+    fill: blue;
+}
+
+.engineLogo {
+    height: 90%;
+}
+
 .form {
     align-items: center;
     display: flex;
@@ -223,56 +78,115 @@ a:hover {
     width: 0;
 }
 
-form {
+.reset {
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.reset:hover {
+    color: blue;
+}
+
+.resetAll {
+    color: black;
+    cursor: pointer;
+    left: 1%;
+    position: fixed;
+    top: 1%;
+    transition: 0.5s;
+}
+
+.resetAll:hover {
+    color: blue;
+}
+
+.resetSection {
+    cursor: pointer;
+    margin: 0 0 5vw 0;
+    transition: 0.5s;
+}
+
+.resetSection:hover {
+    color: blue;
+}
+
+.section {
     align-items: center;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     width: 100%;
 }
 
-input {
+.sectionAnchors {
+    align-items: center;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    height: 11vw;
+    justify-content: space-evenly;
+    left: 0;
+    position: fixed;
+    transition: 0.5s;
+    width: 23%;
+}
+
+.select {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 7.5vw;
+    justify-content: space-between;
+    position: fixed;
+    right: 1%;
+    top: 1%;
+    width: 18%;
+}
+
+.selectFileLabel {
     cursor: pointer;
-}
-
-input[type="color"] {
-    background: none;
-    border: none;
-    border: 0.2vw solid black;
-    height: 3vw;
-    margin: 0;
-    padding: 0;
+    font-size: 2vw;
     transition: 0.5s;
-    width: 30%;
 }
 
-input[type="color"]::-webkit-color-swatch-wrapper {
-    padding: 0;
+.selectFileLabel:hover {
+    color: blue;
 }
 
-input[type="color"]::-webkit-color-swatch {
-    border: none;
+.selectName {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    height: 55%;
+    justify-content: space-between;
+    width: 100%;
 }
 
-input[type="color"]:hover {
-    border-radius: 1vw;
+.seperator {
+    background: black;
+    height: 0.5vw;
+    width: 100%;
 }
 
-input[type="checkbox"] {
-    appearance: none;
-    aspect-ratio: 1;
-    background: #dce0f8;
-    border: 0.2vw solid black;
-    outline: none;
+.title {
+    font-size: 3vw;
+    padding: 4% 0 0 0;
     transition: 0.5s;
-    width: 2vw;
 }
 
-input[type="checkbox"]:hover {
-    border-radius: 1vw;
+.upload {
+    cursor: pointer;
+    transition: 0.5s;
+    width: 25%;
 }
 
-input[type="checkbox"]:checked {
-    background: blue;
+.upload:hover {
+    fill: blue;
+}
+
+.value {
+    cursor: text;
+    user-select: text;
 }
 
 .wallpaperSelect {
@@ -294,14 +208,109 @@ input[type="checkbox"]:checked {
     border-radius: 10vw;
 }
 
-.selectFileLabel {
+::-webkit-scrollbar {
+    width: auto;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #d6d6d6;
+    cursor: grab;
+}
+
+::-webkit-scrollbar-thumb:active {
+    background: #8d8d8d;
+    cursor: grabbing;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #b3b3b3;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+a {
+    color: black;
     cursor: pointer;
-    font-size: 2vw;
+    text-decoration: none;
     transition: 0.5s;
 }
 
-.selectFileLabel:hover {
+a:hover {
     color: blue;
+    transition: 0.5s;
+}
+
+a:link {
+    color: black;
+    transition: 0.5s;
+}
+
+a:visited {
+    color: black;
+    transition: 0.5s;
+}
+
+body {
+    background: #dce0f8;
+    font-family: Helvetica;
+    font-size: 1.5vw;
+    font-weight: bold;
+    margin: 0;
+    overflow-x: hidden;
+    padding: 0;
+    transition: 0.25s;
+    user-select: none;
+    width: 100%;
+}
+
+form {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+input {
+    cursor: pointer;
+}
+
+input[type="checkbox"] {
+    appearance: none;
+    aspect-ratio: 1;
+    background: #dce0f8;
+    border: 0.2vw solid black;
+    outline: none;
+    transition: 0.5s;
+    width: 2vw;
+}
+
+input[type="checkbox"]:checked {
+    background: blue;
+}
+
+input[type="checkbox"]:hover {
+    border-radius: 1vw;
+}
+
+input[type="color"] {
+    background: none;
+    border: none;
+    border: 0.2vw solid black;
+    height: 3vw;
+    margin: 0;
+    padding: 0;
+    transition: 0.5s;
+    width: 30%;
+}
+
+input[type="color"]::-webkit-color-swatch {
+    border: none;
+}
+
+input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0;
 }
 
 input[type="file"] {
@@ -320,10 +329,6 @@ input[type="range"] {
     width: 80%;
 }
 
-input[type="range"]:focus {
-    outline: none;
-}
-
 input[type="range"]::-webkit-slider-runnable-track {
     background: white;
     border-radius: 0vw;
@@ -331,11 +336,6 @@ input[type="range"]::-webkit-slider-runnable-track {
     height: 1vw;
     transition: 0.5s;
     width: 100%;
-}
-
-input[type="range"]:hover::-webkit-slider-runnable-track {
-    border-radius: 1vw;
-    transition: 0.5s;
 }
 
 input[type="range"]::-webkit-slider-thumb {
@@ -348,18 +348,13 @@ input[type="range"]::-webkit-slider-thumb {
     width: 2vw;
 }
 
-.value {
-    cursor: text;
-    user-select: text;
+input[type="range"]:focus {
+    outline: none;
 }
 
-.reset {
-    cursor: pointer;
+input[type="range"]:hover::-webkit-slider-runnable-track {
+    border-radius: 1vw;
     transition: 0.5s;
-}
-
-.reset:hover {
-    color: blue;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -500,5 +495,4 @@ input[type="range"]::-webkit-slider-thumb {
         color: #d590eb;
     }
 
-  }
-
+}

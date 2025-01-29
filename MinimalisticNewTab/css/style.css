@@ -1,18 +1,11 @@
-body {
+.autoCompleteItem {
     align-items: center;
-    background-image: url(img/wallpaper.png);
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
+    cursor: pointer;
     display: flex;
-    flex-direction: column;
-    height: 100%;
-    justify-content: center;
-    margin: 0;
-    overflow: hidden;
-    padding: 0;
-    transition: 0.5s;
-    user-select: none;
+    flex-direction: row;
+    font-size: 1.25vw;
+    height: 2vw;
+    justify-content: flex-start;
     width: 100%;
 }
 
@@ -23,15 +16,6 @@ body {
     top: 2%;
     transition: 0.5s;
     width: 2%;
-}
-
-.settings {
-    cursor: pointer;
-    position: absolute;
-    right: 1%;
-    top: 1%;
-    transition: 0.5s;
-    width: 2.5%;
 }
 
 .clearInputImg, .searchIcon {
@@ -45,6 +29,26 @@ body {
     color: black;
     font-size: 4vw;
     transition: 0.5s;
+}
+
+.dateScroll {
+    align-items: center;
+    background: black;
+    border: white 0.2vw solid;
+    bottom: 0;
+    color: white;
+    display: flex;
+    font-size: 1vw;
+    font-weight: 700;
+    height: 2vw;
+    position: absolute;
+    width: 99.6%;
+}
+
+.dateText {
+    animation: scrollText 10s infinite linear;
+    left: 0;
+    position: relative;
 }
 
 .input {
@@ -79,6 +83,22 @@ body {
     width: 40%;
 }
 
+.searchIcon2 {
+    cursor: pointer;
+    height: 100%;
+    transition: 0.5s;
+    width: 13%;
+}
+
+.settings {
+    cursor: pointer;
+    position: absolute;
+    right: 1%;
+    top: 1%;
+    transition: 0.5s;
+    width: 2.5%;
+}
+
 .topSection {
     align-items: center;
     display: flex;
@@ -88,42 +108,22 @@ body {
     width: 100%;
 }
 
-.autoCompleteItem {
+body {
     align-items: center;
-    cursor: pointer;
+    background-image: url(img/wallpaper.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
     display: flex;
-    flex-direction: row;
-    font-size: 1.25vw;
-    height: 2vw;
-    justify-content: flex-start;
-    width: 100%;
-}
-
-.searchIcon2 {
-    cursor: pointer;
+    flex-direction: column;
     height: 100%;
+    justify-content: center;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
     transition: 0.5s;
-    width: 13%;
-}
-
-.dateScroll {
-    align-items: center;
-    background: black;
-    border: white 0.2vw solid;
-    bottom: 0;
-    color: white;
-    display: flex;
-    font-size: 1vw;
-    font-weight: 700;
-    height: 2vw;
-    position: absolute;
-    width: 99.6%;
-}
-
-.dateText {
-    animation: scrollText 10s infinite linear;
-    left: 0;
-    position: relative;
+    user-select: none;
+    width: 100%;
 }
 
 @keyframes scrollText {

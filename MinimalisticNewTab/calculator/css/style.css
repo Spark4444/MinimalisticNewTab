@@ -1,53 +1,3 @@
-html{
-    height: 100%;
-    transition: 0.25s;
-    width: 100%;
-}
-body{
-    background: black;
-    color: white;
-    display: flex;
-    font-family: Helvetica;
-    font-weight:bold;
-    height: 100%;
-    justify-content: center;
-    margin: 0;
-    overflow: hidden;
-    padding: 0;
-    transition: 0.25s;
-    user-select: none;
-    width: 100%;    
-}
-link[rel="icon"] {
-    filter: invert(1);
-    transition: 0.25s;
-}
-.calculator {
-    aspect-ratio: 300 / 515;
-    align-items: center;
-    background-color: black;
-    border: grey 0.1vw solid;
-    border-radius: 6vh;
-    display: flex;
-    flex-direction: column;
-    height: 99.7%;
-    justify-content: center;
-    position: absolute;
-    transition: 0.25s;
-}
-.copyTheAnswer {
-    background: none;
-    border: none;
-    cursor: pointer;
-    fill: white;
-    margin: 2%;
-    outline: none;
-    position: absolute;
-    left: 0;
-    top: 0;
-    transition: 0.25s;
-    width: 10vh;
-}
 .answer {
     align-items: flex-end;
     display: flex;
@@ -58,29 +8,10 @@ link[rel="icon"] {
     transition: 0.25s;
     width: 100%;
 }
-.text {
-    caret-color: transparent;
-    margin: 0 6.5% 0 0;
-    transition: 0.25s;
-    user-select: text;
-}
-.grid-area{
-    align-items: center;
-    display: grid;
-    grid-template-areas: 
-        "button1 button2 button3 button4" 
-        "button5 button6 button7 button8" 
-        "button9 button10 button11 button12" 
-        "button13 button14 button15 button16" 
-        "button17 button17 button18 button19";
-    height: 70%;
-    justify-items: center;
-    transition: 0.25s;
-    width: 100%;
-}
+
 .button {
-    aspect-ratio: 1;
     align-items: center;
+    aspect-ratio: 1;
     background-color: #3b3b3b;
     border-radius: 100%;
     cursor: pointer;
@@ -90,99 +21,63 @@ link[rel="icon"] {
     transition: 0.25s;
     width: 12vh;
 }
-.button1{
+
+.button1 {
     font-size: 5vh;
     font-weight: 600 !important;
     grid-area: button1;
     transition: 0.25s;
 }
-.button2{
-    font-size: 7vh;
-    font-weight: 500 !important;
-    grid-area: button2;
-    transition: 0.25s;
-}
-.button3{
-    font-weight: 550 !important;
-    grid-area: button3;
-    transition: 0.25s;
-}
-.button4{
-    grid-area: button4;
-    transition: 0.25s;
-}
-.button5{
-    grid-area: button5;
-    transition: 0.25s;
-}
-.button6{
-    grid-area: button6;
-    transition: 0.25s;
-}
-.button7{
-    grid-area: button7;
-    transition: 0.25s;
-}
-.button8{
-    grid-area: button8;
-    transition: 0.25s;
-}
-.button9{
-    grid-area: button9;
-    transition: 0.25s;
-}
-.button10{
-    grid-area: button10;
-    transition: 0.25s;
-}
-.button11{
-    grid-area: button11;
-    transition: 0.25s;
-}
-.button12{
-    grid-area: button12;
-    transition: 0.25s;
-}
-.button13{
-    grid-area: button13;
-    transition: 0.25s;
-}
-.button14{
-    grid-area: button14;
-    transition: 0.25s;
-}
-.button15{
-    grid-area: button15;
-    transition: 0.25s;
-}
-.button16{
-    grid-area: button16;
-    transition: 0.25s;
-}
-.button17{
-    grid-area: button17;
-    transition: 0.25s;
-}
-.button18{
-    grid-area: button18;
-    transition: 0.25s;
-}
-.button19{
-    grid-area: button19;
-    transition: 0.25s;
-}
-.button1, .button2, .button3{
+
+.button1, .button2, .button3 {
     background: #C0C0C0;
     color: black;
     transition: 0.35s;
 }
-.button4, .button8, .button12, .button16, .button19{
-    background: #FF9E20;
+
+.button10 {
+    grid-area: button10;
     transition: 0.25s;
 }
+
+.button11 {
+    grid-area: button11;
+    transition: 0.25s;
+}
+
+.button12 {
+    grid-area: button12;
+    transition: 0.25s;
+}
+
+.button13 {
+    grid-area: button13;
+    transition: 0.25s;
+}
+
+.button14 {
+    grid-area: button14;
+    transition: 0.25s;
+}
+
+.button15 {
+    grid-area: button15;
+    transition: 0.25s;
+}
+
+.button16 {
+    grid-area: button16;
+    transition: 0.25s;
+}
+
+.button17 {
+    grid-area: button17;
+    transition: 0.25s;
+}
+
 .button17.longButton {
-    aspect-ratio: 38/20;
     align-items: center;
+    aspect-ratio: 38/20;
     background: #3B3B3B;
     border-radius: 36vw;
     cursor: pointer;
@@ -193,7 +88,142 @@ link[rel="icon"] {
     padding: 0 0 0 16%;
     transition: 0.25s;
 }
-.button:active, .longButton:active{
+
+.button18 {
+    grid-area: button18;
+    transition: 0.25s;
+}
+
+.button19 {
+    grid-area: button19;
+    transition: 0.25s;
+}
+
+.button2 {
+    font-size: 7vh;
+    font-weight: 500 !important;
+    grid-area: button2;
+    transition: 0.25s;
+}
+
+.button3 {
+    font-weight: 550 !important;
+    grid-area: button3;
+    transition: 0.25s;
+}
+
+.button4 {
+    grid-area: button4;
+    transition: 0.25s;
+}
+
+.button4, .button8, .button12, .button16, .button19 {
+    background: #FF9E20;
+    transition: 0.25s;
+}
+
+.button5 {
+    grid-area: button5;
+    transition: 0.25s;
+}
+
+.button6 {
+    grid-area: button6;
+    transition: 0.25s;
+}
+
+.button7 {
+    grid-area: button7;
+    transition: 0.25s;
+}
+
+.button8 {
+    grid-area: button8;
+    transition: 0.25s;
+}
+
+.button9 {
+    grid-area: button9;
+    transition: 0.25s;
+}
+
+.button:active, .longButton:active {
     filter: brightness(125%);
     transition: 0.35s;
+}
+
+.calculator {
+    align-items: center;
+    aspect-ratio: 300 / 515;
+    background-color: black;
+    border-radius: 6vh;
+    border: grey 0.1vw solid;
+    display: flex;
+    flex-direction: column;
+    height: 99.7%;
+    justify-content: center;
+    position: absolute;
+    transition: 0.25s;
+}
+
+.copyTheAnswer {
+    background: none;
+    border: none;
+    cursor: pointer;
+    fill: white;
+    left: 0;
+    margin: 2%;
+    outline: none;
+    position: absolute;
+    top: 0;
+    transition: 0.25s;
+    width: 10vh;
+}
+
+.grid-area {
+    align-items: center;
+    display: grid;
+    grid-template-areas: "button1 button2 button3 button4" 
+        "button5 button6 button7 button8" 
+        "button9 button10 button11 button12" 
+        "button13 button14 button15 button16" 
+        "button17 button17 button18 button19";
+    height: 70%;
+    justify-items: center;
+    transition: 0.25s;
+    width: 100%;
+}
+
+.text {
+    caret-color: transparent;
+    margin: 0 6.5% 0 0;
+    transition: 0.25s;
+    user-select: text;
+}
+
+body {
+    background: black;
+    color: white;
+    display: flex;
+    font-family: Helvetica;
+    font-weight: bold;
+    height: 100%;
+    justify-content: center;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    transition: 0.25s;
+    user-select: none;
+    width: 100%;
+}
+
+html {
+    height: 100%;
+    transition: 0.25s;
+    width: 100%;
+}
+
+link[rel="icon"] {
+    filter: invert(1);
+    transition: 0.25s;
 }
