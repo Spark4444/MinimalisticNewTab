@@ -24,6 +24,19 @@ bash git clone https://github.com/Spark4444/FandomAdBlocker
 
 * Settings icon opens the settings where you can customize your new tab
 
+## Keybinds
+### Main page
+* `Enter` to search a query in the current window
+* `Alt+Enter` When searching in the search input opens the search query in a new tab
+### Calculator
+* All the signs and numbers on the keyboard/numpad work in the calculator to enter values
+* `F9` to change the sign
+* `F10` to calculate the percentage
+* `Enter` or `=` to calculate the result
+* `Backspace` or `Delete` to clear everything
+* `.` (Numpad `.`) or `.` to add a decimal point
+* `0-9` (Numpad `0-9`) to input numbers
+
 
 ## Current state of this project
 The project is nearly finished, but I can't implement some features and need help implementing them.

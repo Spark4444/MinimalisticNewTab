@@ -4,7 +4,7 @@ let form = document.querySelector("form");
 let indexElements = document.querySelectorAll(".index");
 let buttonNames = document.querySelectorAll(".name");
 let engineLogo = document.querySelector(".engineLogo")
-let browserSelect = document.querySelector(".browserSelect");
+// let browserSelect = document.querySelector(".browserSelect");
 let inputsNode = document.querySelectorAll("input");
 let inputs = Array.from(inputsNode);
 let downloadButton = document.querySelector(".download");
@@ -35,8 +35,8 @@ inputs.forEach((element,index) => {
 });
 
 // Set the browser select value
-browserSelect.value = getFromLocalStorage("search Engine");
-engineLogo.src = `img/${browserSelect.value}.svg`;
+// browserSelect.value = getFromLocalStorage("search Engine");
+// engineLogo.src = `img/${browserSelect.value}.svg`;
 
 anchors.forEach(element => {
   element.addEventListener("click", () =>{
@@ -74,11 +74,11 @@ inputs.forEach((element, index) => {
 });
 
 // Handle browser selection
-browserSelect.addEventListener("input", (event) =>{
-  engineLogo.src = `img/${browserSelect.value}.svg`;
-  saveToLocalStorage("search Engine", browserSelect.value);
-  browserSelect.blur();
-});
+// browserSelect.addEventListener("input", (event) =>{
+//   engineLogo.src = `img/${browserSelect.value}.svg`;
+//   saveToLocalStorage("search Engine", browserSelect.value);
+//   browserSelect.blur();
+// });
 
 // Save values of inputs on change event and reset buttons functionality
 inputs.forEach((element, index) => {
@@ -199,8 +199,8 @@ uploadButton.addEventListener("input", function () {
 // Handle reset all button click
 resetAllButton.addEventListener("click", () =>{
   clearLocalStorageExcept(["settingsTimeStamp","calculatorTimeStamp"]);
-  browserSelect.value = "g";
-  browserSelect.dispatchEvent(new Event("input"));
+  // browserSelect.value = "g";
+  // browserSelect.dispatchEvent(new Event("input"));
   inputs.forEach((element,index) => {
     resetInput(index);
   });
