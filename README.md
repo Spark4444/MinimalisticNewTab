@@ -11,8 +11,8 @@ This chrome extension replaces the default new tab of your browser with a more c
 ### &nbsp;&nbsp;&nbsp;Or
 
 Use the git clone command to copy it onto your computer
-```
-bash git clone https://github.com/Spark4444/FandomAdBlocker
+```bash
+git clone https://github.com/Spark4444/FandomAdBlocker
 ```
 3. Load the extension into your browser of choice 
 <br>(Your browser should have chromium extension support).
