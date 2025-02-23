@@ -1,6 +1,8 @@
 // Save a key-value pair to local storage
 function saveToLocalStorage(key,value){
     localStorage.setItem(key, value);
+    const event = new Event('storage');
+    window.dispatchEvent(event);
 }
 
 // Retrieve a value from local storage by its key

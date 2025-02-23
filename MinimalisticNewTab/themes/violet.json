@@ -34,7 +34,15 @@
   "Search bar placeholder color": "#c800ff",
   "Search bar width": "51",
   "Search icon color": "#c800ff",
+  "Settings background color": "#c800ff",
+  "Settings border color": "#ffffff",
+  "Settings font color": "#ffffff",
+  "Settings hover color": "#000000",
   "Settings icon color": "#c800ff",
+  "Settings scrollbar thumb color": "#0400eb",
+  "Settings scrollbar thumb hover color": "#0300cc",
+  "Settings scrollbar thumb track color": "#090792",
+  "Settings secondary background color": "#0300a8",
   "Sign buttons background color": "#150566",
   "Sign buttons font color": "#c800ff",
   "Sign buttons selected background color": "#c800ff",
@@ -42,5 +50,6 @@
   "Time display enabled": "true",
   "Wallpaper": "https://rare-gallery.com/mocahbig/397378-wallpaper-sunset-abstract-grid-mountain-digital-art.jpg",
   "X icon color": "#c800ff",
-  "search Engine": "g"
+  "search Engine": "g",
+  "theme": "c"
 }

@@ -50,6 +50,7 @@ function updateStylesCalculator(transitionDisableTime){
         answer.style,
         copyButton.style,
     ];
+    console.log(elements);
     // Temporarily disable transitions for all customizable elements
     if(transitionDisableTime !== undefined){
         elements.forEach(element => {
@@ -65,21 +66,13 @@ function updateStylesCalculator(transitionDisableTime){
     }
 
     // Apply styles from local storage to all customizable elements, if available
-    let backgroundColorFontArr = [
-        [getFromLocalStorage("Action buttons background color"), getFromLocalStorage("Action buttons font color")],
-        [getFromLocalStorage("Number buttons background color"), getFromLocalStorage("Number buttons font color")],
-        [getFromLocalStorage("Sign buttons background color"), getFromLocalStorage("Sign buttons font color")]
-    ];
-    elements[0][0].background = getFromLocalStorage("Calculator background");
+    document.documentElement.style.setProperty("--active-button-background", getFromLocalStorage("Action buttons background color"));
+    document.documentElement.style.setProperty("--active-button-color", getFromLocalStorage("Action buttons font color"));
+    document.documentElement.style.setProperty("--number-button-background", getFromLocalStorage("Number buttons background color"));
+    document.documentElement.style.setProperty("--number-button-color", getFromLocalStorage("Number buttons font color"));
+    document.documentElement.style.setProperty("--sign-button-background", getFromLocalStorage("Sign buttons background color"));
+    document.documentElement.style.setProperty("--sign-button-color", getFromLocalStorage("Sign buttons font color"));
     elements[0][1].background = getFromLocalStorage("Calculator background");
-    for(let i = 1;i < 4;i++){
-        elements[i].forEach(element => {
-            element.background = backgroundColorFontArr[i-1][0];
-        });
-        elements[i].forEach(element => {
-            element.color = backgroundColorFontArr[i-1][1];
-        });
-    }
     if(selectedSign !== false){
         elements[3][selectedSign].backgroundColor = getFromLocalStorageIfNotDefault("Sign buttons selected background color", "#ffffff");
         elements[3][selectedSign].color = getFromLocalStorageIfNotDefault("Sign buttons selected font color", "#FF9E20");

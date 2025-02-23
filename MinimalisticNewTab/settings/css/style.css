@@ -1,10 +1,20 @@
+:root {
+    --border-color: black;
+    --text-color: black;
+    --background-color: white;
+    --hover-color: blue;
+    --scrollbar-thumb-color: #d6d6d6;
+    --scrollbar-thumb-hover-color: #b3b3b3;
+    --scrollbar-track-color: #f1f1f1;
+}
+
 .browserSelect, .themeSelect {
     appearance: none;
-    background-image: url("../img/rightArrow.svg");
-    background-position: right;
-    background-repeat: no-repeat;
-    background-size: 20% 57%;
-    border: black solid 0.2vw;
+    background-image: url("../img/rightArrow.svg") !important;
+    background-position: right !important;
+    background-repeat: no-repeat !important;
+    background-size: 20% 57% !important;
+    border: var(--border-color) solid 0.2vw;
     cursor: pointer;
     font-family: helvetica;
     font-size: 2vw;
@@ -16,7 +26,7 @@
 }
 
 .browserSelect:focus, .themeSelect:focus {
-    background-image: url("../img/downArrow.svg");
+    background-image: url("../img/downArrow.svg") !important;
 }
 
 .browserSelect:hover, .themeSelect:hover {
@@ -25,8 +35,8 @@
 
 .button {
     align-items: center;
-    background: white;
-    border: 0.3vw solid black;
+    background: var(--background-color);
+    border: 0.3vw solid var(--border-color);
     display: flex;
     flex-direction: column;
     height: 16vw;
@@ -56,7 +66,7 @@
 }
 
 .download:hover {
-    fill: blue;
+    fill: var(--hover-color);
 }
 
 .engineLogo {
@@ -84,11 +94,11 @@
 }
 
 .reset:hover {
-    color: blue;
+    color: var(--hover-color);
 }
 
 .resetAll {
-    color: black;
+    color: var(--text-color);
     cursor: pointer;
     left: 1%;
     position: fixed;
@@ -97,7 +107,7 @@
 }
 
 .resetAll:hover {
-    color: blue;
+    color: var(--hover-color);
 }
 
 .resetSection {
@@ -107,7 +117,7 @@
 }
 
 .resetSection:hover {
-    color: blue;
+    color: var(--hover-color);
 }
 
 .section {
@@ -123,7 +133,7 @@
     bottom: 0;
     display: flex;
     flex-direction: column;
-    height: 11vw;
+    height: 18vw;
     justify-content: space-evenly;
     left: 0;
     position: fixed;
@@ -150,7 +160,7 @@
 }
 
 .selectFileLabel:hover {
-    color: blue;
+    color: var(--hover-color);
 }
 
 .selectName {
@@ -164,7 +174,7 @@
 }
 
 .seperator {
-    background: black;
+    background: var(--border-color);
     height: 0.5vw;
     width: 100%;
 }
@@ -182,7 +192,7 @@
 }
 
 .upload:hover {
-    fill: blue;
+    fill: var(--hover-color);
 }
 
 .value {
@@ -191,7 +201,7 @@
 }
 
 .wallpaperSelect {
-    border: 0.2vw solid black;
+    border: 0.2vw solid var(--border-color);
     cursor: text;
     font-size: 1.6vw;
     height: 22%;
@@ -201,7 +211,7 @@
 }
 
 .wallpaperSelect::placeholder {
-    color: black;
+    color: var(--text-color);
     text-align: center;
 }
 
@@ -214,42 +224,42 @@
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #d6d6d6;
+    background: var(--scrollbar-thumb-color);
     cursor: grab;
 }
 
 ::-webkit-scrollbar-thumb:active {
-    background: #8d8d8d;
+    background: var(--scrollbar-thumb-active-color);
     cursor: grabbing;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #b3b3b3;
+    background: var(--scrollbar-thumb-hover-color);
 }
 
 ::-webkit-scrollbar-track {
-    background: #f1f1f1;
+    background: var(--scrollbar-track-color);
 }
 
 a {
-    color: black;
+    color: var(--text-color);
     cursor: pointer;
     text-decoration: none;
     transition: 0.5s;
 }
 
 a:hover {
-    color: blue;
+    color: var(--hover-color);
     transition: 0.5s;
 }
 
 a:link {
-    color: black;
+    color: var(--text-color);
     transition: 0.5s;
 }
 
 a:visited {
-    color: black;
+    color: var(--text-color);
     transition: 0.5s;
 }
 
@@ -281,14 +291,14 @@ input[type="checkbox"] {
     appearance: none;
     aspect-ratio: 1;
     background: #dce0f8;
-    border: 0.2vw solid black;
+    border: 0.2vw solid var(--border-color);
     outline: none;
     transition: 0.5s;
     width: 2vw;
 }
 
 input[type="checkbox"]:checked {
-    background: blue;
+    background: var(--hover-color);
 }
 
 input[type="checkbox"]:hover {
@@ -298,7 +308,7 @@ input[type="checkbox"]:hover {
 input[type="color"] {
     background: none;
     border: none;
-    border: 0.2vw solid black;
+    border: 0.2vw solid var(--border-color);
     height: 3vw;
     margin: 0;
     padding: 0;
@@ -312,6 +322,10 @@ input[type="color"]::-webkit-color-swatch {
 
 input[type="color"]::-webkit-color-swatch-wrapper {
     padding: 0;
+}
+
+input[type="color"]:hover {
+    border-radius: 1vw;
 }
 
 input[type="file"] {
@@ -328,12 +342,13 @@ input[type="range"] {
     appearance: none;
     height: 1vw;
     width: 80%;
+    cursor: grab;
 }
 
 input[type="range"]::-webkit-slider-runnable-track {
-    background: white;
+    background: var(--background-color);
     border-radius: 0vw;
-    border: 0.15vw solid black;
+    border: 0.15vw solid var(--border-color);
     height: 1vw;
     transition: 0.5s;
     width: 100%;
@@ -341,7 +356,7 @@ input[type="range"]::-webkit-slider-runnable-track {
 
 input[type="range"]::-webkit-slider-thumb {
     -webkit-appearance: none;
-    background: black;
+    background: var(--border-color);
     border-radius: 1vw;
     height: 2vw;
     margin-top: -3%;
@@ -358,14 +373,18 @@ input[type="range"]:hover::-webkit-slider-runnable-track {
     transition: 0.5s;
 }
 
-.mainWrap{
+input[type="range"]:active{
+    cursor: grabbing;
+}
+
+.mainWrap {
     transition: 0.5s;
 }
 
 .dragWrap {
     transition: 0.5s;
     font-size: 2vw;
-    color: white;
+    color: var(--text-color);
     width: 100%;
     height: 100vh;
     display: flex;
@@ -375,141 +394,132 @@ input[type="range"]:hover::-webkit-slider-runnable-track {
 }
 
 @media (prefers-color-scheme: dark) {
-    ::-webkit-scrollbar{
-        width: auto;
-    }
-
-    ::-webkit-scrollbar-track {
-        background: #424242; 
-    }
-    
-    ::-webkit-scrollbar-thumb {
-        background: #686868; 
-    }
-    
-    ::-webkit-scrollbar-thumb:hover {
-        background: #787878; 
-    }
-
-    ::-webkit-scrollbar-thumb:active {
-        background: #878787; 
+    :root {
+        --border-color: #575757;
+        --text-color: white;
+        --background-color: black;
+        --hover-color: #d590eb;
+        --scrollbar-thumb-color: #686868;
+        --scrollbar-thumb-hover-color: #787878;
+        --scrollbar-thumb-active-color: #878787;
+        --scrollbar-track-color: #424242;
     }
 
     body {
         background: #2d3143;
-        color: white;
+        color: var(--text-color);
     }
 
-    .resetAll{
-        color: white;
+    .resetAll {
+        color: var(--text-color);
     }
 
-    .resetAll:hover{
-        color: #d590eb;
+    .resetAll:hover {
+        color: var(--hover-color);
     }
 
-    .selectName{
-        color: white;
+    .selectName {
+        color: var(--text-color);
     }
 
-    .browserSelect, .themeSelect{
-        border: #575757 solid 0.2vw;
-        filter: invert(1);
+    .browserSelect, .themeSelect {
+        background: var(--background-color);
+        color: var(--text-color);
+        border: var(--border-color) solid 0.2vw;
     }
-    
+
     option {
-        background: black;
-        color: white;
+        background: var(--background-color);
+        color: var(--text-color);
     }
 
-    .download{
-        fill: white;
+    .download {
+        fill: var(--text-color);
     }
 
-    .download:hover{
-        fill: #d590eb;
+    .download:hover {
+        fill: var(--hover-color);
     }
 
-    .upload{
-        fill: white;
+    .upload {
+        fill: var(--text-color);
     }
 
-    .upload:hover{
-        fill: #d590eb;
+    .upload:hover {
+        fill: var(--hover-color);
     }
 
-    .resetSection:hover{
-        color: #d590eb;
+    .resetSection:hover {
+        color: var(--hover-color);
     }
 
     .seperator {
-        background: #575757;
+        background: var(--border-color);
     }
 
-    .button{
-        background: black;
-        border: 0.3vw solid #575757;
+    .button {
+        background: var(--background-color);
+        border: 0.3vw solid var(--border-color);
     }
 
     .wallpaperSelect {
         background: #121212;
-        border: 0.2vw solid #575757;
-        color: white;
+        border: 0.2vw solid var(--border-color);
+        color: var(--text-color);
     }
 
-    .wallpaperSelect::placeholder{
-        color: white;
+    .wallpaperSelect::placeholder {
+        color: var(--text-color);
         text-align: center;
     }
 
-    .selectFileLabel:hover{
-        color: #d590eb;
+    .selectFileLabel:hover {
+        color: var(--hover-color);
     }
 
-    a{
-        color: white;
+    a {
+        color: var(--text-color);
     }
-    
+
     a:link {
-        color: white;
-    }
-    
-    a:visited {
-        color: white; 
-    }
-    
-    a:hover{
-        color: #d590eb;
+        color: var(--text-color);
     }
 
-    input[type="color"]{
-        border: 0.2vw solid #575757;
+    a:visited {
+        color: var(--text-color);
+    }
+
+    a:hover {
+        color: var(--hover-color);
+    }
+
+    input[type="color"] {
+        border: 0.2vw solid var(--border-color);
     }
 
     input[type="checkbox"] {
         background: #2d3143;
-        border: 0.2vw solid #575757;
+        border: 0.2vw solid var(--border-color);
     }
 
-    input[type="checkbox"]:checked{
-        background: #d590eb;
+    input[type="checkbox"]:checked {
+        background: var(--hover-color);
     }
 
-    input[type="range"]{
-        background: black;
+    input[type="range"] {
+        background: var(--background-color);
     }
 
     input[type="range"]::-webkit-slider-runnable-track {
-        background: black;
-        border: 0.15vw solid #575757;
+        background: var(--background-color);
+        border: 0.15vw solid var(--border-color);
     }
 
     input[type="range"]::-webkit-slider-thumb {
-        background: white;
+        background: var(--text-color);
     }
 
-    .reset:hover{
-        color: #d590eb;
+    .reset:hover {
+        color: var(--hover-color);
     }
-
 }

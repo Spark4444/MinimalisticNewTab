@@ -41,14 +41,16 @@ let themes = {
     "Date display": "true",
     "Date display background": "#000000",
     "Date display background and border": "true",
+    "Date display border": "#c700fe",
     "Date display border color": "#ff0000",
     "Date display border radius": "0",
+    "Date display enabled": "true",
     "Date display font color": "#ff0000",
     "Date display font size": "1",
     "Date display height": "1.5",
     "Date display scroll": "true",
     "Font inside search bar color": "#ffffff",
-    "Number buttons background color": "#ffffff",
+    "Number buttons background color": "#1c1c1c",
     "Number buttons font color": "#ff0000",
     "Search bar background": "#000000",
     "Search bar border": "#ff0000",
@@ -58,17 +60,28 @@ let themes = {
     "Search bar placeholder color": "#ffffff",
     "Search bar width": "48",
     "Search icon color": "#ff0000",
+    "Settings background color": "#000000",
+    "Settings border color": "#ff0000",
+    "Settings font color": "#ffffff",
+    "Settings hover color": "#ff0000",
     "Settings icon color": "#ff0000",
+    "Settings scrollbar thumb color": "#c20000",
+    "Settings scrollbar thumb hover color": "#ff0000",
+    "Settings scrollbar thumb track color": "#800000",
+    "Settings secondary background color": "#000000",
     "Sign buttons background color": "#710a0a",
-    "Sign buttons font color": "#ffffff",
+    "Sign buttons font color": "#ff0000",
     "Sign buttons selected background color": "#f00000",
     "Sign buttons selected font color": "#000000",
-    "Wallpaper": "img/wallpaper.png",
-    "X icon color": "#ff0000"
+    "Time display enabled": "true",
+    "Wallpaper": "null",
+    "X icon color": "#ff0000",
+    "search Engine": "g",
+    "theme": "c"
   }
   `,
   purple: `
-    {
+  {
     "Action buttons background color": "#705bd7",
     "Action buttons font color": "#440057",
     "Answer font color": "#c800ff",
@@ -104,7 +117,15 @@ let themes = {
     "Search bar placeholder color": "#c800ff",
     "Search bar width": "51",
     "Search icon color": "#c800ff",
+    "Settings background color": "#c800ff",
+    "Settings border color": "#ffffff",
+    "Settings font color": "#ffffff",
+    "Settings hover color": "#000000",
     "Settings icon color": "#c800ff",
+    "Settings scrollbar thumb color": "#0400eb",
+    "Settings scrollbar thumb hover color": "#0300cc",
+    "Settings scrollbar thumb track color": "#090792",
+    "Settings secondary background color": "#0300a8",
     "Sign buttons background color": "#150566",
     "Sign buttons font color": "#c800ff",
     "Sign buttons selected background color": "#c800ff",
@@ -112,7 +133,8 @@ let themes = {
     "Time display enabled": "true",
     "Wallpaper": "https://rare-gallery.com/mocahbig/397378-wallpaper-sunset-abstract-grid-mountain-digital-art.jpg",
     "X icon color": "#c800ff",
-    "search Engine": "g"
+    "search Engine": "g",
+    "theme": "c"
   }
   `
 }
@@ -121,6 +143,44 @@ let themes = {
 let draggingTimeout;
 let mainTimeout;
 let dragTimeout;
+let anchorTimeout;
+
+function updateStyles(transitionDisableTime) {
+    // Temporarily disable transitions for all elements
+    if(transitionDisableTime !== undefined){
+      document.querySelectorAll("*").forEach(element => {
+        element.style.transition = "0s";
+      });
+    }
+
+    // Apply styles from local storage to all customizable elements, if available
+    document.documentElement.style.setProperty("--background-color", getFromLocalStorage("Settings secondary background color"));
+    document.documentElement.style.setProperty("--border-color", getFromLocalStorage("Settings border color"));
+    document.documentElement.style.setProperty("--text-color", getFromLocalStorage("Settings font color"));
+    document.documentElement.style.setProperty("--text-color", getFromLocalStorage("Settings font color"));
+    document.documentElement.style.setProperty("--hover-color", getFromLocalStorage("Settings hover color"));
+    document.documentElement.style.setProperty("--scrollbar-thumb-color", getFromLocalStorage("Settings scrollbar thumb color"));
+    document.documentElement.style.setProperty("--scrollbar-thumb-hover-color", getFromLocalStorage("Settings scrollbar thumb hover color"));
+    document.documentElement.style.setProperty("--scrollbar-track-color", getFromLocalStorage("Settings scrollbar thumb track color"));
+    document.body.style.backgroundColor = getFromLocalStorage("Settings background color");
+
+
+      // Re-enable transitions after a brief pause to allow for style application
+      if(transitionDisableTime !== undefined){
+        setTimeout(() => {
+            document.querySelectorAll("*").forEach(element => {
+                element.style.transition = "";
+            });
+        }, transitionDisableTime);
+      }
+}
+
+// Initial styles update
+updateStyles(210);
+
+addEventListener("storage", function(event){
+  updateStyles();
+});
 
 // Function that prevents form from reloading the page
 window.onload = function() {
@@ -315,14 +375,17 @@ inputsNode[2].addEventListener("input", function() {
 
 // If user drags a file over the body
 document.body.addEventListener("dragover", function(event) {
+  clearTimeout(draggingTimeout);
   event.preventDefault();
   event.stopPropagation();
   event.dataTransfer.dropEffect = "move";
   mainWrap.style.opacity = "0";
-  clearTimeout(mainTimeout);
+  if(mainWrap.style.display == "none"){
+    clearTimeout(mainTimeout);
+  }
   mainTimeout = setTimeout(() => {
     mainWrap.style.display = "none";
-  }, 1000);
+  }, 500);
   dragWrap.style.display = "";
   clearTimeout(dragTimeout);
   dragTimeout = setTimeout(() => {
@@ -335,6 +398,7 @@ document.body.addEventListener("dragleave", function(event) {
   event.preventDefault();
   clearTimeout(draggingTimeout);
   draggingTimeout = setTimeout(() => {
+      console.log("HI");
       clearTimeout(mainTimeout);
       mainWrap.style.display = "";
       mainTimeout = setTimeout(() => {
@@ -344,7 +408,7 @@ document.body.addEventListener("dragleave", function(event) {
       clearTimeout(dragTimeout);
       dragTimeout = setTimeout(() => {
         dragWrap.style.display = "none";
-      }, 1000);
+      }, 300);
   }, 300);
 })
 
@@ -474,10 +538,9 @@ function resetInput(index){
         input.checked = defaultValue;
       }
       else{
-        if(defaultValue == "preferredColor"){
-          defaultValue = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches
-              ? "#000000"
-              : "#ffffff";
+        if(defaultValue.includes("[") && defaultValue.includes("]")){
+          let values = JSON.parse(defaultValue);
+          defaultValue = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? values[1] : values[0];
         }
         input.value = defaultValue;
       }
@@ -517,7 +580,7 @@ function setValue(index){
     let input = inputs[index];
     let value = values[index-1];
     let buttonName = buttonNames[index];
-    if(unit !== null && buttonName.innerHTML !== "Background x size"){
+    if(unit !== null){
       value.innerHTML = input.value + unit;
     }
     else if(buttonName.innerHTML == "Background x size" && getFromLocalStorage("Background x size") == "cover"){
@@ -542,6 +605,19 @@ setInterval(() => {
     window.close();
   }
 }, 200);
+
+// Anchor scrolling
+anchors.forEach(element => {
+  element.addEventListener("click", (event) => {
+    event.preventDefault();
+    let targetId = element.getAttribute("hash").substring(1);
+    let targetElement = document.getElementById(targetId);
+    if (targetElement) {
+      targetElement.scrollIntoView({ behavior: "smooth" });
+      window.location.hash = element.getAttribute("hash");
+    }
+  });
+});
 
 // Removes anchors if you're already on that anchor
 setInterval(() => {

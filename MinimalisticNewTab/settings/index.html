@@ -39,9 +39,10 @@
         <div class="ButtonName">Save/Upload config. You can also drop your image/json file</div>
     </div>
     <div class="sectionAnchors">
-        <a hash="Main" draggable="false">Main section</a>
-        <a hash="Calculator" draggable="false">Calculator section</a>
-        <a hash="Date" draggable="false">Date display section</a>
+        <a hash="#Main" draggable="false">Main section</a>
+        <a hash="#Settings" draggable="false">Settings section</a>
+        <a hash="#Calculator" draggable="false">Calculator section</a>
+        <a hash="#Date" draggable="false">Date display section</a>
     </div>
     <form action="">
         <div class="title" id="Main">Main settings</div>
@@ -94,7 +95,7 @@
                 <div class="name">Clock font color</div>
                 <input type="color" class="colorSelect">
                 <div class="value"></div>
-                <div class="reset" defaultValue="preferredColor">Reset</div>
+                <div class="reset" defaultValue='["#000000", "#ffffff"]'>Reset</div>
             </div>
             <div class="button">
                 <div class="index"></div>
@@ -186,6 +187,67 @@
                 <input type="range" class="sizeSelect" value="0" unit="vh" min="-100" max="100" step="1">
                 <div class="value"></div>
                 <div class="reset">Reset</div>
+            </div>
+        </div>
+        <div class="resetSection">Reset section</div>
+        <div class="seperator"></div>
+        <div class="title" id="Settings">Settings menu settings</div>
+        <div class="section">
+            <div class="button" style="margin: 5vw 0;">
+                <div class="index"></div>
+                <div class="name">Settings background color</div>
+                <input type="color" class="colorSelect">
+                <div class="value"></div>
+                <div class="reset" defaultValue='["#dce0f8", "#2d3143"]'>Reset</div>
+            </div>
+            <div class="button" style="margin: 5vw 0;">
+                <div class="index"></div>
+                <div class="name">Settings secondary background color</div>
+                <input type="color" class="colorSelect">
+                <div class="value"></div>
+                <div class="reset" defaultValue='["#ffffff", "#000000"]'>Reset</div>
+            </div>
+            <div class="button">
+                <div class="index"></div>
+                <div class="name">Settings border color</div>
+                <input type="color" class="colorSelect">
+                <div class="value"></div>
+                <div class="reset" defaultValue='["#000000", "#575757"]'>Reset</div>
+            </div>
+            <div class="button">
+                <div class="index"></div>
+                <div class="name">Settings font color</div>
+                <input type="color" class="colorSelect">
+                <div class="value"></div>
+                <div class="reset" defaultValue='["#000000", "#ffffff"]'>Reset</div>
+            </div>
+            <div class="button">
+                <div class="index"></div>
+                <div class="name">Settings hover color</div>
+                <input type="color" class="colorSelect">
+                <div class="value"></div>
+                <div class="reset" defaultValue='["#0000ff", "#d590eb"]'>Reset</div>
+            </div>
+            <div class="button">
+                <div class="index"></div>
+                <div class="name">Settings scrollbar thumb color</div>
+                <input type="color" class="colorSelect">
+                <div class="value"></div>
+                <div class="reset" defaultValue='["#d6d6d6", "#686868"]'>Reset</div>
+            </div>
+            <div class="button">
+                <div class="index"></div>
+                <div class="name">Settings scrollbar thumb hover color</div>
+                <input type="color" class="colorSelect">
+                <div class="value"></div>
+                <div class="reset" defaultValue='["#b3b3b3", "#787878"]'>Reset</div>
+            </div>
+            <div class="button">
+                <div class="index"></div>
+                <div class="name">Settings scrollbar thumb track color</div>
+                <input type="color" class="colorSelect">
+                <div class="value"></div>
+                <div class="reset" defaultValue='["#f1f1f1", "#424242"]'>Reset</div>
             </div>
         </div>
         <div class="resetSection">Reset section</div>

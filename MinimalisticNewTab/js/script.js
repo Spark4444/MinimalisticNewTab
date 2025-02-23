@@ -21,6 +21,7 @@ if(getFromLocalStorage("Wallpaper") == null){
     saveToLocalStorage("Wallpaper", "img/wallpaper.png");
 }
 
+// legacy
 // If browser is not set it will switch back to default one
 // if(getFromLocalStorage("Search engine") == null){
 //     saveToLocalStorage("search Engine", "g");
