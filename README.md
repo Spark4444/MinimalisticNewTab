@@ -28,6 +28,11 @@ git clone https://github.com/Spark4444/FandomAdBlocker
 ### Main page
 * `Enter` to search a query in the current window
 * `Alt+Enter` When searching in the search input opens the search query in a new tab
+
+### Settings
+* You can enter null or undefined or nothing to set your wallpaper as nothing 
+* You can drop a config/image file onto the setings window to apply the config or the image as wallpaper
+
 ### Calculator
 * All the signs and numbers on the keyboard/numpad work in the calculator to enter values
 * `F9` to change the sign
@@ -37,11 +42,9 @@ git clone https://github.com/Spark4444/FandomAdBlocker
 * `.` (Numpad `.`) or `.` to add a decimal point
 * `0-9` (Numpad `0-9`) to input numbers
 
-
 ## Current state of this project
 The project is nearly finished, but I can't implement some features and need help implementing them.
 1. I can't implement the display of suggested queries when searching for something; I'm using:
 `http://suggestqueries.google.com/complete/search?client=chrome&q=`<br>
 All the assets inside the code are done, I just need the results of the suggested queries.
 2. I can't implement webpage translation to the default browser language of the user because the Google Translate API costs money and I can't find any alternatives.
-3. I need to implement a theme button which would allow users to select from premade themes and also refactor the theme file from txt into json for security purposes

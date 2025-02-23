@@ -34,13 +34,15 @@ function clearLocalStorageExcept(keysToKeep) {
 // Function to download files with .txt extension
 function download(filename, text) {
     let element = document.createElement("a");
-    element.setAttribute("href", "data:text/plain;charset=utf-8," + encodeURIComponent(text));
+    element.setAttribute("href", "data:application/json;charset=utf-8," + encodeURIComponent(text));
     element.setAttribute("download", filename);
     element.style.display = "none";
     document.body.appendChild(element);
     element.click();
     document.body.removeChild(element);
 }
+//q: how do i change file extension to json?
+//a: change the "text/plain" in the download function to ""
 
 // Function to check if a url is an image
 async function isImageUrl(url) {
