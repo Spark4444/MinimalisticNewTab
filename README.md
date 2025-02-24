@@ -1,5 +1,5 @@
 # Minimalistic New Tab
-This extension replaces the default new tab with a more minimalstic one with tons of customization options and different themes that you can use
+This extension replaces the default new tab with a more minimalstic one with tons of customization options
 <br>
 [Chrome Web Store link](https://chromewebstore.google.com/detail/minimalistic-new-tab/ohoamgbkilfcfdhfombdlodaafjmlihf)
 
