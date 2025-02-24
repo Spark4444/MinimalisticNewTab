@@ -43,26 +43,23 @@ function download(filename, text) {
     element.click();
     document.body.removeChild(element);
 }
-//q: how do i change file extension to json?
-//a: change the "text/plain" in the download function to ""
 
 // Function to check if a url is an image
-async function isImageUrl(url) {
-    let imageRegex = /^data:image\/[a-zA-Z+-.]+;base64,|(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|jpeg|png|svg|gif|webp|apng|avif)$/;
-    if(imageRegex.test(url)){
-        return true;
-    }
-    else{
-        const proxyUrl = "https://cors-anywhere.herokuapp.com/";
-        const response = await fetch(proxyUrl + url, { 
-            method: "HEAD",
-            headers: {
-                "origin": "x-requested-with"
+function isImageUrl(url) {
+    return new Promise((resolve, reject) => {
+        let image = new Image();
+        image.onload = function() {
+            if (this.width > 0) {
+                resolve(true);
+            } else {
+                resolve(false);
             }
-        });
-        const contentType = response.headers.get("Content-Type");
-        return contentType.startsWith("image/");
-    }
+        };
+        image.onerror = function() {
+            resolve(false);
+        };
+        image.src = url;
+    });
 }
 
 // Returns the formatted date for later use

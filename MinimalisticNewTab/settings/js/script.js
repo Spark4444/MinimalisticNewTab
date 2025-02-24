@@ -21,18 +21,33 @@ let resetAllButton = document.querySelector(".resetAll");
 let titleElements = document.querySelectorAll(".title");
 let anchors = document.querySelectorAll("a");
 
+// Booleans 
+let isSettingMainWrap = false;
+let isSettingDragWrap = false;
+
 // Objects
 let themes = {
   red: `
   {
+    "0": "0",
+    "1": "true",
+    "2": "3",
+    "3": "0",
+    "4": "81.1584",
+    "5": "51",
+    "6": "-35px",
+    "7": "-3px",
+    "8": "553px",
+    "9": "177px",
+    "10": "false",
     "Action buttons background color": "#ff0000",
     "Action buttons font color": "#ffffff",
     "Answer font color": "#ffffff",
     "Background color": "#000000",
     "Background x position": "0",
-    "Background x size": "0",
+    "Background x size": "100",
     "Background y position": "0",
-    "Background y size": "0",
+    "Background y size": "100",
     "Calculator background": "#000000",
     "Calculator icon color": "#ff0000",
     "Clock font color": "#ff0000",
@@ -74,7 +89,7 @@ let themes = {
     "Sign buttons selected background color": "#f00000",
     "Sign buttons selected font color": "#000000",
     "Time display enabled": "true",
-    "Wallpaper": "null",
+    "Wallpaper": "",
     "X icon color": "#ff0000",
     "search Engine": "g",
     "theme": "c"
@@ -140,9 +155,9 @@ let themes = {
 }
 
 // Timers
-let draggingTimeout;
 let mainTimeout;
 let dragTimeout;
+let leaveTimeout;
 let anchorTimeout;
 
 function updateStyles(transitionDisableTime) {
@@ -314,7 +329,8 @@ inputs[0].addEventListener("input", (event) => {
       let base64Image = e.target.result;
       try {
         saveToLocalStorage(buttonNames[0].innerHTML, base64Image);
-      } catch (e) {
+      } 
+      catch (e) {
         if (e.code === 22) {
            inputsNode[2].style.border = "0.2vw solid red";
            alert("This file is larger then 5mb");
@@ -373,60 +389,50 @@ inputsNode[2].addEventListener("input", function() {
   }
 });
 
-// If user drags a file over the body
+// If user drags a file over the body, will disable eventually the dragging styles after some time if the function isn't called anymore
 document.body.addEventListener("dragover", function(event) {
-  clearTimeout(draggingTimeout);
   event.preventDefault();
-  event.stopPropagation();
-  event.dataTransfer.dropEffect = "move";
+  DataTransfer.dropEffect = "move";
   mainWrap.style.opacity = "0";
-  if(mainWrap.style.display == "none"){
+  document.body.style.overflow = "hidden";
+  if(mainWrap.style.display == "" && !isSettingMainWrap){
+    isSettingMainWrap = true;
     clearTimeout(mainTimeout);
+    mainTimeout = setTimeout(() => {
+      mainWrap.style.display = "none";
+      isSettingMainWrap = false;
+    }, 500);
   }
-  mainTimeout = setTimeout(() => {
-    mainWrap.style.display = "none";
-  }, 500);
   dragWrap.style.display = "";
-  clearTimeout(dragTimeout);
-  dragTimeout = setTimeout(() => {
-    dragWrap.style.opacity = "1";
-  }, 10);
+  if(dragWrap.style.opacity == "0"  && !isSettingDragWrap){
+    isSettingDragWrap = true;
+    clearTimeout(dragTimeout);
+    dragTimeout = setTimeout(() => {
+      dragWrap.style.opacity = "1"; 
+      isSettingDragWrap = false;
+    }, 10); 
+  }
+
+  clearTimeout(leaveTimeout);
+  leaveTimeout =  setTimeout(() => {
+    mainWrap.style.display = "";
+    document.body.style.overflow = "";
+    clearTimeout(mainTimeout);
+    mainTimeout = setTimeout(() => {
+      mainWrap.style.opacity = "1";
+    }, 10);
+    clearTimeout(dragTimeout);
+    dragTimeout = dragWrap.style.opacity = "0";
+    setTimeout(() => {
+      dragWrap.style.display = "none"; 
+    }, 500); 
+  }, 150);
 });
 
-// If user leaves the body while dragging a file
-document.body.addEventListener("dragleave", function(event) {
-  event.preventDefault();
-  clearTimeout(draggingTimeout);
-  draggingTimeout = setTimeout(() => {
-      console.log("HI");
-      clearTimeout(mainTimeout);
-      mainWrap.style.display = "";
-      mainTimeout = setTimeout(() => {
-        mainWrap.style.opacity = "1";
-      }, 10);
-      dragWrap.style.opacity = "0";
-      clearTimeout(dragTimeout);
-      dragTimeout = setTimeout(() => {
-        dragWrap.style.display = "none";
-      }, 300);
-  }, 300);
-})
 
 // If user drops a file on the body
 document.body.addEventListener("drop", function(event) {
-  clearTimeout(dragTimeout);
-  clearTimeout(mainTimeout);
   event.preventDefault();
-  event.stopPropagation();
-  mainWrap.style.display = "";
-  mainTimeout = setTimeout(() => {
-    mainWrap.style.opacity = "1";
-  }, 10);
-  dragWrap.style.opacity = "0";
-  clearTimeout(dragTimeout);
-  dragTimeout = setTimeout(() => {
-    dragWrap.style.display = "none";
-  }, 1000);
 
   let file = event.dataTransfer.files[0];
   // JSON file
@@ -511,6 +517,9 @@ function uploadConfig(fileContents){
   Object.keys(config).forEach((key) => {
     saveToLocalStorage(key, config[key]);
   });
+  setTimeout(() => {
+    window.location.reload();
+  }, 10);
 }
 
 // Resets input of a specified index to default value
