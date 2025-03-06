@@ -182,7 +182,7 @@ Date.prototype.getCountry = function() {
 }
 
 // Function to get the zone where user is located for example: "Eastern European Standard Time"
-Date.prototype.getTimeZone = function() {
+Date.prototype.getZone = function() {
     try {
         return this.toString().slice(35, this.toString().length - 1);
     } catch (error) {
