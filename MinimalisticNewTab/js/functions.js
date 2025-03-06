@@ -62,12 +62,6 @@ function isImageUrl(url) {
     });
 }
 
-// Returns the formatted date for later use
-function getFormattedDate() {
-    let date = new Date();
-    return `${date.toLocaleString("en-US", { weekday: "long" })} ${date.toLocaleString("en-US", { month: "long" })} ${date.getFullYear()}  ${(date.getMonth() + 1).toString().padStart(2, "0")}.${date.getDate()}.${date.getFullYear()} ${date.toTimeString().split(" ")[0]} ${date.toTimeString().split(" ").slice(1).join(" ")}`;
-}
-
 // Convers a string into a boolean
 function parseBoolean(str) {
     if(typeof str == "string"){

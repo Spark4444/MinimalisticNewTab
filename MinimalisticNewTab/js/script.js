@@ -179,12 +179,12 @@ function searchValue(newTab){
     }
 }
 
-// Function to display the current time in HH : MM : SS format
+// Function to display the current time in HH : MM : SS format and the bottom date information
 function displayTime() {
-    let date = new Date();
-    clock.innerHTML = `${date.getHours().toString().padStart(2, "0")} : ${date.getMinutes().toString().padStart(2, "0")} : ${date.getSeconds().toString().padStart(2, "0")}`;
-    dateText.innerHTML = getFormattedDate();
-    setTimeout(displayTime, 1000 - (date.getTime() % 1000));
+    let d = new Date();
+    clock.innerHTML = d.getFullTime(" : ");
+    dateText.innerHTML = `${d.getDay()} ${d.getMonth()} ${d.getYear()} ${d.getFullTime(":")} GMT${d.getTimezoneOffset()} (${d.getZone()})`;
+    setTimeout(displayTime, 1000 - (d.getTime() % 1000));
 }
 
 // Initialize the display of time
