@@ -183,7 +183,7 @@ function searchValue(newTab){
 function displayTime() {
     let d = new Date();
     clock.innerHTML = d.getFullTime(" : ");
-    dateText.innerHTML = `${d.getDay()} ${d.getMonth()} ${d.getYear()} ${d.getFullTime(":")} GMT${d.getTimezoneOffset()} (${d.getZone()})`;
+    dateText.innerHTML = `${d.getDay()} ${d.getMonth()} ${d.getYear()} ${d.getMonth(true)}.${d.getDate()}.${d.getYear()} ${d.getFullTime(":")} GMT${d.getTimezoneOffset()} (${d.getZone()})`;
     setTimeout(displayTime, 1000 - (d.getTime() % 1000));
 }
 
