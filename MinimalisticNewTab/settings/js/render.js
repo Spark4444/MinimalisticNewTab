@@ -1,6 +1,7 @@
 // Initialize DOM elements variables
 let settingsButtons = document.querySelectorAll(".button");
 let sections = document.querySelectorAll(".section");
+let sectionAnchors = document.querySelector(".sectionAnchors");
 
 // Arrays
 let buttonComponents = [`<div class="index"></div>`, `<div class="value"></div>`];
@@ -17,6 +18,7 @@ let buttons = {
 function render(){
     sections.forEach((element, index) => {
         element.innerHTML = `<div class="title" id="${element.getAttribute("anchor")}">${element.getAttribute("title")}</div>${element.innerHTML}<div class="resetSection">Reset section</div>${index !== sections.length - 1 ? `<div class="seperator"></div>` : ""}`;
+        sectionAnchors.innerHTML += `<a hash="#${element.getAttribute("anchor")}" draggable="false">${element.getAttribute("section")} section</a>`
     });
 
     settingsButtons = document.querySelectorAll(".button");

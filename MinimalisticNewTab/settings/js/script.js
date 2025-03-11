@@ -210,6 +210,11 @@ inputs.forEach((element,index) => {
   indexElements[index].innerHTML = index + 1 + ".";  
 });
 
+// Add theme select options
+Object.keys(themes).forEach(element => {
+  themeSelect.innerHTML += `<option value="${element}">${toUpperCaseFirstCharacter(element)}</option>`;
+});
+
 // Set the theme select value
 themeSelect.value = getFromLocalStorage("theme");
 
@@ -522,7 +527,6 @@ function resetInput(index){
   }
   else{
     let defaultValue = resetButtons[index].getAttribute("defaultValue");
-    console.log(defaultValue);
     if(defaultValue !== null){
       if(input.type == "checkbox"){
         input.checked = defaultValue;
