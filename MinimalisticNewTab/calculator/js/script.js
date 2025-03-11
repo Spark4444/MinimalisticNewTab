@@ -43,14 +43,13 @@ let selectedSign = false;
 // Updates all the changable styles on the web page
 function updateStylesCalculator(transitionDisableTime){
     let elements = [
-        [calculator.style, body.style],
+        calculator.style,
         activeArr.map(el => el.style),
         [...numberArr.map(el => el.style), dotSign.style],
         [...signArr.map(el => el.style), equalSign.style],
         answer.style,
         copyButton.style,
     ];
-    console.log(elements);
     // Temporarily disable transitions for all customizable elements
     if(transitionDisableTime !== undefined){
         elements.forEach(element => {
@@ -72,7 +71,7 @@ function updateStylesCalculator(transitionDisableTime){
     document.documentElement.style.setProperty("--number-button-color", getFromLocalStorage("Number buttons font color"));
     document.documentElement.style.setProperty("--sign-button-background", getFromLocalStorage("Sign buttons background color"));
     document.documentElement.style.setProperty("--sign-button-color", getFromLocalStorage("Sign buttons font color"));
-    elements[0][1].background = getFromLocalStorage("Calculator background");
+    elements[0].background = getFromLocalStorage("Calculator background");
     if(selectedSign !== false){
         elements[3][selectedSign].backgroundColor = getFromLocalStorageIfNotDefault("Sign buttons selected background color", "#ffffff");
         elements[3][selectedSign].color = getFromLocalStorageIfNotDefault("Sign buttons selected font color", "#FF9E20");

@@ -5,9 +5,6 @@ let settingsTimeStamp = getFromLocalStorage("settingsTimeStamp");
 let form = document.querySelector("form");
 let indexElements = document.querySelectorAll(".index");
 let buttonNames = document.querySelectorAll(".name");
-let engineLogo = document.querySelector(".engineLogo")
-// Legacy
-// let browserSelect = document.querySelector(".browserSelect");
 let themeSelect = document.querySelector(".themeSelect");
 let inputsNode = document.querySelectorAll("input");
 let inputs = Array.from(inputsNode);
@@ -15,7 +12,6 @@ let downloadButton = document.querySelector(".download");
 let uploadButton = inputsNode[0];
 let values = document.querySelectorAll(".value");
 let resetButtons = document.querySelectorAll(".reset");
-let sections = document.querySelectorAll(".section")
 let resetSectionButtons = document.querySelectorAll(".resetSection");
 let resetAllButton = document.querySelector(".resetAll");
 let titleElements = document.querySelectorAll(".title");
@@ -214,11 +210,6 @@ inputs.forEach((element,index) => {
   indexElements[index].innerHTML = index + 1 + ".";  
 });
 
-// Legacy
-// Set the browser select value
-// browserSelect.value = getFromLocalStorage("search Engine");
-// engineLogo.src = `img/${browserSelect.value}.svg`;
-
 // Set the theme select value
 themeSelect.value = getFromLocalStorage("theme");
 
@@ -256,14 +247,6 @@ loadValuesAll();
 inputs.forEach((element, index) => {
  setValue(index);
 });
-
-// Legacy
-// Handle browser selection
-// browserSelect.addEventListener("input", (event) =>{
-//   engineLogo.src = `img/${browserSelect.value}.svg`;
-//   saveToLocalStorage("search Engine", browserSelect.value);
-//   browserSelect.blur();
-// });
 
 // Handle theme selection
 themeSelect.addEventListener("input", (event) =>{
@@ -345,7 +328,7 @@ inputs[0].addEventListener("input", (event) => {
 inputsNode[2].addEventListener("keyup", function(event) {
   if (event.keyCode === 13) { // "Enter" key
     let url = inputsNode[2].value;
-    if(url == "null" || url == "undefined" || url == ""){
+    if(url.toLowerCase() == "null" || url.toLowerCase() == "undefined" || url == ""){
       saveToLocalStorage(buttonNames[0].innerHTML, "");
       inputsNode[2].style.border = "0.2vw solid green";
       themeSelect.value = "c";
@@ -496,9 +479,6 @@ uploadButton.addEventListener("input", function () {
 // Handle reset all button click
 resetAllButton.addEventListener("click", () =>{
   clearLocalStorageExcept(["settingsTimeStamp","calculatorTimeStamp"]);
-  // Legacy
-  // browserSelect.value = "g";
-  // browserSelect.dispatchEvent(new Event("input"));
   inputs.forEach((element,index) => {
     resetInput(index);
   });
@@ -542,6 +522,7 @@ function resetInput(index){
   }
   else{
     let defaultValue = resetButtons[index].getAttribute("defaultValue");
+    console.log(defaultValue);
     if(defaultValue !== null){
       if(input.type == "checkbox"){
         input.checked = defaultValue;

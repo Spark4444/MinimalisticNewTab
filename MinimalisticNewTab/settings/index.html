@@ -1,4 +1,3 @@
-<html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -12,399 +11,90 @@
     <div class="dragWrap" style="opacity: 0; display: none;">Drop your image/json file here</div>
     <div class="mainWrap">
         <div class="resetAll">Reset all</div>
-    <!-- Google forbit this feature for their extensions
-    <div class="select">
-        <div class="selectName">Search engine<img class="engineLogo" src="" draggable="false"></div>
-        <select class="browserSelect">
-            <option value="g">Google</option>
-            <option value="b">Bing</option>
-            <option value="y">Yahoo</option>
-            <option value="d">DuckDuckGo</option>
-        </select>
-    </div> -->
-    <div class="select">
-        <div class="selectName">Select a theme from a preset</div>
-        <select class="themeSelect" value="c" onclick="changeFocus(`themeSelect`)">
-            <option value="c">Custom</option>
-            <option value="d">Default</option>
-            <option value="purple">Purple</option>
-            <option value="red">Red</option>
-        </select>
-    </div>
-    <div class="buttons">
-        <svg xmlns="http://www.w3.org/2000/svg" class="download" viewBox="0 -960 960 960"><path d="M480-330.77 321.62-489.15l31.23-30.47 104.77 104V-776h43.76v360.38l104.77-104 32.23 30.47L480-330.77ZM252.38-184q-27.78 0-48.08-20.3-20.3-20.3-20.3-48.08V-360h43.77v107.62q0 9.23 7.69 16.92 7.69 7.69 16.92 7.69h455.24q9.23 0 16.92-7.69 7.69-7.69 7.69-16.92V-360H776v107.62q0 28.05-20.3 48.22Q735.4-184 707.62-184H252.38Z"/></svg>
-        <input id="fileInput" type="file" accept=".json" style="display: none;">
-        <label for="fileInput">
-        <svg xmlns="http://www.w3.org/2000/svg" class="upload" viewBox="0 -960 960 960"><path d="M458.85-235.46h42.77v-205.31l90 90.77 29-29L479-517.92 339.62-377.77l27.23 28.23 92-91.23v205.31ZM253.38-104q-28.23 0-48.3-20.08Q185-144.15 185-172.38v-615.24q0-28.23 20.08-48.3Q225.15-856 253.38-856h330.08L775-665.46v493.08q0 28.23-20.08 48.3Q734.85-104 706.62-104H253.38Zm308.7-540.54h169.15L562.08-812.23v167.69Z"/></svg>
-        </label>
-        <div class="ButtonName">Save/Upload config. You can also drop your image/json file</div>
-    </div>
-    <div class="sectionAnchors">
-        <a hash="#Main" draggable="false">Main section</a>
-        <a hash="#Settings" draggable="false">Settings section</a>
-        <a hash="#Calculator" draggable="false">Calculator section</a>
-        <a hash="#Date" draggable="false">Date display section</a>
-    </div>
-    <form action="">
-        <div class="title" id="Main">Main settings</div>
-        <div class="section">
-            <div class="button" style="margin: 5vw 0;">
-                <div class="index"></div>
-                <div class="name">Wallpaper</div>
-                <input type="file" id="fileSelect" class="fileSelect" accept=".jpg, .jpeg, .png, .svg,  .gif, .webp, .apng, .avif">
-                <label for="fileSelect" class="SelectFileLabel">Select a file</label>
-                <input type="text" class="wallpaperSelect" placeholder="Or paste a URL link here">
-                <div class="reset">Reset</div>
-            </div>
-            <div class="button">
-                <div class="index"></div>
-                <div class="name">Background color</div>
-                <input type="color" class="colorSelect">
-                <div class="value"></div>
-                <div class="reset">Reset</div>
-            </div>
-            <div class="button">
-                <div class="index"></div>
-                <div class="name">Calculator icon color</div>
-                <input type="color" class="colorSelect">
-                <div class="value"></div>
-                <div class="reset">Reset</div>
-            </div>
-            <div class="button">
-                <div class="index"></div>
-                <div class="name">Settings icon color</div>
-                <input type="color" class="colorSelect">
-                <div class="value"></div>
-                <div class="reset">Reset</div>
-            </div>
-            <div class="button">
-                <div class="index"></div>
-                <div class="name">Search icon color</div>
-                <input type="color" class="colorSelect">
-                <div class="value"></div>
-                <div class="reset">Reset</div>
-            </div>
-            <div class="button">
-                <div class="index"></div>
-                <div class="name">X icon color</div>
-                <input type="color" class="colorSelect">
-                <div class="value"></div>
-                <div class="reset">Reset</div>
-            </div>
-            <div class="button">
-                <div class="index"></div>
-                <div class="name">Clock font color</div>
-                <input type="color" class="colorSelect">
-                <div class="value"></div>
-                <div class="reset" defaultValue='["#000000", "#ffffff"]'>Reset</div>
-            </div>
-            <div class="button">
-                <div class="index"></div>
-                <div class="name">Search bar placeholder color</div>
-                <input type="color" class="colorSelect">
-                <div class="value"></div>
-                <div class="reset">Reset</div>
-            </div>
-            <div class="button">
-                <div class="index"></div>
-                <div class="name">Font inside search bar color</div>
-                <input type="color" class="colorSelect">
-                <div class="value"></div>
-                <div class="reset">Reset</div>
-            </div>
-            <div class="button">
-                <div class="index"></div>
-                <div class="name">Search bar background</div>
-                <input type="color" class="colorSelect">
-                <div class="value"></div>
-                <div class="reset" defaultValue="#ffffff">Reset</div>
-            </div>
-            <div class="button">
-                <div class="index"></div>
-                <div class="name">Search bar border</div>
-                <input type="color" class="colorSelect">
-                <div class="value"></div>
-                <div class="reset">Reset</div>
-            </div>
-            <div class="button">
-                <div class="index"></div>
-                <div class="name">Clock font size</div>
-                <input type="range" class="sizeSelect" value="4" unit="vw" min="0" max="10" step="0.5">
-                <div class="value"></div>
-                <div class="reset">Reset</div>
-            </div>
-            <div class="button">
-                <div class="index"></div>
-                <div class="name">Search bar font size</div>
-                <input type="range" class="sizeSelect" value="1.4" unit="vw" min="0" max="3" step="0.1">
-                <div class="value"></div>
-                <div class="reset">Reset</div>
-            </div>
-            <div class="button">
-                <div class="index"></div>
-                <div class="name">Background x size</div>
-                <input type="range" class="sizeSelect" value="100" unit="vw" min="0" max="200" step="1">
-                <div class="value"></div>
-                <div class="reset">Reset</div>
-            </div>
-            <div class="button">
-                <div class="index"></div>
-                <div class="name">Background y size</div>
-                <input type="range" class="sizeSelect" value="100" unit="vh" min="0" max="200" step="1">
-                <div class="value"></div>
-                <div class="reset">Reset</div>
-            </div>
-            <div class="button">
-                <div class="index"></div>
-                <div class="name">Search bar width</div>
-                <input type="range" class="sizeSelect" value="40" unit="%" min="0" max="98" step="1">
-                <div class="value"></div>
-                <div class="reset">Reset</div>
-            </div>
-            <div class="button">
-                <div class="index"></div>
-                <div class="name">Search bar height</div>
-                <input type="range" class="sizeSelect" value="3" unit="vh" min="0" max="10" step="1">
-                <div class="value"></div>
-                <div class="reset">Reset</div>
-            </div>
-            <div class="button">
-                <div class="index"></div>
-                <div class="name">Search bar border radius</div>
-                <input type="range" class="sizeSelect" value="2" unit="vw" min="0" max="10" step="0.5">
-                <div class="value"></div>
-                <div class="reset">Reset</div>
-            </div>
-            <div class="button">
-                <div class="index"></div>
-                <div class="name">Background x position</div>
-                <input type="range" class="sizeSelect" value="0" unit="vw" min="-100" max="100" step="1">
-                <div class="value"></div>
-                <div class="reset">Reset</div>
-            </div>
-            <div class="button">
-                <div class="index"></div>
-                <div class="name">Background y position</div>
-                <input type="range" class="sizeSelect" value="0" unit="vh" min="-100" max="100" step="1">
-                <div class="value"></div>
-                <div class="reset">Reset</div>
-            </div>
+        <div class="select">
+            <div class="selectName">Select a theme from a preset</div>
+            <select class="themeSelect" value="c" onclick="changeFocus(`themeSelect`)">
+                <option value="c">Custom</option>
+                <option value="d">Default</option>
+                <option value="purple">Purple</option>
+                <option value="red">Red</option>
+            </select>
         </div>
-        <div class="resetSection">Reset section</div>
-        <div class="seperator"></div>
-        <div class="title" id="Settings">Settings menu settings</div>
-        <div class="section">
-            <div class="button" style="margin: 5vw 0;">
-                <div class="index"></div>
-                <div class="name">Settings background color</div>
-                <input type="color" class="colorSelect">
-                <div class="value"></div>
-                <div class="reset" defaultValue='["#dce0f8", "#2d3143"]'>Reset</div>
-            </div>
-            <div class="button" style="margin: 5vw 0;">
-                <div class="index"></div>
-                <div class="name">Settings secondary background color</div>
-                <input type="color" class="colorSelect">
-                <div class="value"></div>
-                <div class="reset" defaultValue='["#ffffff", "#000000"]'>Reset</div>
-            </div>
-            <div class="button">
-                <div class="index"></div>
-                <div class="name">Settings border color</div>
-                <input type="color" class="colorSelect">
-                <div class="value"></div>
-                <div class="reset" defaultValue='["#000000", "#575757"]'>Reset</div>
-            </div>
-            <div class="button">
-                <div class="index"></div>
-                <div class="name">Settings font color</div>
-                <input type="color" class="colorSelect">
-                <div class="value"></div>
-                <div class="reset" defaultValue='["#000000", "#ffffff"]'>Reset</div>
-            </div>
-            <div class="button">
-                <div class="index"></div>
-                <div class="name">Settings hover color</div>
-                <input type="color" class="colorSelect">
-                <div class="value"></div>
-                <div class="reset" defaultValue='["#0000ff", "#d590eb"]'>Reset</div>
-            </div>
-            <div class="button">
-                <div class="index"></div>
-                <div class="name">Settings scrollbar thumb color</div>
-                <input type="color" class="colorSelect">
-                <div class="value"></div>
-                <div class="reset" defaultValue='["#d6d6d6", "#686868"]'>Reset</div>
-            </div>
-            <div class="button">
-                <div class="index"></div>
-                <div class="name">Settings scrollbar thumb hover color</div>
-                <input type="color" class="colorSelect">
-                <div class="value"></div>
-                <div class="reset" defaultValue='["#b3b3b3", "#787878"]'>Reset</div>
-            </div>
-            <div class="button">
-                <div class="index"></div>
-                <div class="name">Settings scrollbar thumb track color</div>
-                <input type="color" class="colorSelect">
-                <div class="value"></div>
-                <div class="reset" defaultValue='["#f1f1f1", "#424242"]'>Reset</div>
-            </div>
+        <div class="buttons">
+            <svg xmlns="http://www.w3.org/2000/svg" class="download" viewBox="0 -960 960 960"><path d="M480-330.77 321.62-489.15l31.23-30.47 104.77 104V-776h43.76v360.38l104.77-104 32.23 30.47L480-330.77ZM252.38-184q-27.78 0-48.08-20.3-20.3-20.3-20.3-48.08V-360h43.77v107.62q0 9.23 7.69 16.92 7.69 7.69 16.92 7.69h455.24q9.23 0 16.92-7.69 7.69-7.69 7.69-16.92V-360H776v107.62q0 28.05-20.3 48.22Q735.4-184 707.62-184H252.38Z"/></svg>
+            <input id="fileInput" type="file" accept=".json" style="display: none;">
+            <label for="fileInput">
+            <svg xmlns="http://www.w3.org/2000/svg" class="upload" viewBox="0 -960 960 960"><path d="M458.85-235.46h42.77v-205.31l90 90.77 29-29L479-517.92 339.62-377.77l27.23 28.23 92-91.23v205.31ZM253.38-104q-28.23 0-48.3-20.08Q185-144.15 185-172.38v-615.24q0-28.23 20.08-48.3Q225.15-856 253.38-856h330.08L775-665.46v493.08q0 28.23-20.08 48.3Q734.85-104 706.62-104H253.38Zm308.7-540.54h169.15L562.08-812.23v167.69Z"/></svg>
+            </label>
+            <div class="ButtonName">Save/Upload config. You can also drop your image/json file</div>
         </div>
-        <div class="resetSection">Reset section</div>
-        <div class="seperator"></div>
-        <div class="title" id="Calculator">Calculator settings</div>
-        <div class="section">
-            <div class="button" style="margin: 5vw 0;">
-                <div class="index"></div>
-                <div class="name">Calculator background</div>
-                <input type="color" class="colorSelect">
-                <div class="value"></div>
-                <div class="reset">Reset</div>
-            </div>
-            <div class="button">
-                <div class="index"></div>
-                <div class="name">Action buttons background color</div>
-                <input type="color" class="colorSelect">
-                <div class="value"></div>
-                <div class="reset" defaultValue="#C0C0C0">Reset</div>
-            </div>
-            <div class="button">
-                <div class="index"></div>
-                <div class="name">Number buttons background color</div>
-                <input type="color" class="colorSelect">
-                <div class="value"></div>
-                <div class="reset" defaultValue="#3b3b3b">Reset</div>
-            </div>
-            <div class="button">
-                <div class="index"></div>
-                <div class="name">Sign buttons background color</div>
-                <input type="color" class="colorSelect">
-                <div class="value"></div>
-                <div class="reset" defaultValue="#FF9E20">Reset</div>
-            </div>
-            <div class="button">
-                <div class="index"></div>
-                <div class="name">Sign buttons selected background color</div>
-                <input type="color" class="colorSelect">
-                <div class="value"></div>
-                <div class="reset" defaultValue="#ffffff">Reset</div>
-            </div>
-            <div class="button">
-                <div class="index"></div>
-                <div class="name">Action buttons font color</div>
-                <input type="color" class="colorSelect">
-                <div class="value"></div>
-                <div class="reset" defaultValue="#000000">Reset</div>
-            </div>
-            <div class="button">
-                <div class="index"></div>
-                <div class="name">Number buttons font color</div>
-                <input type="color" class="colorSelect">
-                <div class="value"></div>
-                <div class="reset" defaultValue="#ffffff">Reset</div>
-            </div>
-            <div class="button">
-                <div class="index"></div>
-                <div class="name">Sign buttons font color</div>
-                <input type="color" class="colorSelect">
-                <div class="value"></div>
-                <div class="reset" defaultValue="#ffffff">Reset</div>
-            </div>
-            <div class="button">
-                <div class="index"></div>
-                <div class="name">Sign buttons selected font color</div>
-                <input type="color" class="colorSelect">
-                <div class="value"></div>
-                <div class="reset" defaultValue="#FF9E20">Reset</div>
-            </div>
-            <div class="button">
-                <div class="index"></div>
-                <div class="name">Answer font color</div>
-                <input type="color" class="colorSelect">
-                <div class="value"></div>
-                <div class="reset" defaultValue="#ffffff">Reset</div>
-            </div>
-            <div class="button">
-                <div class="index"></div>
-                <div class="name">Copy icon color</div>
-                <input type="color" class="colorSelect">
-                <div class="value"></div>
-                <div class="reset" defaultValue="#ffffff">Reset</div>
-            </div>
+        <div class="sectionAnchors">
+            <a hash="#Main" draggable="false">Main section</a>
+            <a hash="#Settings" draggable="false">Settings section</a>
+            <a hash="#Calculator" draggable="false">Calculator section</a>
+            <a hash="#Date" draggable="false">Date display section</a>
         </div>
-        <div class="resetSection">Reset Section</div>
-        <div class="seperator"></div>
-        <div class="title" id="Date">Date dispay settings</div>
-        <div class="section">
-            <div class="button" style="margin: 5vw 0;">
-                <div class="index"></div>
-                <div class="name">Date display</div>
-                <input type="checkbox" class="checkbox">
-                <div class="value"></div>
-                <div class="reset">Reset</div>
+        <form action="">
+            <div class="section" anchor="Main" title="Main Settings" section="Main">
+                <div class="button" type="w" name="Wallpaper"></div>
+                <div class="button" type="c" name="Background color"></div>
+                <div class="button" type="c" name="Calculator icon color"></div>
+                <div class="button" type="c" name="Settings icon color"></div>
+                <div class="button" type="c" name="Search icon color"></div>
+                <div class="button" type="c" name="X icon color"></div>
+                <div class="button" type="c" name="Clock font color" defaultValue='["#000000", "#ffffff"]'></div>
+                <div class="button" type="c" name="Search bar placeholder color"></div>
+                <div class="button" type="c" name="Font inside search bar color"></div>
+                <div class="button" type="c" name="Search bar background" defaultValue="#ffffff"></div>
+                <div class="button" type="c" name="Search bar border"></div>
+                <div class="button" type="s" name="Clock font size" value="4" unit="vw" min="0" max="10" step="0.5"></div>
+                <div class="button" type="s" name="Search bar font size" value="1.4" unit="vw" min="0" max="3" step="0.1"></div>
+                <div class="button" type="s" name="Background x size" value="100" unit="vw" min="0" max="200" step="1"></div>
+                <div class="button" type="s" name="Background y size" value="100" unit="vh" min="0" max="200" step="1"></div>
+                <div class="button" type="s" name="Search bar width" value="40" unit="%" min="0" max="98" step="1"></div>
+                <div class="button" type="s" name="Search bar height" value="3" unit="vh" min="0" max="10" step="1"></div>
+                <div class="button" type="s" name="Search bar border radius" value="2" unit="vw" min="0" max="10" step="0.5"></div>
+                <div class="button" type="s" name="Background x position" value="0" unit="vw" min="-100" max="100" step="1"></div>
+                <div class="button" type="s" name="Background y position" value="0" unit="vh" min="-100" max="100" step="1"></div>
             </div>
-            <div class="button">
-                <div class="index"></div>
-                <div class="name">Date display scroll</div>
-                <input type="checkbox" class="checkbox">
-                <div class="value"></div>
-                <div class="reset">Reset</div>
+            <div class="section" anchor="Settings" title="Settings menu settings" section="Settings">
+                <div class="button" type="c" name="Settings background color" defaultValue='["#dce0f8", "#2d3143"]'></div>
+                <div class="button" type="c" name="Settings secondary background color" defaultValue='["#ffffff", "#000000"]'></div>
+                <div class="button" type="c" name="Settings border color" defaultValue='["#000000", "#575757"]'></div>
+                <div class="button" type="c" name="Settings font color" defaultValue='["#000000", "#ffffff"]'></div>
+                <div class="button" type="c" name="Settings hover color" defaultValue='["#0000ff", "#d590eb"]'></div>
+                <div class="button" type="c" name="Settings scrollbar thumb color" defaultValue='["#d6d6d6", "#686868"]'></div>
+                <div class="button" type="c" name="Settings scrollbar thumb hover color" defaultValue='["#b3b3b3", "#787878"]'></div>
+                <div class="button" type="c" name="Settings scrollbar thumb track color" defaultValue='["#f1f1f1", "#424242"]'></div>
             </div>
-            <div class="button">
-                <div class="index"></div>
-                <div class="name">Date display background and border</div>
-                <input type="checkbox" class="checkbox">
-                <div class="value"></div>
-                <div class="reset">Reset</div>
+            <div class="section" anchor="Calculator" title="Calculator settings" section="Calculator">
+                <div class="button" type="c" name="Calculator background"></div>
+                <div class="button" type="c" name="Action buttons background color" defaultValue="#C0C0C0"></div>
+                <div class="button" type="c" name="Number buttons background color" defaultValue="#3b3b3b"></div>
+                <div class="button" type="c" name="Sign buttons background color" defaultValue="#FF9E20"></div>
+                <div class="button" type="c" name="Sign buttons selected background color" defaultValue="#ffffff"></div>
+                <div class="button" type="c" name="Action buttons font color" defaultValue="#000000"></div>
+                <div class="button" type="c" name="Number buttons font color" defaultValue="#ffffff"></div>
+                <div class="button" type="c" name="Sign buttons font color" defaultValue="#ffffff"></div>
+                <div class="button" type="c" name="Sign buttons selected font color" defaultValue="#FF9E20"></div>
+                <div class="button" type="c" name="Answer font color" defaultValue="#ffffff"></div>
+                <div class="button" type="c" name="Copy icon color" defaultValue="#ffffff"></div>
             </div>
-            <div class="button">
-                <div class="index"></div>
-                <div class="name">Date display background</div>
-                <input type="color" class="colorSelect">
-                <div class="value"></div>
-                <div class="reset">Reset</div>
+            <div class="section" anchor="Date" title="Date display settings" section="Date display">
+                <div class="button" type="ch" name="Date display"></div>
+                <div class="button" type="ch" name="Date display scroll"></div>
+                <div class="button" type="ch" name="Date display background and border"></div>
+                <div class="button" type="c" name="Date display background"></div>
+                <div class="button" type="c" name="Date display border color" defaultValue="#ffffff"></div>
+                <div class="button" type="c" name="Date display font color" defaultValue="#ffffff"></div>
+                <div class="button" type="s" name="Date display height" value="2" unit="vw" min="0" max="10" step="0.5"></div>
+                <div class="button" type="s" name="Date display font size" value="1" unit="vw" min="0" max="3" step="0.25"></div>
+                <div class="button" type="s" name="Date display border radius" value="0" unit="vw" min="0" max="5" step="0.1"></div>
             </div>
-            <div class="button">
-                <div class="index"></div>
-                <div class="name">Date display border color</div>
-                <input type="color" class="colorSelect">
-                <div class="value"></div>
-                <div class="reset" defaultValue="#ffffff">Reset</div>
-            </div>
-            <div class="button">
-                <div class="index"></div>
-                <div class="name">Date display font color</div>
-                <input type="color" class="colorSelect">
-                <div class="value"></div>
-                <div class="reset" defaultValue="#ffffff">Reset</div>
-            </div>
-            <div class="button">
-                <div class="index"></div>
-                <div class="name">Date display height</div>
-                <input type="range" class="sizeSelect" value="2" unit="vw" min="0" max="10" step="0.5">
-                <div class="value"></div>
-                <div class="reset">Reset</div>
-            </div>
-            <div class="button">
-                <div class="index"></div>
-                <div class="name">Date display font size</div>
-                <input type="range" class="sizeSelect" value="1" unit="vw" min="0" max="3" step="0.25">
-                <div class="value"></div>
-                <div class="reset">Reset</div>
-            </div>
-            <div class="button">
-                <div class="index"></div>
-                <div class="name">Date display border radius</div>
-                <input type="range" class="sizeSelect" value="0" unit="vw" min="0" max="5" step="0.1">
-                <div class="value"></div>
-                <div class="reset">Reset</div>
-            </div>
-        </div>
-        <div class="resetSection">Reset section</div>
-    </form>
+        </form>
     </div>
     <script src="../js/functions.js"></script>
+    <script src="js/render.js"></script>
     <script src="js/script.js"></script>
 </body>
 </html>

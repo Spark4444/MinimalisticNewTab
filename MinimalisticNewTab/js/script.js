@@ -21,12 +21,6 @@ if(getFromLocalStorage("Wallpaper") == null){
     saveToLocalStorage("Wallpaper", "img/wallpaper.png");
 }
 
-// legacy
-// If browser is not set it will switch back to default one
-// if(getFromLocalStorage("Search engine") == null){
-//     saveToLocalStorage("search Engine", "g");
-// }
-
 // Updates all the changable styles on the web page
 function updateStyles(transitionDisableTime){
     let elements = [
@@ -128,35 +122,6 @@ function clearInput() {
     clearInputIcon.style.opacity = "0";
     inputClearable = false;
 }
-
-// Old search function
-// Function to perform an engine search with the value entered in the input field
-// function searchValue(newTab = false){
-//     if(!/^\s*$/.test(input.value)){
-        // Redirect to Search engines search results if input is not empty or whitespace only
-//         let url;
-//         switch(getFromLocalStorage("search Engine")){
-//             case "g":
-//                 url = `https://www.google.com/search?q=${input.value}`;
-//                 break;
-//             case "b":
-//                 url = `https://www.bing.com/search?q=${input.value}`;
-//                 break;
-//             case "y":
-//                 url = `https://search.yahoo.com/search?p=${input.value}`;
-//                 break;
-//             case "d":
-//                 url = `https://duckduckgo.com/?q=${input.value}`;
-//                 break;
-//         }
-        // If newTab is true, open the search in a new tab. Otherwise, perform the search in the current tab
-//         if(newTab){
-//             window.open(url, '_blank');
-//         } else {
-//             window.location.href = url;
-//         }
-//     }
-// }
 
 // Function to perform an engine search with the value entered in the input field
 function searchValue(newTab){
