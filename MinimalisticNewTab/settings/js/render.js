@@ -14,13 +14,15 @@ let buttons = {
     ch: `<input type="checkbox" class="checkbox"`,
 };
 
-// Function to render the settings buttons, based on the type of the button and attributes
+// Function to render the settings buttons, based on the type of the button and attributes and the sections and their anchors
 function render(){
+    // Render the sections and the anchors to the sections
     sections.forEach((element, index) => {
         element.innerHTML = `<div class="title" id="${element.getAttribute("anchor")}">${element.getAttribute("title")}</div>${element.innerHTML}<div class="resetSection">Reset section</div>${index !== sections.length - 1 ? `<div class="seperator"></div>` : ""}`;
         sectionAnchors.innerHTML += `<a hash="#${element.getAttribute("anchor")}" draggable="false">${element.getAttribute("section")} section</a>`
     });
 
+    // Render the buttons
     settingsButtons = document.querySelectorAll(".button");
     settingsButtons.forEach(element => {
         let rangeValues = element.getAttribute("value") && element.getAttribute("unit") && element.getAttribute("min") && element.getAttribute("max") && element.getAttribute("step") ? `value="${element.getAttribute('value')}" unit="${element.getAttribute('unit')}" min="${element.getAttribute('min')}" max="${element.getAttribute('max')}" step="${element.getAttribute('step')}"` : "";
