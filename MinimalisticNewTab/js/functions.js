@@ -104,6 +104,36 @@ function changeFocus(elementName){
     element.addEventListener("focusout", handleFocusOut);
 }
 
+// Function which returns the same string but with the first character capitalized
 function toUpperCaseFirstCharacter(s) {
     return s[0].toUpperCase() + s.slice(1);
+}
+
+// Function to create an html element
+function createHTMLElem(name, close, text, attributes, closeTag = true){
+    // div, true, {class: "test", id: "test"}
+    let element;
+    if(attributes){
+        element = `<${name}`;
+        Object.keys(attributes).forEach(key => {
+            element += ` ${key}="${attributes[key]}"`;
+        });
+        if(closeTag){
+            element += `>`;
+        }
+    }
+    else{
+        element = `<${name}`;
+        if(closeTag){
+            element += `>`;
+        }
+    }
+    if(text && close){
+        element += text;
+    }
+    if(close){
+        element += `</${name}>`;
+    }
+    return element;
+    // <div class="test" id="test"></div>
 }
