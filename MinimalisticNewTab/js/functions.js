@@ -86,24 +86,6 @@ function isElementInViewport(el) {
     );
 }
 
-// Function to change the focus of an element depending on if it's focused or not
-function changeFocus(elementName){
-    let split = elementName.split(",");
-    let element = document.querySelector(`.${split[0]}`);
-    if(document.activeElement === element && split[1] == "true"){
-        element.blur();
-    }
-    let currentFocus = document.activeElement === element;
-    element.setAttribute("onclick", `changeFocus('${split[0]},${currentFocus}')`);
-
-    function handleFocusOut(event) {
-        element.setAttribute("onclick", `changeFocus('${split[0]},${false}')`);
-        element.removeEventListener("focusout", handleFocusOut);
-    }
-
-    element.addEventListener("focusout", handleFocusOut);
-}
-
 // Function which returns the same string but with the first character capitalized
 function toUpperCaseFirstCharacter(s) {
     return s[0].toUpperCase() + s.slice(1);

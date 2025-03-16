@@ -1,4 +1,5 @@
 :root {
+    --body-background-color: #dce0f8;
     --border-color: black;
     --text-color: black;
     --background-color: white;
@@ -8,14 +9,12 @@
     --scrollbar-track-color: #f1f1f1;
 }
 
-.browserSelect, .themeSelect {
+.themeSelect {
     appearance: none;
-    background-image: url("../img/rightArrow.svg") !important;
-    background-position: right !important;
-    background-repeat: no-repeat !important;
-    background-size: 20% 57% !important;
     border: var(--border-color) solid 0.2vw;
     cursor: pointer;
+    background: var(--background-color);
+    color: var(--text-color);
     font-family: helvetica;
     font-size: 2vw;
     height: 54%;
@@ -25,11 +24,7 @@
     width: 100%;
 }
 
-.browserSelect:focus, .themeSelect:focus {
-    background-image: url("../img/downArrow.svg") !important;
-}
-
-.browserSelect:hover, .themeSelect:hover {
+.themeSelect:hover {
     border-radius: 2vw;
 }
 
@@ -63,6 +58,7 @@
     cursor: pointer;
     transition: 0.5s;
     width: 25%;
+    fill: var(--text-color);
 }
 
 .download:hover {
@@ -171,6 +167,7 @@
     height: 55%;
     justify-content: space-between;
     width: 100%;
+    color: var(--text-color);
 }
 
 .seperator {
@@ -189,6 +186,7 @@
     cursor: pointer;
     transition: 0.5s;
     width: 25%;
+    fill: var(--text-color);
 }
 
 .upload:hover {
@@ -201,7 +199,9 @@
 }
 
 .wallpaperSelect {
+    background: var(--background-color);
     border: 0.2vw solid var(--border-color);
+    color: var(--text-color);
     cursor: text;
     font-size: 1.6vw;
     height: 22%;
@@ -264,7 +264,7 @@ a:visited {
 }
 
 body {
-    background: #dce0f8;
+    background: var(--body-background-color);
     font-family: Helvetica;
     font-size: 1.5vw;
     font-weight: bold;
@@ -274,6 +274,7 @@ body {
     transition: 0.25s;
     user-select: none;
     width: 100%;
+    color: var(--text-color);
 }
 
 form {
@@ -339,6 +340,7 @@ input[type="file"]::-webkit-file-upload-button {
 }
 
 input[type="range"] {
+    background: var(--background-color);
     appearance: none;
     height: 1vw;
     width: 80%;
@@ -355,6 +357,7 @@ input[type="range"]::-webkit-slider-runnable-track {
 }
 
 input[type="range"]::-webkit-slider-thumb {
+    background: var(--text-color);
     -webkit-appearance: none;
     background: var(--border-color);
     border-radius: 1vw;
@@ -390,11 +393,33 @@ input[type="range"]:active{
     display: flex;
     align-items: center;
     justify-content: center;
+    position: fixed;
+}
+
+option {
+    background: var(--background-color);
+    color: var(--text-color);
+}
+
+.arrow {
+    width: 11%;
+    height: inherit;
+    position: relative;
+    left: 83%;
+    fill: var(--text-color);
+    transition: 0.5s;
+    transform-origin: center;
+}
+
+.absoluteWrap {
     position: absolute;
+    pointer-events: none;
+    top: 60%;
 }
 
 @media (prefers-color-scheme: dark) {
     :root {
+        --body-background-color: #2d3143;
         --border-color: #575757;
         --text-color: white;
         --background-color: black;
@@ -403,123 +428,5 @@ input[type="range"]:active{
         --scrollbar-thumb-hover-color: #787878;
         --scrollbar-thumb-active-color: #878787;
         --scrollbar-track-color: #424242;
-    }
-
-    body {
-        background: #2d3143;
-        color: var(--text-color);
-    }
-
-    .resetAll {
-        color: var(--text-color);
-    }
-
-    .resetAll:hover {
-        color: var(--hover-color);
-    }
-
-    .selectName {
-        color: var(--text-color);
-    }
-
-    .browserSelect, .themeSelect {
-        background: var(--background-color);
-        color: var(--text-color);
-        border: var(--border-color) solid 0.2vw;
-    }
-
-    option {
-        background: var(--background-color);
-        color: var(--text-color);
-    }
-
-    .download {
-        fill: var(--text-color);
-    }
-
-    .download:hover {
-        fill: var(--hover-color);
-    }
-
-    .upload {
-        fill: var(--text-color);
-    }
-
-    .upload:hover {
-        fill: var(--hover-color);
-    }
-
-    .resetSection:hover {
-        color: var(--hover-color);
-    }
-
-    .seperator {
-        background: var(--border-color);
-    }
-
-    .button {
-        background: var(--background-color);
-        border: 0.3vw solid var(--border-color);
-    }
-
-    .wallpaperSelect {
-        background: var(--background-color);
-        border: 0.2vw solid var(--border-color);
-        color: var(--text-color);
-    }
-
-    .wallpaperSelect::placeholder {
-        color: var(--text-color);
-        text-align: center;
-    }
-
-    .selectFileLabel:hover {
-        color: var(--hover-color);
-    }
-
-    a {
-        color: var(--text-color);
-    }
-
-    a:link {
-        color: var(--text-color);
-    }
-
-    a:visited {
-        color: var(--text-color);
-    }
-
-    a:hover {
-        color: var(--hover-color);
-    }
-
-    input[type="color"] {
-        border: 0.2vw solid var(--border-color);
-    }
-
-    input[type="checkbox"] {
-        background: #2d3143;
-        border: 0.2vw solid var(--border-color);
-    }
-
-    input[type="checkbox"]:checked {
-        background: var(--hover-color);
-    }
-
-    input[type="range"] {
-        background: var(--background-color);
-    }
-
-    input[type="range"]::-webkit-slider-runnable-track {
-        background: var(--background-color);
-        border: 0.15vw solid var(--border-color);
-    }
-
-    input[type="range"]::-webkit-slider-thumb {
-        background: var(--text-color);
-    }
-
-    .reset:hover {
-        color: var(--hover-color);
     }
 }

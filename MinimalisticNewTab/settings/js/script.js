@@ -16,10 +16,12 @@ let resetSectionButtons = document.querySelectorAll(".resetSection");
 let resetAllButton = document.querySelector(".resetAll");
 let titleElements = document.querySelectorAll(".title");
 let anchors = document.querySelectorAll("a");
+let arrow = document.querySelector(".arrow");
 
 // Booleans 
 let isSettingMainWrap = false;
 let isSettingDragWrap = false;
+let arrowState = false;
 
 // Objects
 let themes = {
@@ -173,7 +175,7 @@ function updateStyles(transitionDisableTime) {
     document.documentElement.style.setProperty("--scrollbar-thumb-color", getFromLocalStorage("Settings scrollbar thumb color"));
     document.documentElement.style.setProperty("--scrollbar-thumb-hover-color", getFromLocalStorage("Settings scrollbar thumb hover color"));
     document.documentElement.style.setProperty("--scrollbar-track-color", getFromLocalStorage("Settings scrollbar thumb track color"));
-    document.body.style.backgroundColor = getFromLocalStorage("Settings background color");
+    document.documentElement.style.setProperty("--body-background-color", getFromLocalStorage("Settings background color"));
 
 
       // Re-enable transitions after a brief pause to allow for style application
@@ -218,6 +220,31 @@ Object.keys(themes).forEach(element => {
 // Set the theme select value
 themeSelect.value = getFromLocalStorage("theme");
 
+function changeArrow(arrowState2){
+  if(arrowState2){
+    arrowState = false;
+    arrow.style.rotate = "0deg";
+  }
+  else{
+    arrowState = true;
+    arrow.style.rotate = "90deg";
+  }
+}
+
+themeSelect.addEventListener("click", function() {
+  if(document.activeElement !== themeSelect){
+    changeArrow(true);
+  }
+  else{
+    changeArrow(arrowState);
+  }
+});
+
+themeSelect.addEventListener("blur", function() {
+  changeArrow(true);
+});
+
+// Add event listeners to anchors
 anchors.forEach(element => {
   element.addEventListener("click", () =>{
     window.location.hash = element.getAttribute("hash");
@@ -242,6 +269,7 @@ function loadValuesAll() {
       else{
         resetInput(index);
       }
+      setValue(index);
     }
   });
 }
@@ -256,13 +284,10 @@ inputs.forEach((element, index) => {
 // Handle theme selection
 themeSelect.addEventListener("input", (event) =>{
   saveToLocalStorage("theme", themeSelect.value);
-  if(themeSelect.value == "c"){
-
-  }
-  else if(themeSelect.value == "d"){
+  if(themeSelect.value == "d"){
     resetAllButton.click();
   }
-  else{
+  else if(themeSelect.value !== "c"){
     uploadConfig(themes[themeSelect.value]);
     setTimeout(() => {  
       loadValuesAll();
@@ -502,9 +527,6 @@ function uploadConfig(fileContents){
   Object.keys(config).forEach((key) => {
     saveToLocalStorage(key, config[key]);
   });
-  setTimeout(() => {
-    window.location.reload();
-  }, 10);
 }
 
 // Resets input of a specified index to default value
