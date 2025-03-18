@@ -555,7 +555,7 @@ function resetInput(index){
       }
       else{
         if(defaultValue.includes("[") && defaultValue.includes("]")){
-          let values = JSON.parse(defaultValue);
+          let values = JSON.parse(defaultValue.replace(/'/g, '"'));
           defaultValue = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? values[1] : values[0];
         }
         input.value = defaultValue;

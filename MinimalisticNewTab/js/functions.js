@@ -92,7 +92,7 @@ function toUpperCaseFirstCharacter(s) {
 }
 
 // Function to create an html element
-function createHTMLElem(name, close, text, attributes, closeTag = true){
+function createHTMLElem(name, close, text, attributes){
     // div, true, {class: "test", id: "test"}
     let element;
     if(attributes){
@@ -100,15 +100,10 @@ function createHTMLElem(name, close, text, attributes, closeTag = true){
         Object.keys(attributes).forEach(key => {
             element += ` ${key}="${attributes[key]}"`;
         });
-        if(closeTag){
-            element += `>`;
-        }
+        element += `>`;
     }
     else{
-        element = `<${name}`;
-        if(closeTag){
-            element += `>`;
-        }
+        element = `<${name}>`;
     }
     if(text && close){
         element += text;
@@ -118,4 +113,17 @@ function createHTMLElem(name, close, text, attributes, closeTag = true){
     }
     return element;
     // <div class="test" id="test"></div>
+}
+
+// Function to merge objects
+function mergeObjects(...objects){
+    let merged = {};
+    objects.forEach(object => {
+        if(object){
+            Object.keys(object).forEach(key => {
+                merged[key] = object[key];
+            });
+        }
+    });
+    return merged;
 }
