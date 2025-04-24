@@ -157,6 +157,7 @@ let mainTimeout;
 let dragTimeout;
 let leaveTimeout;
 let anchorTimeout;
+let scrollTimeout;
 
 function updateStyles(transitionDisableTime) {
     // Temporarily disable transitions for all elements
@@ -242,6 +243,14 @@ themeSelect.addEventListener("click", function() {
 
 themeSelect.addEventListener("blur", function() {
   changeArrow(true);
+});
+
+window.addEventListener("scroll", function() {
+  clearTimeout(scrollTimeout);
+  changeArrow(true);
+  scrollTimeout = setTimeout(() => {
+    changeArrow(true);
+  }, 500);
 });
 
 // Add event listeners to anchors
