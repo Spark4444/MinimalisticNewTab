@@ -1,5 +1,5 @@
 // Initialize DOM elements variables
-const settingsButtons = document.querySelectorAll(".button");
+let settingsButtons = document.querySelectorAll(".button");
 const sections = document.querySelectorAll(".section");
 const sectionAnchors = document.querySelector(".sectionAnchors");
 
