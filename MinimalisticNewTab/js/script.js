@@ -1,15 +1,15 @@
 // Initialize DOM elements variables
-let body = document.querySelector("body");
-let inputForm = document.querySelector(".inputForm");
-let topSection = document.querySelector(".topSection");
-let input = document.querySelector(".input");
-let clearInputIcon = document.querySelector(".clearInputImg");
-let search = document.querySelector(".searchIcon");
-let clock = document.querySelector(".clock");
-let calculator = document.querySelector(".calculator");
-let settings = document.querySelector(".settings");
-let dateScroll = document.querySelector(".dateScroll");
-let dateText = document.querySelector(".dateText");
+const body = document.querySelector("body");
+const inputForm = document.querySelector(".inputForm");
+const topSection = document.querySelector(".topSection");
+const input = document.querySelector(".input");
+const clearInputIcon = document.querySelector(".clearInputImg");
+const search = document.querySelector(".searchIcon");
+const clock = document.querySelector(".clock");
+const calculator = document.querySelector(".calculator");
+const settings = document.querySelector(".settings");
+const dateScroll = document.querySelector(".dateScroll");
+const dateText = document.querySelector(".dateText");
 
 // Initialize state variables
 let inputClearable = false;
@@ -115,12 +115,20 @@ function openPopup(windowName, width, height, popupWindow) {
     }
 }
 
-// Function to clear the search input field
-function clearInput() {
-    input.value = "";
-    clearInputIcon.style.cursor = "default";
-    clearInputIcon.style.opacity = "0";
-    inputClearable = false;
+function showClearButton() {
+    if(!inputClearable){
+        clearInputIcon.style.cursor = "pointer";
+        clearInputIcon.style.opacity = "1";
+        inputClearable = true;
+    }
+}
+
+function hideClearButton() {
+    if(inputClearable){
+        clearInputIcon.style.cursor = "default";
+        clearInputIcon.style.opacity = "0";
+        inputClearable = false;
+    }
 }
 
 // Function to perform an engine search with the value entered in the input field
@@ -171,10 +179,12 @@ input.addEventListener("keyup", function(event){
 
 // Event listener for clear input button to appear
 input.addEventListener("input", function(event){
-    if(!/^\s*$/.test(input.value)){
-        clearInputIcon.style.cursor = "pointer";
-        clearInputIcon.style.opacity = "1";
-        inputClearable = true;
+    const regex = /^\s*$/;
+    if(!regex.test(input.value)){
+        showClearButton();
+    }
+    else {
+        hideClearButton();
     }
 });
 
@@ -184,7 +194,8 @@ search.addEventListener("click", function() {
 });
 clearInputIcon.addEventListener("click", function() {
     if(inputClearable){
-        clearInput();
+        input.value = "";
+        hideClearButton();
     }
 });
 calculator.addEventListener("click", function() {

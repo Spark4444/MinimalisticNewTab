@@ -1,16 +1,16 @@
 // Initialize DOM elements variables
-let body = document.querySelector("body");
-let calculator = document.querySelector(".calculator");
-let calculatorTimeStamp = getFromLocalStorage("calculatorTimeStamp");
-let answer = document.querySelector(".text");
-let copyButton = document.querySelector(".copyTheAnswer");
-let activeArr = [
+const body = document.querySelector("body");
+const calculator = document.querySelector(".calculator");
+const calculatorTimeStamp = getFromLocalStorage("calculatorTimeStamp");
+const answer = document.querySelector(".text");
+const copyButton = document.querySelector(".copyTheAnswer");
+const activeArr = [
     document.querySelector(".button1"),
     document.querySelector(".button2"),
     document.querySelector(".button3")
 ];
-let equalSign = document.querySelector(".button19");
-let numberArr = [
+const equalSign = document.querySelector(".button19");
+const numberArr = [
     document.querySelector(".button17"),
     document.querySelector(".button13"),
     document.querySelector(".button14"),
@@ -22,8 +22,8 @@ let numberArr = [
     document.querySelector(".button6"),
     document.querySelector(".button7")
 ];
-let dotSign = document.querySelector(".button18");
-let signArr = [
+const dotSign = document.querySelector(".button18");
+const signArr = [
     document.querySelector(".button4"),
     document.querySelector(".button8"),
     document.querySelector(".button12"),

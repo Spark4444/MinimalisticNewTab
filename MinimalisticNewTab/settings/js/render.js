@@ -1,16 +1,16 @@
 // Initialize DOM elements variables
-let settingsButtons = document.querySelectorAll(".button");
-let sections = document.querySelectorAll(".section");
-let sectionAnchors = document.querySelector(".sectionAnchors");
+const settingsButtons = document.querySelectorAll(".button");
+const sections = document.querySelectorAll(".section");
+const sectionAnchors = document.querySelector(".sectionAnchors");
 
 // Arrays
-let buttonComponents = [
+const buttonComponents = [
     createHTMLElem("div", true, "", { class: "index" }),
     createHTMLElem("div", true, "", { class: "value" })
 ];
 
 // Objects
-let buttons = {
+const buttons = {
     w: `${createHTMLElem("input", false, "", { type: "file", id: "fileSelect", class: "fileSelect", accept: ".jpg, .jpeg, .png, .svg, .gif, .webp, .apng, .avif" })}${createHTMLElem("label", true, "Select a file", { for: "fileSelect", class: "SelectFileLabel" })}${createHTMLElem("input", false, "", { type: "text", class: "wallpaperSelect", placeholder: "Or paste a URL link here" })}`,
     c: {
         type: "color",

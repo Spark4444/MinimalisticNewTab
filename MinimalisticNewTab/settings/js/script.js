@@ -1,22 +1,22 @@
 // Initialize DOM elements variables
-let mainWrap = document.querySelector(".mainWrap");
-let dragWrap = document.querySelector(".dragWrap");
-let settingsTimeStamp = getFromLocalStorage("settingsTimeStamp");
-let form = document.querySelector("form");
-let indexElements = document.querySelectorAll(".index");
-let buttonNames = document.querySelectorAll(".name");
-let themeSelect = document.querySelector(".themeSelect");
-let inputsNode = document.querySelectorAll("input");
-let inputs = Array.from(inputsNode);
-let downloadButton = document.querySelector(".download");
-let uploadButton = inputsNode[0];
-let values = document.querySelectorAll(".value");
-let resetButtons = document.querySelectorAll(".reset");
-let resetSectionButtons = document.querySelectorAll(".resetSection");
-let resetAllButton = document.querySelector(".resetAll");
-let titleElements = document.querySelectorAll(".title");
-let anchors = document.querySelectorAll("a");
-let arrow = document.querySelector(".arrow");
+const mainWrap = document.querySelector(".mainWrap");
+const dragWrap = document.querySelector(".dragWrap");
+const settingsTimeStamp = getFromLocalStorage("settingsTimeStamp");
+const form = document.querySelector("form");
+const indexElements = document.querySelectorAll(".index");
+const buttonNames = document.querySelectorAll(".name");
+const themeSelect = document.querySelector(".themeSelect");
+const inputsNode = document.querySelectorAll("input");
+const inputs = Array.from(inputsNode);
+const downloadButton = document.querySelector(".download");
+const uploadButton = inputsNode[0];
+const values = document.querySelectorAll(".value");
+const resetButtons = document.querySelectorAll(".reset");
+const resetSectionButtons = document.querySelectorAll(".resetSection");
+const resetAllButton = document.querySelector(".resetAll");
+const titleElements = document.querySelectorAll(".title");
+const anchors = document.querySelectorAll("a");
+const arrow = document.querySelector(".arrow");
 
 // Booleans 
 let isSettingMainWrap = false;
@@ -24,7 +24,7 @@ let isSettingDragWrap = false;
 let arrowState = false;
 
 // Objects
-let themes = {
+const themes = {
   red: `
   {
     "0": "0",
