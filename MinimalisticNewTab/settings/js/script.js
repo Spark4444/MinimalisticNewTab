@@ -144,7 +144,7 @@ const themes = {
     "Sign buttons selected background color": "#c800ff",
     "Sign buttons selected font color": "#150566",
     "Time display enabled": "true",
-    "Wallpaper": "https://rare-gallery.com/mocahbig/397378-wallpaper-sunset-abstract-grid-mountain-digital-art.jpg",
+    "Wallpaper": "img/Wallpaper2.png",
     "X icon color": "#c800ff",
     "search Engine": "g",
     "theme": "c"
